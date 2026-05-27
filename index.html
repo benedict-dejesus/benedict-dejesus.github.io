@@ -695,6 +695,93 @@
       color: var(--text-body);
       line-height: 1.6;
     }
+/* ── PRINT AUTOMATION STYLES ───────────────────────── */
+    @media print {
+      /* 1. Reset body and force light backgrounds */
+      body {
+        background: #ffffff !important;
+        color: #002C39 !important;
+        font-size: 11pt !important;
+      }
+      
+      /* 2. Hide web-only UI elements (Sidebar, HERO Banner, Overlays) */
+      #sidebar, #hero, .sidebar-toggle, .scroll-overlay, .theme-switch, [title*="Scroll horizontally"]::-webkit-scrollbar {
+        display: none !important;
+      }
+      
+      /* 3. Force main content to take up full page width instead of pushing left */
+      main, .main-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+      }
+      
+      /* 4. Bypass scroll-reveal animations (make everything visible instantly) */
+      .reveal, .tl-item, .tr-card, .skill-item, .ref-card, .port-card {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+      }
+      
+      /* 5. Optimize Layout Structure for Paper */
+      section {
+        padding: 20px 0 !important;
+        page-break-inside: avoid; /* Prevents text splitting awkwardly across page edges */
+      }
+      
+      .portfolio-grid, .grid-2, .grid-3 {
+        display: block !important; /* Changes columns to a clean vertical stack */
+      }
+      
+      /* 6. Adapt the Image Gallery for Print */
+      .port-img-wrap {
+        display: flex !important;
+        flex-wrap: wrap !important; /* Wraps screenshots cleanly downward instead of hiding them off-screen */
+        height: auto !important;
+        background: none !important;
+        gap: 8px;
+      }
+      .port-img {
+        width: 30% !important; /* Shows up to 3 thumbnails side-by-side on paper */
+        height: 100px !important;
+        border: 1px solid #015061;
+        border-radius: 4px;
+      }
+      
+      /* 7. Accent Preservation */
+      h1, h2, h3 { color: #002C39 !important; page-break-after: avoid; }
+      .section-line { background: #00C18E !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      /* 8. Print-Only Resume Header Styling */
+      .print-header {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #00C18E;
+        padding-bottom: 15px;
+      }
+      .print-header h1 {
+        font-size: 28pt !important;
+        margin: 0 0 5px 0 !important;
+        text-transform: uppercase;
+        color: #002C39 !important;
+      }
+      .print-subtitle {
+        font-size: 14pt !important;
+        margin: 0 0 10px 0 !important;
+        color: #015061 !important;
+        font-weight: bold;
+      }
+      .print-contact {
+        font-size: 10pt !important;
+        color: #1a3a45 !important;
+      }
+    }
+
+    /* ── CRUCIAL: Hide Print Header on the Live Web Version ── */
+    .print-header {
+      display: none;
+    }
 
     /* ── SCROLL OVERLAY ─────────────────────────────────── */
     #progress-bar {
@@ -813,7 +900,16 @@
 <!-- ── MAIN ── -->
 <main>
 
-  <!-- HERO -->
+  <div class="print-header">
+    <h1>Benedict C. De Jesus</h1>
+    <p class="print-subtitle">Educator Manager & Instructional Designer</p>
+    <div class="print-contact">
+      <span>Malolos, Bulacan, PH</span> | 
+      <span>+63 927 383 7473</span> | 
+      <span>benedictdejesuslpt@gmail.com</span>
+    </div>
+  </div>
+
   <div id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid"></div>
