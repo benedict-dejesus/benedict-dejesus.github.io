@@ -622,6 +622,80 @@
     .ref-role { font-size: .85rem; color: var(--aurora); margin-bottom: 14px; }
     .ref-contact { font-size: .85rem; color: rgba(255,255,255,.55); }
 
+/* ── ISD PORTFOLIO ─────────────────────────────────── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .port-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,44,57,.08);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), opacity .5s var(--ease);
+      opacity: 0;
+      transform: translateY(20px);
+      display: flex;
+      flex-direction: column;
+    }
+    section:nth-child(even) .port-card { background: var(--mist); }
+    section:nth-child(odd) .port-card { background: var(--white); }
+    
+    .port-card.visible { opacity: 1; transform: translateY(0); }
+    .port-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,44,57,.15); }
+    
+    /* Updated for Multiple Images (Horizontal Scroll/Swipe) */
+    .port-img-wrap {
+      width: 100%;
+      height: 240px;
+      background: var(--midnight);
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--aurora) var(--midnight);
+      position: relative;
+    }
+    
+    /* Custom Webkit Scrollbar for the image gallery */
+    .port-img-wrap::-webkit-scrollbar { height: 6px; }
+    .port-img-wrap::-webkit-scrollbar-track { background: var(--midnight); }
+    .port-img-wrap::-webkit-scrollbar-thumb { background: var(--aurora); border-radius: 4px; }
+    
+    .port-img {
+      flex: 0 0 100%; /* Forces each image to take up full width of the wrapper */
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      scroll-snap-align: start;
+    }
+    
+    .port-content {
+      padding: 28px;
+      border-top: 3px solid var(--aurora);
+      flex-grow: 1;
+    }
+    .port-title {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--midnight);
+      margin-bottom: 6px;
+    }
+    .port-tools {
+      font-size: .85rem;
+      color: var(--aurora);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .port-desc {
+      font-size: .95rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
     /* ── SCROLL OVERLAY ─────────────────────────────────── */
     #progress-bar {
       position: fixed;
@@ -717,6 +791,7 @@
     <li><a href="#about" class="nav-link"><span class="nav-dot"></span>About</a></li>
     <li><a href="#experience" class="nav-link"><span class="nav-dot"></span>Experience</a></li>
     <li><a href="#education" class="nav-link"><span class="nav-dot"></span>Education</a></li>
+    <li><a href="#portfolio" class="nav-link"><span class="nav-dot"></span>ISD Portfolio</a></li>
     <li><a href="#trainings" class="nav-link"><span class="nav-dot"></span>Trainings</a></li>
     <li><a href="#skills" class="nav-link"><span class="nav-dot"></span>Skills</a></li>
     <li><a href="#references" class="nav-link"><span class="nav-dot"></span>References</a></li>
@@ -845,6 +920,63 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+<section id="portfolio">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <h2>ISD Portfolio</h2>
+      <div class="section-line"></div>
+    </div>
+    
+    <div class="portfolio-grid">
+      
+      <div class="port-card reveal">
+        <div class="port-img-wrap" title="Scroll horizontally to see more screenshots">
+          <img src="Projects/AutoRise/screenshots/AutoRise_dashboard.png" alt="AutoRise Dashboard" class="port-img">
+          <img src="Projects/AutoRise/screenshots/AutoRise_dashboard2.png" alt="AutoRise Dashboard 2" class="port-img">
+          <img src="Projects/AutoRise/screenshots/AutoRise_lesson1.png" alt="AutoRise Lesson 1" class="port-img">
+          <img src="Projects/AutoRise/screenshots/AutoRise_lesson2.png" alt="AutoRise Lesson 2" class="port-img">
+          <img src="Projects/AutoRise/screenshots/AutoRise_lesson3.png" alt="AutoRise Lesson 3" class="port-img">
+          <img src="Projects/AutoRise/screenshots/logo.png" alt="AutoRise Logo" class="port-img">
+        </div>
+        <div class="port-content">
+          <h3 class="port-title">AutoRise</h3>
+          <p class="port-tools">AI-Powered Offline Learning Experience Designer</p>
+          <p class="port-desc">Designed and developed an AI-driven offline learning solution to ensure continuous educational access, democratizing personalized instruction without relying on constant internet connectivity.</p>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-img-wrap" title="Scroll horizontally to see more screenshots">
+          <img src="Projects/AAP_Module1/screenshots/AAP_module1_lesson1.png" alt="Module 1 Lesson 1" class="port-img">
+          <img src="Projects/AAP_Module1/screenshots/AAP_module1_lesson2.png" alt="Module 1 Lesson 2" class="port-img">
+          <img src="Projects/AAP_Module1/screenshots/AAP_module1_lesson3.png" alt="Module 1 Lesson 3" class="port-img">
+        </div>
+        <div class="port-content">
+          <h3 class="port-title">Art Appreciation - Module 1</h3>
+          <p class="port-tools">Curriculum & E-Learning Development</p>
+          <p class="port-desc">Developed an interactive foundational module for Art Appreciation, structuring visual arts theory into engaging, digestible segments for higher education learners.</p>
+        </div>
+      </div>
+
+      <div class="port-card reveal">
+        <div class="port-img-wrap" title="Scroll horizontally to see more screenshots">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson1.png" alt="Module 2 Lesson 1" class="port-img">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson2.png" alt="Module 2 Lesson 2" class="port-img">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson3.png" alt="Module 2 Lesson 3" class="port-img">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson4.png" alt="Module 2 Lesson 4" class="port-img">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson5.png" alt="Module 2 Lesson 5" class="port-img">
+          <img src="Projects/AAP_Module2/screenshots/AAP_module2_lesson6.png" alt="Module 2 Lesson 6" class="port-img">
+        </div>
+        <div class="port-content">
+          <h3 class="port-title">Art Appreciation - Module 2</h3>
+          <p class="port-tools">Curriculum & E-Learning Development</p>
+          <p class="port-desc">Designed an advanced progression module featuring complex artistic concepts and interactive assessments to elevate student comprehension and critical analysis skills.</p>
+        </div>
+      </div>
+      
     </div>
   </section>
 
