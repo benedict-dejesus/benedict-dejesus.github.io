@@ -65,7 +65,16 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .lesson-title { font-size: 2.5rem; color: var(--midnight); margin-bottom: 30px; border-bottom: 3px solid var(--aurora); display: inline-block; }
-    .block { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+    .block { 
+      background: var(--white); 
+      padding: 30px; 
+      border-radius: 12px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+      margin-bottom: 30px; 
+      
+      /* ── ADD THIS LINE ── */
+      border: 1px solid rgba(0, 44, 57, 0.15); /* Thin, crisp border using 15% opacity of #002C39 */
+    }
     .block-title { font-size: 1.5rem; color: var(--arcana); margin-bottom: 10px; }
     .block-instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 10px; }
 
@@ -83,7 +92,30 @@
     .flip-card-front { background: var(--arcana); color: var(--white); display: flex; flex-direction: column; justify-content: center; }
     .flip-card-front h4 { font-size: 1.2rem; color: var(--aurora); margin-bottom: 5px; }
     .flip-card-front span { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
-    .flip-card-back { background: var(--aurora); color: var(--midnight); transform: rotateY(180deg); font-size: 0.95rem; display: flex; align-items: center; }
+    .flip-card-back { 
+      background: var(--aurora); 
+      color: var(--midnight); 
+      transform: rotateY(180deg); 
+      font-size: 0.95rem; 
+      display: flex; 
+      align-items: flex-start; /* Changed from center to start so long text begins at the top */
+      
+      /* ── ADD THESE TWO LINES ── */
+      overflow-y: auto;        /* Adds a scrollbar only if text overflows the 220px height */
+      max-height: 100%;        /* Prevents the text from bursting outside the card bounds */
+    }
+/* Style the scrollbar specifically inside the flipped card */
+    .flip-card-back::-webkit-scrollbar {
+      width: 6px; /* Makes the scrollbar narrow and minimalist */
+    }
+    .flip-card-back::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05); /* Soft background track */
+      border-radius: 10px;
+    }
+    .flip-card-back::-webkit-scrollbar-thumb {
+      background: var(--arcana); /* Uses your deep blue color for the draggable bar */
+      border-radius: 10px;
+    }
 
     /* Timeline */
     .timeline { border-left: 3px solid var(--aurora); padding-left: 20px; margin-left: 10px; }
@@ -101,7 +133,17 @@
     .dnd-item { background: var(--midnight); color: var(--white); padding: 10px 15px; border-radius: 20px; cursor: grab; font-weight: 600; font-size: 0.9rem; }
     .dnd-item.dragging { opacity: 0.5; }
     .dnd-zones { flex: 2; display: flex; gap: 15px; }
-    .drop-zone { flex: 1; background: var(--mist); border: 2px dashed var(--arcana); border-radius: 10px; padding: 15px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; }
+    .drop-zone { 
+      flex: 1; 
+      background: var(--mist); 
+      border: 1px dashed rgba(0, 44, 57, 0.3); /* Changed to matching dark theme color with dashed layout */
+      border-radius: 10px; 
+      padding: 15px; 
+      min-height: 200px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+    }
     .drop-zone h4 { text-align: center; color: var(--arcana); margin-bottom: 10px; }
     .drop-zone.dragover { background: rgba(0,193,142,0.1); border-color: var(--aurora); }
 
@@ -120,7 +162,17 @@
     .tab-content.active { display: block; animation: fadeIn 0.3s; }
 
     /* Carousel */
-    .carousel { overflow: hidden; position: relative; border-radius: 10px; background: var(--mist); padding: 10px; text-align: center; border: 1px solid rgba(0,0,0,0.05); }
+    .carousel { 
+      overflow: hidden; 
+      position: relative; 
+      border-radius: 10px; 
+      background: var(--mist); 
+      padding: 10px; 
+      text-align: center; 
+      
+      /* Updated line */
+      border: 1px solid rgba(0, 44, 57, 0.15); 
+    }
     .carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
     .carousel-slide { min-width: 100%; padding: 0 10px; }
     .carousel-controls { margin-top: 15px; text-align: center; }
@@ -154,8 +206,17 @@
     </div>
 
     <div class="social-links">
-      <a href="https://www.facebook.com/benedict.de.jesus.2025" target="_blank">↗ Facebook Profile</a>
-      <a href="https://www.linkedin.com/in/benedict-de-jesus-8383913a0" target="_blank">↗ LinkedIn Profile</a>
+      <a href="https://www.facebook.com/benedict.de.jesus.2025" target="_blank" aria-label="Facebook Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
+          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+        </svg>
+      </a>
+
+      <a href="https://www.linkedin.com/in/benedict-de-jesus-8383913a0" target="_blank" aria-label="LinkedIn Profile">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
+          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+        </svg>
+      </a>
     </div>
 
     <ul class="nav-menu">
@@ -177,7 +238,7 @@
       <h2 class="lesson-title">Lesson 1: Introduction</h2>
       
       <div class="block">
-        <h3 class="block-title">About Me</h3>
+        <h3 class="block-title">Hi! I'm Benedict but I'm more popular as Sir Kito</h3>
         <p class="block-instruction">Read through my professional background to learn more about my journey.</p>
         <p>I am a licensed professional English teacher from the Philippines with extensive experience across ESL/EFL instruction, Instructional Design, AI Technology, Research & Statistics, Music, and Visual Arts. I have always been passionate about bridging technology and humanities in education, and I practice that balance throughout my career — from the university classroom to the boardroom of ALPS.</p>
       </div>
@@ -194,6 +255,15 @@
             <span class="timeline-year">2010 - 2014</span>
             <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
           </div>
+	  <div class="timeline-item">
+            <span class="timeline-year">2004</span>
+            <div class="timeline-content"><strong>Secondary</strong> <br>Immaculate Conception School for Boys</div>
+          </div>
+	  </div>
+	  <div class="timeline-item">
+            <span class="timeline-year">2000</span>
+            <div class="timeline-content"><strong>Primary</strong> <br>Holy Spirit Academy of Malolos</div>
+          </div>
         </div>
       </div>
 
@@ -201,26 +271,26 @@
         <h3 class="block-title">Work Experience</h3>
         <p class="block-instruction">Click on each card to flip it and reveal my specific job descriptions and responsibilities.</p>
         <div class="flip-grid">
-          
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>Marketing & Finance Manager</h4>
-                <span>Arcana Learning & Process Solutions</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - Present) ⤻</p>
-              </div>
-              <div class="flip-card-back">Managed Marketing and Financial Operations for ALPS, a tech-enabled L&D company. Responsible for financials and market analyses.</div>
-            </div>
-          </div>
 
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+	<div class="flip-card" onclick="this.classList.toggle('flipped')">
             <div class="flip-card-inner">
               <div class="flip-card-front">
                 <h4>Part-time Instructor</h4>
                 <span>Bulacan State University (Main)</span>
                 <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2018 - Present) ⤻</p>
               </div>
-              <div class="flip-card-back">Taught English, Classics, Art Appreciation. Advised student theses, managed records, and actively contributed to college accreditation efforts.</div>
+              <div class="flip-card-back">Designed and delivered Outcomes-Based Instruction, Assessments, and Learning Materials for Art Appreciation, Reading Visual Art, Speech and Theater Arts, and other English subjects. Also managed student records, and actively contributed to college accreditation efforts.</div>
+            </div>
+          </div>
+          
+          <div class="flip-card" onclick="this.classList.toggle('flipped')">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h4>Marketing & Finance Manager</h4>
+                <span>Arcana Learning & Process Solutions</span>
+                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - 2026) ⤻</p>
+              </div>
+              <div class="flip-card-back">Designed and managed marketing and financial operations for ALPS, a tech-enabled L&D company. Conducted market analyses and feasibility researches for company projects and identified potential courses to develop.</div>
             </div>
           </div>
 
@@ -231,7 +301,7 @@
                 <span>La Consolacion University PH</span>
                 <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
               </div>
-              <div class="flip-card-back">Taught Practical Research 1 & 2 and the Research Capstone Project. Proudly served as the class adviser for two SHS sections.</div>
+              <div class="flip-card-back">Designed and delivered high level to granular SHS learning paths, lesson guides, and instructional materials in Practical Research 1&2 for the entire Basic Education Department</div>
             </div>
           </div>
 
@@ -242,7 +312,7 @@
                 <span>JABEZ International Educ. Center</span>
                 <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
               </div>
-              <div class="flip-card-back">Taught Grammar and Pronunciation to international students for TOEIC preparation. Later promoted to Student Coordinator.</div>
+              <div class="flip-card-back">Designed and implemented optimized material-to-instruction processes for teaching English Grammar and Pronunciation to international students for TOEIC preparation in addition to administrative and management tasks aligned with student welfare.</div>
             </div>
           </div>
 
@@ -253,7 +323,7 @@
                 <span>Self-Employed</span>
                 <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2010 - Present) ⤻</p>
               </div>
-              <div class="flip-card-back">Provided independent research and thesis consultation for undergrad and graduate students, ensuring academic rigor and methodology.</div>
+              <div class="flip-card-back">Provided independent research and thesis consultation for undergrad and graduate students, ensuring academic rigor through methodology alignment, data processing, grammar checks, AI detection and plagiarism scans.</div>
             </div>
           </div>
 
@@ -303,7 +373,7 @@
 
       <div class="block">
         <h3 class="block-title">Knowledge Check: Skills Sorting</h3>
-        <p class="block-instruction">Drag the skill tags on the left and drop them into their correct industry application categories on the right.</p>
+        <p class="block-instruction">Drag my skill tags on the left and drop them into their correct industry application categories on the right.</p>
         
         <div class="dnd-container">
           <div class="dnd-items" id="draggable-items">
@@ -421,18 +491,28 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
-    function goToLesson(targetId) {
-      // Update active link visually in sidebar
+   function goToLesson(targetId) {
+      // 1. Clear out old active links and assign it to the new one
       navLinks.forEach(link => {
         link.classList.remove('active');
         if(link.getAttribute('data-target') === targetId) {
           link.classList.add('active');
         }
       });
-      // Update active section
+
+      // 2. Hide the previous lesson panel and show the new one
       sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(targetId).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const nextSection = document.getElementById(targetId);
+      nextSection.classList.add('active');
+
+      // 3. Dynamic Scroll Engine (with execution safety delay)
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth' /* Creates an elegant animated slide up instead of a jarring jump */
+        });
+      }, 50); // A 50ms delay guarantees the browser renders the new section first
     }
 
     // Bind sidebar clicks
