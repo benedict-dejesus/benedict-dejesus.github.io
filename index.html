@@ -375,11 +375,16 @@
           </div>
         </div>
 
+       <div id="gate-warning-2" class="gate-warning" style="text-align: center; color: #856404; background: #fff3cd; padding: 10px; border-radius: 5px; margin-bottom: 15px; border: 1px solid #ffeeba; transition: all 0.3s ease;">
+          🔒 <strong>Progress Locked:</strong> Correctly sort all skills in the activity above to unlock completion.
+        </div>
+
         <div class="completion-area">
-          <button class="btn-action" onclick="completeLesson(2, this)">Complete Lesson 2</button>
+          <button id="btn-complete-2" class="btn-action" onclick="completeLesson(2, this)" disabled>Complete Lesson 2</button>
           <div id="msg-2" class="completion-msg">🎉 Lesson 2 Complete! 7 EXP Awarded.</div>
           <button id="btn-next-2" class="btn-continue" onclick="goToLesson('lesson3')">Continue to Lesson 3 ➔</button>
         </div>
+
       </section>
 
 <section id="lesson3">
@@ -620,11 +625,39 @@
       item.setAttribute('draggable', 'false');
       item.classList.remove('tap-selected');
       item.style.cursor = 'default';
+      
+      // Trigger the gatekeeper validation every time an item is locked
+      validateLesson2Gate();
     }
 
     function shakeItem(item) {
       item.style.transform = "translateX(10px)";
       setTimeout(() => item.style.transform = "none", 200);
+    }
+
+// ── LESSON 2 GATEKEEPER VALIDATION ──
+    function validateLesson2Gate() {
+      // Since your drag-and-drop only allows correct drops, 
+      // we just need to check if all items have been successfully moved out of the starting pool.
+      const totalItems = document.querySelectorAll('#lesson2 .dnd-item').length;
+      let correctlyPlaced = 0;
+      
+      const dropZones = document.querySelectorAll('#lesson2 .drop-zone');
+      dropZones.forEach(zone => {
+        correctlyPlaced += zone.querySelectorAll('.dnd-item').length;
+      });
+
+      const gateWarning = document.getElementById('gate-warning-2');
+      const completeBtn = document.getElementById('btn-complete-2');
+
+      // If the number of locked items matches the total items, unlock the gate!
+      if (correctlyPlaced === totalItems && totalItems > 0) {
+        gateWarning.innerHTML = "🔓 <strong>Criteria Met!</strong> The progression gate is now open.";
+        gateWarning.style.color = "#155724";
+        gateWarning.style.background = "#d4edda";
+        gateWarning.style.borderColor = "#c3e6cb";
+        completeBtn.disabled = false;
+      }
     }
 
     // ── TABS LOGIC ──
