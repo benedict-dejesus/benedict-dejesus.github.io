@@ -18,76 +18,66 @@
       --sidebar-w: 320px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-body); }
-    body { background: var(--mist); color: var(--midnight); display: flex; min-height: 100vh; overflow-x: hidden; }
+    body, html { background: var(--mist); color: var(--midnight); min-height: 100vh; overflow-x: hidden; }
     h1, h2, h3, h4 { font-family: var(--font-head); }
     p { line-height: 1.6; margin-bottom: 10px; }
     img { max-width: 100%; border-radius: 8px; }
+
+    /* ── WELCOME TERMINAL (LANDING PAGE) ── */
+    #welcome-screen {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: var(--midnight); color: var(--mist);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease; text-align: center; padding: 20px;
+    }
+    .avatar-placeholder {
+      width: 150px; height: 150px; background: var(--arcana); border: 4px dashed var(--aurora);
+      border-radius: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;
+      font-size: 0.9rem; font-style: italic; color: var(--aurora);
+    }
+    #welcome-screen h1 { font-size: 3rem; margin-bottom: 10px; color: var(--white); }
+    #welcome-screen p { font-size: 1.2rem; color: var(--aurora); margin-bottom: 40px; max-width: 600px; }
+    .btn-start {
+      background: var(--aurora); color: var(--midnight); font-size: 1.2rem; font-weight: bold;
+      padding: 15px 40px; border: none; border-radius: 8px; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-start:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,193,142,0.3); }
+
+    /* ── APP WRAPPER (Hidden until start) ── */
+    #app-wrapper { display: flex; min-height: 100vh; width: 100vw; opacity: 0; transition: opacity 0.5s ease; }
 
     /* ── SIDEBAR (COURSE MENU) ── */
     #sidebar {
       position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh;
       background: var(--midnight); color: var(--mist); padding: 40px 20px;
       display: flex; flex-direction: column; align-items: center; z-index: 100;
-      overflow-y: auto;
+      overflow-y: auto; transition: transform 0.3s ease;
     }
-    .profile-img { 
-      width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--aurora); 
-      margin-bottom: 15px; object-fit: cover; background: var(--arcana);
-    }
+    .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--aurora); margin-bottom: 15px; object-fit: cover; background: var(--arcana); }
     .name { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; text-align: center; color: var(--white); }
     .tagline { font-size: 0.9rem; color: var(--aurora); text-align: center; margin-bottom: 20px; font-style: italic; }
-    
     .contact-info { width: 100%; font-size: 0.85rem; margin-bottom: 20px; text-align: center; color: rgba(255,255,255,0.7); }
-    /* ── HIGH-CONTRAST SIDE-BY-SIDE SOCIAL LOGOS ── */
-    .social-links { 
-      display: flex !important; 
-      flex-direction: row !important; /* Forces layout side-by-side */
-      justify-content: center !important; 
-      align-items: center !important;
-      gap: 16px !important;           /* Clean, minimalist gap between items */
-      margin-bottom: 25px !important; 
-      width: 100% !important;
-    }
-    .social-links a { 
-      display: inline-flex !important; /* Prevents text-block style expansion */
-      width: 24px !important;          /* Sharp, ultra-clean minimalist bounding box */
-      height: 24px !important;
-      text-decoration: none !important; 
-      transition: transform 0.2s ease !important;
-    }
-    .social-links a:hover {
-      transform: scale(1.15) !important; /* Gentle interactive swell on mouseover */
-    }
-    .social-icon {
-      width: 24px !important;        /* Strict micro-dimensions */
-      height: 24px !important;
-      max-width: 24px !important;
-      max-height: 24px !important;
-      fill: var(--mist) !important;  /* Locks to your light off-white tone (#FFF7F7) for max contrast */
-      opacity: 0.9 !important;       /* Increases clarity against deep midnight base backgrounds */
-      transition: fill 0.2s ease !important;
-    }
-    /* Hover state shifts cleanly into the success green accent */
-    .social-links a:hover .social-icon { 
-      fill: var(--aurora) !important; /* Switches to #00C18E */
-      opacity: 1 !important;
-    }
+    
+    /* Social Icons */
+    .social-links { display: flex !important; flex-direction: row !important; justify-content: center !important; align-items: center !important; gap: 16px !important; margin-bottom: 25px !important; width: 100% !important; }
+    .social-links a { display: inline-flex !important; width: 24px !important; height: 24px !important; text-decoration: none !important; transition: transform 0.2s ease !important; }
+    .social-links a:hover { transform: scale(1.15) !important; }
+    .social-icon { width: 24px !important; height: 24px !important; max-width: 24px !important; max-height: 24px !important; fill: var(--mist) !important; opacity: 0.9 !important; transition: fill 0.2s ease !important; }
+    .social-links a:hover .social-icon { fill: var(--aurora) !important; opacity: 1 !important; }
 
     .nav-menu { width: 100%; list-style: none; }
     .nav-menu li { margin-bottom: 10px; }
-    .nav-menu a {
-      display: block; padding: 12px 15px; background: rgba(255,255,255,0.05); color: var(--mist); 
-      text-decoration: none; border-radius: 6px; font-weight: 600; transition: 0.3s;
-    }
+    .nav-menu a { display: block; padding: 12px 15px; background: rgba(255,255,255,0.05); color: var(--mist); text-decoration: none; border-radius: 6px; font-weight: 600; transition: 0.3s; }
     .nav-menu a.active, .nav-menu a:hover { background: var(--arcana); border-left: 4px solid var(--aurora); }
 
     /* ── MAIN CONTENT & HUD ── */
-    main { margin-left: var(--sidebar-w); flex: 1; padding: 80px 40px 40px; position: relative; }
+    main { margin-left: var(--sidebar-w); flex: 1; padding: 80px 40px 40px; position: relative; width: calc(100vw - var(--sidebar-w)); }
     #hud {
       position: fixed; top: 0; left: var(--sidebar-w); right: 0; background: var(--white);
       padding: 15px 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); z-index: 90;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 44, 57, 0.1);
     }
+    #mobile-menu-btn { display: none; }
     .exp-tracker { font-size: 1.2rem; font-weight: 800; color: var(--arcana); }
     .exp-tracker span { color: var(--aurora); font-size: 1.5rem; }
 
@@ -96,461 +86,357 @@
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     .lesson-title { font-size: 2.5rem; color: var(--midnight); margin-bottom: 30px; border-bottom: 3px solid var(--aurora); display: inline-block; }
-    .block { 
-      background: var(--white); 
-      padding: 30px; 
-      border-radius: 12px; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-      margin-bottom: 30px; 
-      
-      /* ── ADD THIS LINE ── */
-      border: 1px solid rgba(0, 44, 57, 0.15); /* Thin, crisp border using 15% opacity of #002C39 */
-    }
+    
+    /* ── BLOCKS WITH THIN BORDER ── */
+    .block { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid rgba(0, 44, 57, 0.15); }
     .block-title { font-size: 1.5rem; color: var(--arcana); margin-bottom: 10px; }
     .block-instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 10px; }
 
-    /* ── INTERACTIVE COMPONENTS ── */
-    
-    /* Flip Cards */
+    /* ── FLIP CARDS (Option A: Scrollable) ── */
     .flip-grid { display: flex; flex-wrap: wrap; gap: 20px; }
     .flip-card { background-color: transparent; width: 320px; height: 220px; perspective: 1000px; cursor: pointer; }
     .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: left; transition: transform 0.6s; transform-style: preserve-3d; }
     .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-    .flip-card-front, .flip-card-back { 
-      position: absolute; width: 100%; height: 100%; backface-visibility: hidden; 
-      border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+    .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 10px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
     .flip-card-front { background: var(--arcana); color: var(--white); display: flex; flex-direction: column; justify-content: center; }
     .flip-card-front h4 { font-size: 1.2rem; color: var(--aurora); margin-bottom: 5px; }
     .flip-card-front span { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
-    .flip-card-back { 
-      background: var(--aurora); 
-      color: var(--midnight); 
-      transform: rotateY(180deg); 
-      font-size: 0.95rem; 
-      display: flex; 
-      align-items: flex-start; /* Changed from center to start so long text begins at the top */
-      
-      /* ── ADD THESE TWO LINES ── */
-      overflow-y: auto;        /* Adds a scrollbar only if text overflows the 220px height */
-      max-height: 100%;        /* Prevents the text from bursting outside the card bounds */
-    }
-/* Style the scrollbar specifically inside the flipped card */
-    .flip-card-back::-webkit-scrollbar {
-      width: 6px; /* Makes the scrollbar narrow and minimalist */
-    }
-    .flip-card-back::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.05); /* Soft background track */
-      border-radius: 10px;
-    }
-    .flip-card-back::-webkit-scrollbar-thumb {
-      background: var(--arcana); /* Uses your deep blue color for the draggable bar */
-      border-radius: 10px;
-    }
+    .flip-card-back { background: var(--aurora); color: var(--midnight); transform: rotateY(180deg); font-size: 0.95rem; display: flex; align-items: flex-start; overflow-y: auto; max-height: 100%; }
+    .flip-card-back::-webkit-scrollbar { width: 6px; }
+    .flip-card-back::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
+    .flip-card-back::-webkit-scrollbar-thumb { background: var(--arcana); border-radius: 10px; }
 
-    /* Timeline */
+    /* ── TIMELINE (Fixed Nesting) ── */
     .timeline { border-left: 3px solid var(--aurora); padding-left: 20px; margin-left: 10px; }
     .timeline-item { position: relative; margin-bottom: 25px; }
-    .timeline-item::before {
-      content: ''; position: absolute; left: -28.5px; top: 5px; width: 14px; height: 14px;
-      background: var(--white); border: 3px solid var(--arcana); border-radius: 50%;
-    }
+    .timeline-item::before { content: ''; position: absolute; left: -28.5px; top: 5px; width: 14px; height: 14px; background: var(--white); border: 3px solid var(--arcana); border-radius: 50%; }
     .timeline-year { font-weight: bold; color: var(--aurora); font-size: 0.9rem; }
     .timeline-content { background: var(--mist); padding: 15px; border-radius: 8px; margin-top: 5px; }
 
-    /* Drag and Drop */
+    /* ── HYBRID DRAG/TAP & DROP ── */
     .dnd-container { display: flex; gap: 30px; }
     .dnd-items { flex: 1; display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
-    .dnd-item { background: var(--midnight); color: var(--white); padding: 10px 15px; border-radius: 20px; cursor: grab; font-weight: 600; font-size: 0.9rem; }
-    .dnd-item.dragging { opacity: 0.5; }
+    .dnd-item { background: var(--midnight); color: var(--white); padding: 10px 15px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, background 0.2s; user-select: none; }
+    .dnd-item.dragging, .dnd-item.tap-selected { opacity: 0.8; transform: scale(1.05); box-shadow: 0 0 0 2px var(--aurora); }
     .dnd-zones { flex: 2; display: flex; gap: 15px; }
-    .drop-zone { 
-      flex: 1; 
-      background: var(--mist); 
-      border: 1px dashed rgba(0, 44, 57, 0.3); /* Changed to matching dark theme color with dashed layout */
-      border-radius: 10px; 
-      padding: 15px; 
-      min-height: 200px; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 10px; 
-    }
-    .drop-zone h4 { text-align: center; color: var(--arcana); margin-bottom: 10px; }
+    .drop-zone { flex: 1; background: var(--mist); border: 1px dashed rgba(0, 44, 57, 0.3); border-radius: 10px; padding: 15px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: background 0.2s; }
+    .drop-zone h4 { text-align: center; color: var(--arcana); margin-bottom: 10px; pointer-events: none; }
     .drop-zone.dragover { background: rgba(0,193,142,0.1); border-color: var(--aurora); }
 
-    /* Expandable Cards (Accordion style) */
+    /* Accordions, Tabs, Carousel */
     .accordion-item { border: 1px solid rgba(0,44,57,0.1); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
     .accordion-header { background: var(--mist); padding: 15px; cursor: pointer; font-weight: bold; color: var(--midnight); display: flex; justify-content: space-between; align-items: center; }
     .accordion-header span { color: var(--aurora); font-size: 1.2rem; }
     .accordion-body { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--white); }
     .accordion-item.active .accordion-body { padding: 15px; max-height: 600px; }
-
-    /* Tabs */
     .tabs-nav { display: flex; gap: 10px; border-bottom: 2px solid var(--mist); margin-bottom: 20px; }
     .tab-btn { padding: 10px 20px; cursor: pointer; border: none; background: none; font-size: 1rem; font-weight: bold; color: var(--arcana); }
     .tab-btn.active { border-bottom: 3px solid var(--aurora); color: var(--aurora); }
     .tab-content { display: none; }
     .tab-content.active { display: block; animation: fadeIn 0.3s; }
-
-    /* Carousel */
-    .carousel { 
-      overflow: hidden; 
-      position: relative; 
-      border-radius: 10px; 
-      background: var(--mist); 
-      padding: 10px; 
-      text-align: center; 
-      
-      /* Updated line */
-      border: 1px solid rgba(0, 44, 57, 0.15); 
-    }
+    .carousel { overflow: hidden; position: relative; border-radius: 10px; background: var(--mist); padding: 10px; text-align: center; border: 1px solid rgba(0, 44, 57, 0.15); }
     .carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
     .carousel-slide { min-width: 100%; padding: 0 10px; }
     .carousel-controls { margin-top: 15px; text-align: center; }
     .carousel-controls button { background: var(--arcana); border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; color: var(--white); font-weight: bold; margin: 0 5px; transition: 0.2s; }
     .carousel-controls button:hover { background: var(--aurora); color: var(--midnight); }
 
-    /* Completion Overlays & Buttons */
+    /* Completion Overlays */
     .completion-area { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; }
     .completion-msg { display: none; background: rgba(0, 193, 142, 0.15); border-left: 5px solid var(--aurora); padding: 15px; margin-top: 20px; border-radius: 5px; color: var(--arcana); font-weight: bold; }
-    
     .btn-action { background: var(--arcana); color: var(--white); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.2s; }
     .btn-action:hover { background: var(--aurora); color: var(--midnight); }
     .btn-action:disabled { background: #ccc; color: #666; cursor: not-allowed; }
-    
     .btn-continue { display: none; background: var(--aurora); color: var(--midnight); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 15px; transition: 0.2s; }
-    .btn-continue:hover { background: #00a076; }
 
+    /* ── MOBILE RESPONSIVE ENGINE ── */
+    @media (max-width: 768px) {
+      #welcome-screen p { font-size: 1rem; padding: 0 10px; }
+      main { margin-left: 0; width: 100vw; padding: 100px 20px 40px; }
+      #hud { left: 0; padding: 15px 20px; }
+      .course-status { display: none; }
+      #mobile-menu-btn { display: block; background: var(--aurora); color: var(--midnight); border: none; padding: 8px 12px; border-radius: 6px; font-weight: 800; cursor: pointer; }
+      #sidebar { transform: translateX(-100%); width: 85%; max-width: 320px; box-shadow: 4px 0 20px rgba(0,0,0,0.5); }
+      #sidebar.open { transform: translateX(0); }
+      .lesson-title { font-size: 2rem; }
+      .block { padding: 20px; }
+      .flip-card { width: 100%; height: auto; min-height: 240px; }
+      .dnd-container, .dnd-zones { flex-direction: column; }
+      .timeline { padding-left: 15px; }
+      .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
+    }
   </style>
 </head>
 <body>
 
-  <aside id="sidebar">
-    <img src="images/photo.jpg" alt="Benedict de Jesus" class="profile-img">
-    <div class="name">Benedict C. de Jesus</div>
-    <div class="tagline">Education Specialist <br> Learning Experience Designer <br> Musician</div>
-    
-    <div class="contact-info">
-      <p>📍 Malolos, Bulacan, PH</p>
-      <p>📞 +63 927 383 7473</p>
-      <p>✉️ benedictdejesuslpt@gmail.com</p>
+  <div id="welcome-screen">
+    <div class="avatar-placeholder">
+      [Pixel Avatar <br> Goes Here]
     </div>
-
-    <div class="social-links">
-      <a href="https://www.facebook.com/benedict.de.jesus.2025" target="_blank" aria-label="Facebook Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
-          <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
-        </svg>
-      </a>
-
-      <a href="https://www.linkedin.com/in/benedict-de-jesus-8383913a0" target="_blank" aria-label="LinkedIn Profile">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
-          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-        </svg>
-      </a>
-    </div>
-
-    <ul class="nav-menu">
-      <li><a href="#" class="nav-link active" data-target="lesson1">Lesson 1: Introduction</a></li>
-      <li><a href="#" class="nav-link" data-target="lesson2">Lesson 2: Trainings & Skills</a></li>
-      <li><a href="#" class="nav-link" data-target="lesson3">Lesson 3: ISD Portfolio</a></li>
-      <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: Reflection</a></li>
-    </ul>
-  </aside>
-
-  <div id="hud">
-    <div class="course-status"><strong>E-Learning Module:</strong> Portfolio Journey</div>
-    <div class="exp-tracker">EXP: <span id="exp-points">0</span> / 28</div>
+    <h1>System Online</h1>
+    <p>Welcome to the interactive e-learning portfolio of Benedict de Jesus. This module automatically adapts to your device.</p>
+    <button class="btn-start" onclick="startCourse()">Start Module ➔</button>
   </div>
 
-  <main>
-
-    <section id="lesson1" class="active">
-      <h2 class="lesson-title">Lesson 1: Introduction</h2>
+  <div id="app-wrapper">
+    <aside id="sidebar">
+      <img src="images/photo.jpg" alt="Benedict de Jesus" class="profile-img">
+      <div class="name">Benedict C. de Jesus</div>
+      <div class="tagline">Education Specialist <br> Learning Experience Designer <br> Musician</div>
       
-      <div class="block">
-        <h3 class="block-title">Hi! I'm Benedict, but I'm more popular as 'Sir Kito'.</h3>
-        <p class="block-instruction">Read through my professional background to learn more about my journey.</p>
-        <p>I am a licensed professional English teacher from the Philippines with extensive experience across ESL/EFL instruction, Instructional Design, AI Technology, Research & Statistics, Music, and Visual Arts. I have always been passionate about bridging technology and humanities in education, and I practice that balance throughout my career — from the university classroom to the boardroom of ALPS.</p>
+      <div class="contact-info">
+        <p>📍 Malolos, Bulacan, PH</p>
+        <p>📞 +63 927 383 7473</p>
+        <p>✉️ benedictdejesuslpt@gmail.com</p>
       </div>
 
-      <div class="block">
-        <h3 class="block-title">Educational Background</h3>
-        <p class="block-instruction">Review my academic milestones plotted on the timeline below.</p>
-        <div class="timeline">
-
-          <div class="timeline-item">
-            <span class="timeline-year">Ongoing</span>
-            <div class="timeline-content"><strong>MA in Education – English</strong> <br>La Consolacion University Philippines (Completed 36 units and passed Comprehensive Exams)</div>
-          </div>
-
-          <div class="timeline-item">
-            <span class="timeline-year">2010 - 2014</span>
-            <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
-          </div>
-
-	  <div class="timeline-item">
-            <span class="timeline-year">2004</span>
-            <div class="timeline-content"><strong>Secondary</strong> <br>Immaculate Conception School for Boys</div>
-          </div>
-
-	  <div class="timeline-item">
-            <span class="timeline-year">2000</span>
-            <div class="timeline-content"><strong>Primary</strong> <br>Holy Spirit Academy of Malolos</div>
-          </div>
-
-        </div>
+      <div class="social-links">
+        <a href="https://www.facebook.com/benedict.de.jesus.2025" target="_blank" aria-label="Facebook Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/benedict-de-jesus-8383913a0" target="_blank" aria-label="LinkedIn Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="social-icon">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+          </svg>
+        </a>
       </div>
 
-      <div class="block">
-        <h3 class="block-title">Work Experience</h3>
-        <p class="block-instruction">Click on each card to flip it and reveal my specific job descriptions and responsibilities.</p>
-        <div class="flip-grid">
+      <ul class="nav-menu">
+        <li><a href="#" class="nav-link active" data-target="lesson1">Lesson 1: Introduction</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson2">Lesson 2: Trainings & Skills</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson3">Lesson 3: ISD Portfolio</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: Reflection</a></li>
+      </ul>
+    </aside>
 
-	<div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>Part-time Instructor</h4>
-                <span>Bulacan State University (Main)</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2018 - Present) ⤻</p>
-              </div>
-              <div class="flip-card-back">Designed and delivered Outcomes-Based Instruction, Assessments, and Learning Materials for Art Appreciation, Reading Visual Art, Speech and Theater Arts, and other English subjects. Also managed student records, and actively contributed to college accreditation efforts.</div>
-            </div>
-          </div>
-          
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>Marketing & Finance Manager</h4>
-                <span>Arcana Learning & Process Solutions</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - 2026) ⤻</p>
-              </div>
-              <div class="flip-card-back">Designed and managed marketing and financial operations for ALPS, a tech-enabled L&D company. Conducted market analyses and feasibility researches for company projects and identified potential courses to develop.</div>
-            </div>
-          </div>
+    <div id="hud">
+      <button id="mobile-menu-btn">☰ Menu</button>
+      <div class="course-status"><strong>E-Learning Module:</strong> Portfolio Journey</div>
+      <div class="exp-tracker">EXP: <span id="exp-points">0</span> / 28</div>
+    </div>
 
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>Senior High School Teacher</h4>
-                <span>La Consolacion University PH</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
-              </div>
-              <div class="flip-card-back">Designed and delivered high level to granular SHS learning paths, lesson guides, and instructional materials in Practical Research 1&2 for the entire Basic Education Department</div>
-            </div>
-          </div>
+    <main>
 
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>EFL Teacher / Coordinator</h4>
-                <span>JABEZ International Educ. Center</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
-              </div>
-              <div class="flip-card-back">Designed and implemented optimized material-to-instruction processes for teaching English Grammar and Pronunciation to international students for TOEIC preparation in addition to administrative and management tasks aligned with student welfare.</div>
-            </div>
-          </div>
-
-          <div class="flip-card" onclick="this.classList.toggle('flipped')">
-            <div class="flip-card-inner">
-              <div class="flip-card-front">
-                <h4>Research & Thesis Consultant</h4>
-                <span>Self-Employed</span>
-                <p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2010 - Present) ⤻</p>
-              </div>
-              <div class="flip-card-back">Provided independent research and thesis consultation for undergrad and graduate students, ensuring academic rigor through methodology alignment, data processing, grammar checks, AI detection and plagiarism scans.</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="completion-area">
-        <button class="btn-action" onclick="completeLesson(1, this)">Complete Lesson 1</button>
-        <div id="msg-1" class="completion-msg">🎉 Lesson 1 Complete! 7 EXP Awarded.</div>
-        <button id="btn-next-1" class="btn-continue" onclick="goToLesson('lesson2')">Continue to Lesson 2 ➔</button>
-      </div>
-    </section>
-
-    <section id="lesson2">
-      <h2 class="lesson-title">Lesson 2: Trainings and Skills</h2>
-
-      <div class="block">
-        <h3 class="block-title">Professional Trainings</h3>
-        <p class="block-instruction">Click on each row to expand and view my roles in these specialized training programs.</p>
+      <section id="lesson1" class="active">
+        <h2 class="lesson-title">Lesson 1: Introduction</h2>
         
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">In-House LEPT Review (2026) <span>+</span></div>
-          <div class="accordion-body"><p><strong>Institution:</strong> Bulacan State University - Hagonoy Campus</p><p><strong>Role:</strong> Guest Lecturer & Facilitator</p></div>
-        </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">Microsoft Office Proficiency Workshop (2024) <span>+</span></div>
-          <div class="accordion-body"><p><strong>Institution:</strong> City Government of Malolos</p><p><strong>Role:</strong> Keynote Speaker & Facilitator</p></div>
-        </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">BulSU Paves the Way (2021) <span>+</span></div>
-          <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends & Platforms for Enhancing Instructions & Research</p><p><strong>Role:</strong> Participant</p></div>
-        </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">EDUK KAKAIBA (2020) <span>+</span></div>
-          <div class="accordion-body"><p><strong>Topic:</strong> The OBE Way · Pagsusulit at Grado</p><p><strong>Role:</strong> Participant</p></div>
-        </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">2018 PAGE III <span>+</span></div>
-          <div class="accordion-body"><p><strong>Topic:</strong> Regional Research Convention & Paper Presentation</p><p><strong>Role:</strong> Attendee</p></div>
-        </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">Intensive Grammar Training (2014) <span>+</span></div>
-          <div class="accordion-body"><p><strong>Institution:</strong> JABEZ International Educational Center Inc.</p><p><strong>Role:</strong> Trainee / Completer</p></div>
+        <div class="block">
+          <h3 class="block-title">About Me</h3>
+          <p class="block-instruction">Read through my professional background to learn more about my journey.</p>
+          <p>I am a licensed professional English teacher from the Philippines with extensive experience across ESL/EFL instruction, Instructional Design, AI Technology, Research & Statistics, Music, and Visual Arts. I have always been passionate about bridging technology and humanities in education, and I practice that balance throughout my career — from the university classroom to the boardroom of ALPS.</p>
         </div>
 
-      </div>
-
-      <div class="block">
-        <h3 class="block-title">Knowledge Check: Skills Sorting</h3>
-        <p class="block-instruction">Drag my skill tags on the left and drop them into their correct industry application categories on the right.</p>
-        
-        <div class="dnd-container">
-          <div class="dnd-items" id="draggable-items">
-            <div class="dnd-item" draggable="true" data-type="Academe">EFL</div>
-            <div class="dnd-item" draggable="true" data-type="Academe">ESL</div>
-            <div class="dnd-item" draggable="true" data-type="Corporate">Marketing Management</div>
-            <div class="dnd-item" draggable="true" data-type="Corporate">On-boarding Courses</div>
-            <div class="dnd-item" draggable="true" data-type="Both">ISD</div>
-            <div class="dnd-item" draggable="true" data-type="Both">API's</div>
-          </div>
-          <div class="dnd-zones">
-            <div class="drop-zone" id="zone-academe" data-accept="Academe"><h4>Academe</h4></div>
-            <div class="drop-zone" id="zone-corporate" data-accept="Corporate"><h4>Corporate</h4></div>
-            <div class="drop-zone" id="zone-both" data-accept="Both"><h4>Both</h4></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="completion-area">
-        <button class="btn-action" onclick="completeLesson(2, this)">Complete Lesson 2</button>
-        <div id="msg-2" class="completion-msg">🎉 Lesson 2 Complete! 7 EXP Awarded.</div>
-        <button id="btn-next-2" class="btn-continue" onclick="goToLesson('lesson3')">Continue to Lesson 3 ➔</button>
-      </div>
-    </section>
-
-    <section id="lesson3">
-      <h2 class="lesson-title">Lesson 3: My ISD Portfolio</h2>
-
-      <div class="block">
-        <h3 class="block-title">Project: Autorise</h3>
-        <p class="block-instruction">Navigate through the carousel to view artifacts from my AI-Powered Offline Learning Experience Designer project.</p>
-        <div class="carousel">
-          <div class="carousel-track" id="track">
-            <div class="carousel-slide">
-              <img src="images/autorise-1.png" alt="Autorise Dashboard">
+        <div class="block">
+          <h3 class="block-title">Educational Background</h3>
+          <p class="block-instruction">Review my academic milestones plotted on the timeline below.</p>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-year">Ongoing</span>
+              <div class="timeline-content"><strong>MA in Education – English</strong> <br>La Consolacion University Philippines (Completed 36 units and passed Comprehensive Exams)</div>
             </div>
-            <div class="carousel-slide">
-              <img src="images/autorise-2.png" alt="Autorise Interface">
-            </div>
-            <div class="carousel-slide">
-              <img src="images/autorise-3.png" alt="Autorise Features">
+            <div class="timeline-item">
+              <span class="timeline-year">2010 - 2014</span>
+              <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
             </div>
           </div>
         </div>
-        <div class="carousel-controls">
-          <button onclick="moveCarousel(-1)">⟵ Previous</button>
-          <button onclick="moveCarousel(1)">Next ⟶</button>
-        </div>
-      </div>
 
-      <div class="block">
-        <h3 class="block-title">Project: Art Appreciation (Mod 1)</h3>
-        <p class="block-instruction">Switch between the tabs to review different development phases and deliverables for this module.</p>
-        <div class="tabs-nav">
-          <button class="tab-btn active" onclick="switchTab(this, 'tab1')">Phase 1</button>
-          <button class="tab-btn" onclick="switchTab(this, 'tab2')">Phase 2</button>
-          <button class="tab-btn" onclick="switchTab(this, 'tab3')">Phase 3</button>
+        <div class="block">
+          <h3 class="block-title">Work Experience</h3>
+          <p class="block-instruction">Click on each card to flip it and reveal my specific job descriptions and responsibilities.</p>
+          <div class="flip-grid">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h4>Marketing & Finance Manager</h4><span>Arcana Learning & Process Solutions</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - Present) ⤻</p>
+                </div>
+                <div class="flip-card-back">Managed Marketing and Financial Operations for ALPS, a tech-enabled L&D company. Responsible for financials and market analyses.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h4>Part-time Instructor</h4><span>Bulacan State University (Main)</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2018 - Present) ⤻</p>
+                </div>
+                <div class="flip-card-back">Taught English, Classics, Art Appreciation. Advised student theses, managed records, and actively contributed to college accreditation efforts.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h4>Senior High School Teacher</h4><span>La Consolacion University PH</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
+                </div>
+                <div class="flip-card-back">Taught Practical Research 1 & 2 and the Research Capstone Project. Proudly served as the class adviser for two SHS sections.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h4>EFL Teacher / Coordinator</h4><span>JABEZ International Educ. Center</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
+                </div>
+                <div class="flip-card-back">Taught Grammar and Pronunciation to international students for TOEIC preparation. Later promoted to Student Coordinator.</div>
+              </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <h4>Research & Thesis Consultant</h4><span>Self-Employed</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2010 - Present) ⤻</p>
+                </div>
+                <div class="flip-card-back">Provided independent research and thesis consultation for undergrad and graduate students, ensuring academic rigor and methodology.</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="tab1" class="tab-content active">
-          <img src="images/mod1-1.png" alt="Mod 1 Image 1">
-        </div>
-        <div id="tab2" class="tab-content">
-          <img src="images/mod1-2.png" alt="Mod 1 Image 2">
-        </div>
-        <div id="tab3" class="tab-content">
-          <img src="images/mod1-3.png" alt="Mod 1 Image 3">
-        </div>
-      </div>
 
-      <div class="block">
-        <h3 class="block-title">Project: Art Appreciation (Mod 2)</h3>
-        <p class="block-instruction">Click the accordion bars to reveal complex artistic concepts mapped out in the advanced module.</p>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">Artifact 1 <span>+</span></div>
-          <div class="accordion-body"><img src="images/mod2-1.png" alt="Mod 2 Image 1"></div>
+        <div class="completion-area">
+          <button class="btn-action" onclick="completeLesson(1, this)">Complete Lesson 1</button>
+          <div id="msg-1" class="completion-msg">🎉 Lesson 1 Complete! 7 EXP Awarded.</div>
+          <button id="btn-next-1" class="btn-continue" onclick="goToLesson('lesson2')">Continue to Lesson 2 ➔</button>
         </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">Artifact 2 <span>+</span></div>
-          <div class="accordion-body"><img src="images/mod2-2.png" alt="Mod 2 Image 2"></div>
+      </section>
+
+      <section id="lesson2">
+        <h2 class="lesson-title">Lesson 2: Trainings and Skills</h2>
+
+        <div class="block">
+          <h3 class="block-title">Professional Trainings</h3>
+          <p class="block-instruction">Click on each row to expand and view my roles in these specialized training programs.</p>
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+            <div class="accordion-header">In-House LEPT Review (2026) <span>+</span></div>
+            <div class="accordion-body"><p><strong>Institution:</strong> Bulacan State University - Hagonoy Campus</p><p><strong>Role:</strong> Guest Lecturer & Facilitator</p></div>
+          </div>
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+            <div class="accordion-header">Microsoft Office Proficiency Workshop (2024) <span>+</span></div>
+            <div class="accordion-body"><p><strong>Institution:</strong> City Government of Malolos</p><p><strong>Role:</strong> Keynote Speaker & Facilitator</p></div>
+          </div>
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
+            <div class="accordion-header">BulSU Paves the Way (2021) <span>+</span></div>
+            <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends for Enhancing Instructions</p><p><strong>Role:</strong> Participant</p></div>
+          </div>
         </div>
-        <div class="accordion-item" onclick="this.classList.toggle('active')">
-          <div class="accordion-header">Artifact 3 <span>+</span></div>
-          <div class="accordion-body"><img src="images/mod2-3.png" alt="Mod 2 Image 3"></div>
+
+        <div class="block">
+          <h3 class="block-title">Knowledge Check: Skills Sorting</h3>
+          <p class="block-instruction">Sort the skill tags into the correct industry buckets. <br><strong>Desktop:</strong> Drag and drop the tags. <strong>Mobile:</strong> Tap a tag, then tap a bucket.</p>
+          <div class="dnd-container">
+            <div class="dnd-items" id="draggable-items">
+              <div class="dnd-item" draggable="true" data-type="Academe">EFL</div>
+              <div class="dnd-item" draggable="true" data-type="Academe">ESL</div>
+              <div class="dnd-item" draggable="true" data-type="Corporate">Marketing Management</div>
+              <div class="dnd-item" draggable="true" data-type="Corporate">On-boarding Courses</div>
+              <div class="dnd-item" draggable="true" data-type="Both">ISD</div>
+              <div class="dnd-item" draggable="true" data-type="Both">API's</div>
+            </div>
+            <div class="dnd-zones">
+              <div class="drop-zone" id="zone-academe" data-accept="Academe"><h4>Academe</h4></div>
+              <div class="drop-zone" id="zone-corporate" data-accept="Corporate"><h4>Corporate</h4></div>
+              <div class="drop-zone" id="zone-both" data-accept="Both"><h4>Both</h4></div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="completion-area">
-        <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
-        <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
-        <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
-      </div>
-    </section>
+        <div class="completion-area">
+          <button class="btn-action" onclick="completeLesson(2, this)">Complete Lesson 2</button>
+          <div id="msg-2" class="completion-msg">🎉 Lesson 2 Complete! 7 EXP Awarded.</div>
+          <button id="btn-next-2" class="btn-continue" onclick="goToLesson('lesson3')">Continue to Lesson 3 ➔</button>
+        </div>
+      </section>
 
-    <section id="lesson4">
-      <h2 class="lesson-title">Lesson 4: Reflection</h2>
+      <section id="lesson3">
+        <h2 class="lesson-title">Lesson 3: My ISD Portfolio</h2>
 
-      <div class="block" style="text-align: center; padding: 80px 40px; border: 2px solid rgba(0, 193, 142, 0.3);">
-        <h3 class="block-title">Course Capstone</h3>
-        <p class="block-instruction">Ponder the core philosophy that drives my designs and instructions.</p>
-        <blockquote style="font-size: 2rem; font-weight: 600; line-height: 1.4; color: var(--arcana); margin-top: 30px;">
-          "Teaching is a race you can never win <br><span style="color: var(--aurora);">unless you start from the finish line.</span>"
-        </blockquote>
-      </div>
+        <div class="block">
+          <h3 class="block-title">Project: Autorise</h3>
+          <p class="block-instruction">Navigate through the carousel to view artifacts from my AI-Powered Learning Designer project.</p>
+          <div class="carousel">
+            <div class="carousel-track" id="track">
+              <div class="carousel-slide"><img src="images/autorise-1.png" alt="Autorise 1"></div>
+              <div class="carousel-slide"><img src="images/autorise-2.png" alt="Autorise 2"></div>
+              <div class="carousel-slide"><img src="images/autorise-3.png" alt="Autorise 3"></div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button onclick="moveCarousel(-1)">⟵ Previous</button>
+            <button onclick="moveCarousel(1)">Next ⟶</button>
+          </div>
+        </div>
 
-      <div class="completion-area" style="text-align: center;">
-        <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
-        <div id="msg-4" class="completion-msg" style="font-size: 1.5rem; text-align: center; margin-top: 30px;">🏆 Module Mastered! Final 7 EXP Awarded. (Total 28 EXP)</div>
-      </div>
-    </section>
+        <div class="block">
+          <h3 class="block-title">Project: Art Appreciation (Mod 1)</h3>
+          <p class="block-instruction">Switch between the tabs to review different development phases.</p>
+          <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab(this, 'tab1')">Phase 1</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab2')">Phase 2</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab3')">Phase 3</button>
+          </div>
+          <div id="tab1" class="tab-content active"><img src="images/mod1-1.png" alt="Mod 1 Image 1"></div>
+          <div id="tab2" class="tab-content"><img src="images/mod1-2.png" alt="Mod 1 Image 2"></div>
+          <div id="tab3" class="tab-content"><img src="images/mod1-3.png" alt="Mod 1 Image 3"></div>
+        </div>
 
-  </main>
+        <div class="completion-area">
+          <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
+          <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
+          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
+        </div>
+      </section>
+
+      <section id="lesson4">
+        <h2 class="lesson-title">Lesson 4: Reflection</h2>
+
+        <div class="block" style="text-align: center; padding: 80px 40px; border: 2px solid rgba(0, 193, 142, 0.3);">
+          <h3 class="block-title">Course Capstone</h3>
+          <p class="block-instruction">Ponder the core philosophy that drives my designs and instructions.</p>
+          <blockquote style="font-size: 2rem; font-weight: 600; line-height: 1.4; color: var(--arcana); margin-top: 30px;">
+            "There is only 1 race that begins with the finish line. <br><span style="color: var(--aurora);">It's called teaching.</span>"
+          </blockquote>
+        </div>
+
+        <div class="completion-area" style="text-align: center;">
+          <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
+          <div id="msg-4" class="completion-msg" style="font-size: 1.5rem; text-align: center; margin-top: 30px;">🏆 Module Mastered! Final 7 EXP Awarded. (Total 28 EXP)</div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <script>
-    // ── NAVIGATION LOGIC ──
+    // ── LANDING PAGE LOGIC ──
+    function startCourse() {
+      const welcome = document.getElementById('welcome-screen');
+      const app = document.getElementById('app-wrapper');
+      welcome.style.opacity = '0';
+      setTimeout(() => {
+        welcome.style.display = 'none';
+        app.style.opacity = '1';
+      }, 600);
+    }
+
+    // ── MOBILE MENU LOGIC ──
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    mobileBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+
+    // ── NAVIGATION & SMOOTH SCROLL LOGIC ──
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
-   function goToLesson(targetId) {
-      // 1. Clear out old active links and assign it to the new one
+    function goToLesson(targetId) {
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if(link.getAttribute('data-target') === targetId) {
-          link.classList.add('active');
-        }
+        if(link.getAttribute('data-target') === targetId) link.classList.add('active');
       });
-
-      // 2. Hide the previous lesson panel and show the new one
       sections.forEach(s => s.classList.remove('active'));
-      const nextSection = document.getElementById(targetId);
-      nextSection.classList.add('active');
+      document.getElementById(targetId).classList.add('active');
+      
+      if(window.innerWidth <= 768) sidebar.classList.remove('open'); // Close mobile menu
 
-      // 3. Dynamic Scroll Engine (with execution safety delay)
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: 'smooth' /* Creates an elegant animated slide up instead of a jarring jump */
-        });
-      }, 50); // A 50ms delay guarantees the browser renders the new section first
+      setTimeout(() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); }, 50);
     }
 
-    // Bind sidebar clicks
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -567,51 +453,74 @@
       expDisplay.innerText = totalExp;
       btn.disabled = true;
       btn.innerText = "Lesson Completed ✔";
-      
-      // Show celebration message
       document.getElementById(`msg-${lessonNum}`).style.display = 'block';
-      
-      // Show "Continue" button if it's not the last lesson
       let nextBtn = document.getElementById(`btn-next-${lessonNum}`);
       if(nextBtn) nextBtn.style.display = 'inline-block';
     }
 
     function completeCourse(btn) {
       completeLesson(4, btn);
-      // Extra fireworks or final state can go here
-      btn.style.display = 'none'; // Hide the button after finishing
+      btn.style.display = 'none';
     }
 
-    // ── DRAG AND DROP LOGIC ──
+    // ── HYBRID DRAG AND DROP (Desktop Drag + Mobile Tap) ──
     const draggables = document.querySelectorAll('.dnd-item');
     const dropZones = document.querySelectorAll('.drop-zone');
+    let tapSelectedItem = null;
 
-    draggables.forEach(draggable => {
-      draggable.addEventListener('dragstart', () => draggable.classList.add('dragging'));
-      draggable.addEventListener('dragend', () => draggable.classList.remove('dragging'));
+    draggables.forEach(item => {
+      // Desktop Drag Events
+      item.addEventListener('dragstart', () => item.classList.add('dragging'));
+      item.addEventListener('dragend', () => item.classList.remove('dragging'));
+      
+      // Mobile Tap Events
+      item.addEventListener('click', (e) => {
+        if (item.getAttribute('draggable') === 'false') return; // Already sorted
+        draggables.forEach(d => d.classList.remove('tap-selected'));
+        tapSelectedItem = item;
+        item.classList.add('tap-selected');
+      });
     });
 
     dropZones.forEach(zone => {
+      // Desktop Drop Events
       zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
       zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
       zone.addEventListener('drop', e => {
         e.preventDefault();
         zone.classList.remove('dragover');
-        const draggable = document.querySelector('.dragging');
-        // Type matching check
-        if (draggable.getAttribute('data-type') === zone.getAttribute('data-accept')) {
-          zone.appendChild(draggable);
-          draggable.style.background = "var(--aurora)";
-          draggable.style.color = "var(--midnight)";
-          draggable.setAttribute('draggable', 'false'); // Lock correctly placed item
-          draggable.style.cursor = 'default';
-        } else {
-          // Visual shake effect for wrong drop
-          draggable.style.transform = "translateX(10px)";
-          setTimeout(() => draggable.style.transform = "none", 200);
+        const draggedItem = document.querySelector('.dragging');
+        if (draggedItem && draggedItem.getAttribute('data-type') === zone.getAttribute('data-accept')) {
+          lockItem(draggedItem, zone);
+        } else if(draggedItem) { shakeItem(draggedItem); }
+      });
+
+      // Mobile Tap Drop Events
+      zone.addEventListener('click', () => {
+        if (tapSelectedItem) {
+          if (tapSelectedItem.getAttribute('data-type') === zone.getAttribute('data-accept')) {
+            lockItem(tapSelectedItem, zone);
+            tapSelectedItem = null;
+          } else {
+            shakeItem(tapSelectedItem);
+          }
         }
       });
     });
+
+    function lockItem(item, zone) {
+      zone.appendChild(item);
+      item.style.background = "var(--aurora)";
+      item.style.color = "var(--midnight)";
+      item.setAttribute('draggable', 'false');
+      item.classList.remove('tap-selected');
+      item.style.cursor = 'default';
+    }
+
+    function shakeItem(item) {
+      item.style.transform = "translateX(10px)";
+      setTimeout(() => item.style.transform = "none", 200);
+    }
 
     // ── TABS LOGIC ──
     function switchTab(btn, targetId) {
