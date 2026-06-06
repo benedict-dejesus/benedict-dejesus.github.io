@@ -521,7 +521,7 @@
       });
     });
 
-    // ── GAMIFICATION (EXP SYSTEM) ──
+    // ── OPTIMIZED GAMIFICATION ENGINE ──
     let totalExp = 0;
     const expDisplay = document.getElementById('exp-points');
 
@@ -530,14 +530,20 @@
       expDisplay.innerText = totalExp;
       btn.disabled = true;
       btn.innerText = "Lesson Completed ✔";
-      document.getElementById(`msg-${lessonNum}`).style.display = 'block';
+      
+      // 1. Grab the hidden completion message and reveal it
+      const msgElement = document.getElementById(`msg-${lessonNum}`);
+      msgElement.style.display = 'block';
+      
+      // 2. Grab the next lesson button and reveal it
       let nextBtn = document.getElementById(`btn-next-${lessonNum}`);
       if(nextBtn) nextBtn.style.display = 'inline-block';
-    }
 
-    function completeCourse(btn) {
-      completeLesson(4, btn);
-      btn.style.display = 'none';
+      // 3. AUTOMATION: Wait a split second for the elements to render, 
+      // then smoothly scroll them directly into the center of the user's screen.
+      setTimeout(() => {
+        msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 80); // 80ms is the sweet spot for a seamless transition
     }
 
     // ── HYBRID DRAG AND DROP (Desktop Drag + Mobile Tap) ──
