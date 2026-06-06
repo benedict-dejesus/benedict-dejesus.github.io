@@ -449,7 +449,7 @@
         </div>
 
        <div class="completion-area" style="text-align: center;">
-          <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
+          <button class="btn-action" onclick="completeLesson(4, this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
           
           <div id="msg-4" class="completion-msg" style="font-size: 1.2rem; text-align: center; margin-top: 30px;">
             <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🏆 Module Mastered!</h3>
@@ -528,34 +528,44 @@
       });
     });
 
- // ── OPTIMIZED GAMIFICATION ENGINE (With Smart End-of-Page Check) ──
+// ── BULLETPROOF GAMIFICATION ENGINE ──
     let totalExp = 0;
     const expDisplay = document.getElementById('exp-points');
 
     function completeLesson(lessonNum, btn) {
       totalExp += 7;
-      expDisplay.innerText = totalExp;
+      if (expDisplay) expDisplay.innerText = totalExp;
+      
       btn.disabled = true;
-      btn.innerText = "Lesson Completed ✔";
+      btn.innerText = (lessonNum === 4) ? "Course Completed ✔" : "Lesson Completed ✔";
       
-      // 1. Grab the hidden completion message and reveal it
+      // Reveal the hidden content block
       const msgElement = document.getElementById(`msg-${lessonNum}`);
-      msgElement.style.display = 'block';
+      if (msgElement) {
+        msgElement.style.display = 'block';
+      }
       
-      // 2. Grab the next lesson button and reveal it (if it exists)
+      // Reveal the next lesson button if there is one
       let nextBtn = document.getElementById(`btn-next-${lessonNum}`);
-      if(nextBtn) nextBtn.style.display = 'inline-block';
+      if (nextBtn) {
+        nextBtn.style.display = 'inline-block';
+      }
 
-      // 3. AUTOMATION: Layout-aware smooth scrolling
+      // Smooth scrolling calculation
       setTimeout(() => {
         if (lessonNum === 4) {
-          // For the grand finale, slide all the way to the absolute bottom of the window
+          // Drive the window all the way to the absolute bottom of the layout
           window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        } else {
-          // For early lessons, center the next-step elements perfectly
+        } else if (msgElement) {
+          // Center the milestones smoothly
           msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      }, 100); // 100ms is the sweet spot for a layout with complex animations
+      }, 100);
+    }
+
+    // FAILSAFE ALIAS: If any button still references completeCourse(), point it directly here
+    function completeCourse(btn) {
+      completeLesson(4, btn);
     }
 
     // ── HYBRID DRAG AND DROP (Desktop Drag + Mobile Tap) ──
