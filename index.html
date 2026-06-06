@@ -478,14 +478,21 @@
         </div>
 
   <script>
-    // ── LANDING PAGE LOGIC ──
+    // ── LANDING PAGE LOGIC (With Scroll Reset) ──
     function startCourse() {
       const welcome = document.getElementById('welcome-screen');
       const app = document.getElementById('app-wrapper');
       welcome.style.opacity = '0';
+      
+      // Force the viewport back to the absolute top immediately
+      window.scrollTo(0, 0);
+      
       setTimeout(() => {
         welcome.style.display = 'none';
         app.style.opacity = '1';
+        
+        // Failsafe: Reinforce top scroll once the main layout displays
+        window.scrollTo(0, 0);
       }, 600);
     }
 
@@ -521,7 +528,7 @@
       });
     });
 
-    // ── OPTIMIZED GAMIFICATION ENGINE ──
+ // ── OPTIMIZED GAMIFICATION ENGINE (With Smart End-of-Page Check) ──
     let totalExp = 0;
     const expDisplay = document.getElementById('exp-points');
 
@@ -535,15 +542,20 @@
       const msgElement = document.getElementById(`msg-${lessonNum}`);
       msgElement.style.display = 'block';
       
-      // 2. Grab the next lesson button and reveal it
+      // 2. Grab the next lesson button and reveal it (if it exists)
       let nextBtn = document.getElementById(`btn-next-${lessonNum}`);
       if(nextBtn) nextBtn.style.display = 'inline-block';
 
-      // 3. AUTOMATION: Wait a split second for the elements to render, 
-      // then smoothly scroll them directly into the center of the user's screen.
+      // 3. AUTOMATION: Layout-aware smooth scrolling
       setTimeout(() => {
-        msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 80); // 80ms is the sweet spot for a seamless transition
+        if (lessonNum === 4) {
+          // For the grand finale, slide all the way to the absolute bottom of the window
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        } else {
+          // For early lessons, center the next-step elements perfectly
+          msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100); // 100ms is the sweet spot for a layout with complex animations
     }
 
     // ── HYBRID DRAG AND DROP (Desktop Drag + Mobile Tap) ──
