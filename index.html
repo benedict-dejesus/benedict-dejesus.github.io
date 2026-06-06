@@ -38,9 +38,40 @@
     .tagline { font-size: 0.9rem; color: var(--aurora); text-align: center; margin-bottom: 20px; font-style: italic; }
     
     .contact-info { width: 100%; font-size: 0.85rem; margin-bottom: 20px; text-align: center; color: rgba(255,255,255,0.7); }
-    .social-links { width: 100%; margin-bottom: 30px; }
-    .social-links a { display: block; color: var(--mist); text-decoration: none; font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .social-links a:hover { color: var(--aurora); }
+    /* ── HIGH-CONTRAST SIDE-BY-SIDE SOCIAL LOGOS ── */
+    .social-links { 
+      display: flex !important; 
+      flex-direction: row !important; /* Forces layout side-by-side */
+      justify-content: center !important; 
+      align-items: center !important;
+      gap: 16px !important;           /* Clean, minimalist gap between items */
+      margin-bottom: 25px !important; 
+      width: 100% !important;
+    }
+    .social-links a { 
+      display: inline-flex !important; /* Prevents text-block style expansion */
+      width: 24px !important;          /* Sharp, ultra-clean minimalist bounding box */
+      height: 24px !important;
+      text-decoration: none !important; 
+      transition: transform 0.2s ease !important;
+    }
+    .social-links a:hover {
+      transform: scale(1.15) !important; /* Gentle interactive swell on mouseover */
+    }
+    .social-icon {
+      width: 24px !important;        /* Strict micro-dimensions */
+      height: 24px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: var(--mist) !important;  /* Locks to your light off-white tone (#FFF7F7) for max contrast */
+      opacity: 0.9 !important;       /* Increases clarity against deep midnight base backgrounds */
+      transition: fill 0.2s ease !important;
+    }
+    /* Hover state shifts cleanly into the success green accent */
+    .social-links a:hover .social-icon { 
+      fill: var(--aurora) !important; /* Switches to #00C18E */
+      opacity: 1 !important;
+    }
 
     .nav-menu { width: 100%; list-style: none; }
     .nav-menu li { margin-bottom: 10px; }
@@ -247,23 +278,27 @@
         <h3 class="block-title">Educational Background</h3>
         <p class="block-instruction">Review my academic milestones plotted on the timeline below.</p>
         <div class="timeline">
+
           <div class="timeline-item">
             <span class="timeline-year">Ongoing</span>
             <div class="timeline-content"><strong>MA in Education – English</strong> <br>La Consolacion University Philippines (Completed 36 units and passed Comprehensive Exams)</div>
           </div>
+
           <div class="timeline-item">
             <span class="timeline-year">2010 - 2014</span>
             <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
           </div>
+
 	  <div class="timeline-item">
             <span class="timeline-year">2004</span>
             <div class="timeline-content"><strong>Secondary</strong> <br>Immaculate Conception School for Boys</div>
           </div>
-	  </div>
+
 	  <div class="timeline-item">
             <span class="timeline-year">2000</span>
             <div class="timeline-content"><strong>Primary</strong> <br>Holy Spirit Academy of Malolos</div>
           </div>
+
         </div>
       </div>
 
