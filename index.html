@@ -30,10 +30,19 @@
       display: flex; flex-direction: column; justify-content: center; align-items: center;
       z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease; text-align: center; padding: 20px;
     }
-    .avatar-placeholder {
-      width: 150px; height: 150px; background: var(--arcana); border: 4px dashed var(--aurora);
-      border-radius: 20px; margin-bottom: 20px; display: flex; justify-content: center; align-items: center;
-      font-size: 0.9rem; font-style: italic; color: var(--aurora);
+    .avatar-container {
+      width: 180px; 
+      height: 180px; 
+      border-radius: 50%; 
+      border: 4px solid var(--aurora); 
+      overflow: hidden; 
+      margin-bottom: 20px; 
+      box-shadow: 0 0 25px rgba(0, 193, 142, 0.4); /* Adds a subtle neon glow to the avatar */
+    }
+    .anime-avatar {
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; /* Ensures the image fills the circle perfectly without stretching */
     }
     #welcome-screen h1 { font-size: 3rem; margin-bottom: 10px; color: var(--white); }
     #welcome-screen p { font-size: 1.2rem; color: var(--aurora); margin-bottom: 40px; max-width: 600px; }
@@ -150,7 +159,8 @@
     .btn-continue { display: none; background: var(--aurora); color: var(--midnight); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 15px; transition: 0.2s; }
 
     /* ── MOBILE RESPONSIVE ENGINE ── */
-    @media (max-width: 768px) {
+#close-sidebar-btn { display: none; }    
+@media (max-width: 768px) {
       #welcome-screen p { font-size: 1rem; padding: 0 10px; }
       main { margin-left: 0; width: 100vw; padding: 100px 20px 40px; }
       #hud { left: 0; padding: 15px 20px; }
@@ -164,14 +174,27 @@
       .dnd-container, .dnd-zones { flex-direction: column; }
       .timeline { padding-left: 15px; }
       .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
-    }
+   #close-sidebar-btn {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: transparent;
+        color: var(--mist);
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      #close-sidebar-btn:hover { color: var(--aurora); }
+ }
   </style>
 </head>
 <body>
 
   <div id="welcome-screen">
-    <div class="avatar-placeholder">
-      [Pixel Avatar <br> Goes Here]
+    <div class="avatar-container">
+      <img src="images/anime-avatar.gif" alt="Benedict Teaching" class="anime-avatar">
     </div>
     <h1>System Online</h1>
     <p>Welcome to the interactive e-learning portfolio of Benedict de Jesus. This module automatically adapts to your device.</p>
@@ -180,6 +203,7 @@
 
   <div id="app-wrapper">
     <aside id="sidebar">
+	<button id="close-sidebar-btn" aria-label="Close Menu">✕</button>
       <img src="images/photo.jpg" alt="Benedict de Jesus" class="profile-img">
       <div class="name">Benedict C. de Jesus</div>
       <div class="tagline">Education Specialist <br> Learning Experience Designer <br> Musician</div>
@@ -223,9 +247,9 @@
         <h2 class="lesson-title">Lesson 1: Introduction</h2>
         
         <div class="block">
-          <h3 class="block-title">About Me</h3>
+          <h3 class="block-title">Hi! I'm Benedict, but you can call me 'Sir Kito'.</h3>
           <p class="block-instruction">Read through my professional background to learn more about my journey.</p>
-          <p>I am a licensed professional English teacher from the Philippines with extensive experience across ESL/EFL instruction, Instructional Design, AI Technology, Research & Statistics, Music, and Visual Arts. I have always been passionate about bridging technology and humanities in education, and I practice that balance throughout my career — from the university classroom to the boardroom of ALPS.</p>
+          <p>"I am an Instructional Designer committed to the intersection of humanities and educational technology. Leveraging my dual expertise in ESL/EFL instruction and AI-powered learning tools, I transform complex concepts into engaging, accessible, and high-impact digital experiences. From facilitating classroom instruction to leading corporate curriculum development at ALPS, I apply a blend of analytical research, visual communication, instructional strategy, as well as a backwards design mindset to build learning environments that adapt to the future of work."</p>
         </div>
 
         <div class="block">
@@ -240,6 +264,14 @@
               <span class="timeline-year">2010 - 2014</span>
               <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
             </div>
+		<div class="timeline-item">
+              <span class="timeline-year">2004</span>
+              <div class="timeline-content"><strong>Secondary</strong> <br>Immaculate Conception School for Boys</div>
+            </div>
+		<div class="timeline-item">
+              <span class="timeline-year">2000</span>
+              <div class="timeline-content"><strong>Primary</strong> <br>Holy Spirit Academy of Malolos</div>
+            </div>
           </div>
         </div>
 
@@ -250,9 +282,9 @@
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
               <div class="flip-card-inner">
                 <div class="flip-card-front">
-                  <h4>Marketing & Finance Manager</h4><span>Arcana Learning & Process Solutions</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - Present) ⤻</p>
+                  <h4>Marketing & Finance Manager</h4><span>Arcana Learning & Process Solutions</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - 2026) ⤻</p>
                 </div>
-                <div class="flip-card-back">Managed Marketing and Financial Operations for ALPS, a tech-enabled L&D company. Responsible for financials and market analyses.</div>
+                <div class="flip-card-back">Managed operational and marketing strategies for ALPS, a tech-enabled L&D organization, to drive business growth and client satisfaction. Conducted rigorous market and needs analyses to architect and align custom course solutions with specific client business objectives and performance requirements.</div>
               </div>
             </div>
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -260,15 +292,15 @@
                 <div class="flip-card-front">
                   <h4>Part-time Instructor</h4><span>Bulacan State University (Main)</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2018 - Present) ⤻</p>
                 </div>
-                <div class="flip-card-back">Taught English, Classics, Art Appreciation. Advised student theses, managed records, and actively contributed to college accreditation efforts.</div>
+                <div class="flip-card-back">Architected outcomes-based learning paths and curriculum blueprints for multidisciplinary programs, including communication, visual literacy, and the humanities. Collaborated in quality assurance (QA) initiatives for institutional accreditation and conducted educational research to drive continuous program improvement.</div>
               </div>
             </div>
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
               <div class="flip-card-inner">
                 <div class="flip-card-front">
-                  <h4>Senior High School Teacher</h4><span>La Consolacion University PH</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
+                  <h4>Senior High School Teacher</h4><span>La Consolacion University Philippines</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
                 </div>
-                <div class="flip-card-back">Taught Practical Research 1 & 2 and the Research Capstone Project. Proudly served as the class adviser for two SHS sections.</div>
+                <div class="flip-card-back">Spearheaded the departmental standardization of research and capstone curricula by developing scalable learning plans, performance assessments, and instructional materials. Authored comprehensive facilitator guides adopted by all teaching staff to ensure consistent delivery of learning objectives.</div>
               </div>
             </div>
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -276,7 +308,7 @@
                 <div class="flip-card-front">
                   <h4>EFL Teacher / Coordinator</h4><span>JABEZ International Educ. Center</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
                 </div>
-                <div class="flip-card-back">Taught Grammar and Pronunciation to international students for TOEIC preparation. Later promoted to Student Coordinator.</div>
+                <div class="flip-card-back">Analyzed and localized proprietary curriculum to engineer customized learning paths for a cross-cultural global demographic. Directed administrative workflows and evaluated learner feedback to continuously improve instructional quality.</div>
               </div>
             </div>
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -313,7 +345,11 @@
           </div>
           <div class="accordion-item" onclick="this.classList.toggle('active')">
             <div class="accordion-header">BulSU Paves the Way (2021) <span>+</span></div>
-            <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends for Enhancing Instructions</p><p><strong>Role:</strong> Participant</p></div>
+            <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends for Enhancing Instruction</p><p><strong>Role:</strong> Participant</p></div>
+          </div>
+ 	 <div class="accordion-item" onclick="this.classList.toggle('active')">
+            <div class="accordion-header">EDUK KAKAIBA: The OBE Way (2021) <span>+</span></div>
+            <div class="accordion-body"><p><strong>Topic:</strong> Outcomes-Based Education in Higher Education</p><p><strong>Role:</strong> Participant</p></div>
           </div>
         </div>
 
@@ -376,6 +412,22 @@
           <div id="tab3" class="tab-content"><img src="images/mod1-3.png" alt="Mod 1 Image 3"></div>
         </div>
 
+<div class="block">
+          <h3 class="block-title">Project: Art Appreciation (Mod 2)</h3>
+          <p class="block-instruction">Navigate through the carousel to view artifacts from my AI-Powered Learning Designer project.</p>
+          <div class="carousel">
+            <div class="carousel-track" id="track">
+              <div class="carousel-slide"><img src="images/mod2-1.png" alt="Mod 2 Image 1"></div>
+              <div class="carousel-slide"><img src="images/mod2-2.png" alt="Mod 2 Image 2"></div>
+              <div class="carousel-slide"><img src="images/mod2-3.png" alt="Mod2 Image 3"></div>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button onclick="moveCarousel(-1)">⟵ Previous</button>
+            <button onclick="moveCarousel(1)">Next ⟶</button>
+          </div>
+        </div>
+
         <div class="completion-area">
           <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
           <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
@@ -390,7 +442,7 @@
           <h3 class="block-title">Course Capstone</h3>
           <p class="block-instruction">Ponder the core philosophy that drives my designs and instructions.</p>
           <blockquote style="font-size: 2rem; font-weight: 600; line-height: 1.4; color: var(--arcana); margin-top: 30px;">
-            "There is only 1 race that begins with the finish line. <br><span style="color: var(--aurora);">It's called teaching.</span>"
+            "Teaching is a race you can never win <br><span style="color: var(--aurora);">unless you start from the finish line.</span>"
           </blockquote>
         </div>
 
@@ -419,7 +471,10 @@
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.getElementById('sidebar');
     mobileBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-
+// Close sidebar using the X button
+    document.getElementById('close-sidebar-btn').addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
     // ── NAVIGATION & SMOOTH SCROLL LOGIC ──
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
