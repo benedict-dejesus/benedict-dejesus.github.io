@@ -448,14 +448,34 @@
           </blockquote>
         </div>
 
-        <div class="completion-area" style="text-align: center;">
+       <div class="completion-area" style="text-align: center;">
           <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
-          <div id="msg-4" class="completion-msg" style="font-size: 1.5rem; text-align: center; margin-top: 30px;">🏆 Module Mastered! Final 7 EXP Awarded. (Total 28 EXP)</div>
+          
+          <div id="msg-4" class="completion-msg" style="font-size: 1.2rem; text-align: center; margin-top: 30px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🏆 Module Mastered!</h3>
+            <p style="color: var(--midnight);">Final 7 EXP Awarded. (Total 28 EXP)</p>
+            
+            <div style="margin-top: 25px; padding-top: 25px; border-top: 1px dashed rgba(0, 44, 57, 0.3);">
+              <p style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px;"><strong>Let's Build Something Great Together:</strong></p>
+              <p style="font-size: 0.95rem; margin-bottom: 5px;">📍 Malolos, Bulacan, PH | 📞 +63 927 383 7473</p>
+              <p style="font-size: 0.95rem; margin-bottom: 25px;">✉️ benedictdejesuslpt@gmail.com</p>
+              
+              <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="https://www.facebook.com/benedict.de.jesus.2025" target="_blank" style="transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 32px; height: 32px; fill: var(--arcana);">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+                  </svg>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/benedict-de-jesus-8383913a0" target="_blank" style="transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='scale(1)'">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width: 32px; height: 32px; fill: var(--arcana);">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
-
-    </main>
-  </div>
 
   <script>
     // ── LANDING PAGE LOGIC ──
@@ -588,15 +608,29 @@
       parent.querySelector('#' + targetId).classList.add('active');
     }
 
-    // ── CAROUSEL LOGIC ──
-    let slideIndex = 0;
-    function moveCarousel(dir) {
-      const track = document.getElementById('track');
+   // ── UPGRADED CAROUSEL LOGIC (Supports Multiple Carousels) ──
+    const carouselIndexes = {}; // Stores the individual slide index for every carousel
+
+    function moveCarousel(dir, trackId) {
+      // 1. If this specific carousel hasn't been moved yet, start it at 0
+      if (carouselIndexes[trackId] === undefined) {
+        carouselIndexes[trackId] = 0;
+      }
+      
+      const track = document.getElementById(trackId);
+      if (!track) return; // Failsafe in case of a typo
+      
       const slides = track.children.length;
-      slideIndex += dir;
-      if (slideIndex < 0) slideIndex = slides - 1;
-      if (slideIndex >= slides) slideIndex = 0;
-      track.style.transform = `translateX(-${slideIndex * 100}%)`;
+      
+      // 2. Update the math for this specific carousel
+      carouselIndexes[trackId] += dir;
+      
+      // 3. Looping logic (go to end if clicking previous on first slide)
+      if (carouselIndexes[trackId] < 0) carouselIndexes[trackId] = slides - 1;
+      if (carouselIndexes[trackId] >= slides) carouselIndexes[trackId] = 0;
+      
+      // 4. Apply the sliding animation
+      track.style.transform = `translateX(-${carouselIndexes[trackId] * 100}%)`;
     }
   </script>
 </body>
