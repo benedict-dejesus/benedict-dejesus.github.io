@@ -146,6 +146,17 @@
     .carousel { overflow: hidden; position: relative; border-radius: 10px; background: var(--mist); padding: 10px; text-align: center; border: 1px solid rgba(0, 44, 57, 0.15); }
     .carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
     .carousel-slide { min-width: 100%; padding: 0 10px; }
+.carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
+    .carousel-slide { min-width: 100%; padding: 0 10px; }
+    /* Caps media height globally to ensure entire blocks remain visible */
+    .carousel-slide img, .tab-content img {
+      max-height: 380px;
+      width: auto;
+      object-fit: contain;
+      margin: 0 auto;
+      display: block;
+    }
+    .carousel-controls { margin-top: 15px; text-align: center; }
     .carousel-controls { margin-top: 15px; text-align: center; }
     .carousel-controls button { background: var(--arcana); border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; color: var(--white); font-weight: bold; margin: 0 5px; transition: 0.2s; }
     .carousel-controls button:hover { background: var(--aurora); color: var(--midnight); }
@@ -174,6 +185,13 @@
       .dnd-container, .dnd-zones { flex-direction: column; }
       .timeline { padding-left: 15px; }
       .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
+.dnd-container, .dnd-zones { flex-direction: column; }
+      .timeline { padding-left: 15px; }
+      .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
+      /* Scale down image bounds for fluid readability on mobile views */
+      .carousel-slide img, .tab-content img {
+        max-height: 240px;
+      }
    #close-sidebar-btn {
         display: block;
         position: absolute;
@@ -514,7 +532,12 @@
     const sections = document.querySelectorAll('section');
 
     function goToLesson(targetId) {
-      navLinks.forEach(link => {
+      // Gatekeeper: Intercept navigation if Lesson 2's condition hasn't been satisfied
+      if ((targetId === 'lesson3' || targetId === 'lesson4') && !isLesson2Completed) {
+        alert("🔒 Lesson Locked! Please successfully complete the Skills Sorting activity in Lesson 2 and click 'Complete Lesson 2' to unlock subsequent project modules.");
+        return;
+      }
+	navLinks.forEach(link => {
         link.classList.remove('active');
         if(link.getAttribute('data-target') === targetId) link.classList.add('active');
       });
@@ -535,10 +558,12 @@
 
 // ── BULLETPROOF GAMIFICATION ENGINE ──
     let totalExp = 0;
+    let isLesson2Completed = false; // Tracks if the user has cracked the sorting game
     const expDisplay = document.getElementById('exp-points');
 
     function completeLesson(lessonNum, btn) {
       totalExp += 7;
+	if (lessonNum === 2) isLesson2Completed = true; // Turn off the sidebar block rule
       if (expDisplay) expDisplay.innerText = totalExp;
       
       btn.disabled = true;
