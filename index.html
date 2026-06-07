@@ -102,7 +102,7 @@
     .block-instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 10px; }
 
     /* ── FLIP CARDS (Option A: Scrollable) ── */
-    .flip-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+    .flip-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .flip-card { background-color: transparent; width: 320px; height: 220px; perspective: 1000px; cursor: pointer; }
     .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: left; transition: transform 0.6s; transform-style: preserve-3d; }
     .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
@@ -123,14 +123,12 @@
     .timeline-content { background: var(--mist); padding: 15px; border-radius: 8px; margin-top: 5px; }
 
     /* ── HYBRID DRAG/TAP & DROP ── */
-    .dnd-container { display: flex; gap: 30px; }
-    .dnd-items { flex: 1; display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+    .dnd-container { display: flex; flex-direction: column; gap: 25px; width: 100%; }
+    .dnd-items { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
     .dnd-item { background: var(--midnight); color: var(--white); padding: 10px 15px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, background 0.2s; user-select: none; }
     .dnd-item.dragging, .dnd-item.tap-selected { opacity: 0.8; transform: scale(1.05); box-shadow: 0 0 0 2px var(--aurora); }
-    .dnd-zones { flex: 2; display: flex; gap: 15px; }
-    .drop-zone { flex: 1; background: var(--mist); border: 1px dashed rgba(0, 44, 57, 0.3); border-radius: 10px; padding: 15px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: background 0.2s; }
-    .drop-zone h4 { text-align: center; color: var(--arcana); margin-bottom: 10px; pointer-events: none; }
-    .drop-zone.dragover { background: rgba(0,193,142,0.1); border-color: var(--aurora); }
+    .dnd-zones { display: flex; flex-direction: row; gap: 20px; justify-content: center; width: 100%; }
+    .drop-zone { flex: 1; max-width: 300px; background: var(--mist); border: 1px dashed rgba(0, 44, 57, 0.3); border-radius: 10px; padding: 15px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: background 0.2s; }
 
     /* Accordions, Tabs, Carousel */
     .accordion-item { border: 1px solid rgba(0,44,57,0.1); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
@@ -183,6 +181,7 @@
       .block { padding: 20px; }
       .flip-card { width: 100%; height: auto; min-height: 240px; }
       .dnd-container, .dnd-zones { flex-direction: column; }
+      .drop-zone { max-width: 100%; }
       .timeline { padding-left: 15px; }
       .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
 .dnd-container, .dnd-zones { flex-direction: column; }
