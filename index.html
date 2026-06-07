@@ -425,15 +425,18 @@
 
         <div class="block">
           <h3 class="block-title">Project: Art Appreciation (Mod 1)</h3>
-          <p class="block-instruction">Switch between the tabs to review different development phases.</p>
-          <div class="tabs-nav">
-            <button class="tab-btn active" onclick="switchTab(this, 'tab1')">Phase 1</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab2')">Phase 2</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab3')">Phase 3</button>
+          <p class="block-instruction">Navigate through the carousel to review different development phases.</p>
+          <div class="carousel">
+            <div class="carousel-track" id="track-mod1">
+              <div class="carousel-slide"><img src="images/mod1-1.png" alt="Mod 1 Image 1"></div>
+              <div class="carousel-slide"><img src="images/mod1-2.png" alt="Mod 1 Image 2"></div>
+              <div class="carousel-slide"><img src="images/mod1-3.png" alt="Mod 1 Image 3"></div>
+            </div>
           </div>
-          <div id="tab1" class="tab-content active"><img src="images/mod1-1.png" alt="Mod 1 Image 1"></div>
-          <div id="tab2" class="tab-content"><img src="images/mod1-2.png" alt="Mod 1 Image 2"></div>
-          <div id="tab3" class="tab-content"><img src="images/mod1-3.png" alt="Mod 1 Image 3"></div>
+          <div class="carousel-controls">
+            <button onclick="moveCarousel(-1, 'track-mod1')">⟵ Previous</button>
+            <button onclick="moveCarousel(1, 'track-mod1')">Next ⟶</button>
+          </div>
         </div>
 
         <div class="block">
