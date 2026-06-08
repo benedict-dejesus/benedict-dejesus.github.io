@@ -168,9 +168,25 @@
     .btn-action:disabled { background: #ccc; color: #666; cursor: not-allowed; }
     .btn-continue { display: none; background: var(--aurora); color: var(--midnight); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 15px; transition: 0.2s; }
 
+/* ── FLOATING AVATAR ── */
+#floating-avatar {
+  position: fixed; /* Keeps it floating relative to the screen */
+  top: 0;
+  left: 0;
+  width: 100px; /* Adjust this to make your avatar bigger or smaller */
+  pointer-events: none; /* CRITICAL: Prevents the image from blocking your mouse clicks */
+  z-index: 9999; /* Ensures it stays above the sidebar and HUD */
+  opacity: 0; /* Keeps it hidden until the user moves their mouse */
+  transition: opacity 0.5s ease; /* Smooth fade-in effect */
+  transform-origin: center center;
+  filter: drop-shadow(0 4px 10px rgba(0, 193, 142, 0.4)); /* Adds a neon glow to match your branding */
+}
+
     /* ── MOBILE RESPONSIVE ENGINE ── */
+/* ── MOBILE RESPONSIVE ENGINE ── */
 #close-sidebar-btn { display: none; }    
 @media (max-width: 768px) {
+  	#floating-avatar { display: none !important; } /* Hides the avatar on phones */
       #welcome-screen p { font-size: 1rem; padding: 0 10px; }
       main { margin-left: 0; width: 100vw; padding: 100px 20px 40px; }
       #hud { left: 0; padding: 15px 20px; }
@@ -326,7 +342,7 @@
             <div class="flip-card" onclick="this.classList.toggle('flipped')">
               <div class="flip-card-inner">
                 <div class="flip-card-front">
-                  <h4>EFL Teacher / Coordinator</h4><span>JABEZ International Educ. Center</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
+                  <h4>EFL Teacher / Students' Coordinator</h4><span>JABEZ International Educational Center Inc.</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
                 </div>
                 <div class="flip-card-back">Analyzed and localized proprietary curriculum to engineer customized learning paths for a cross-cultural global demographic. Directed administrative workflows and evaluated learner feedback to continuously improve instructional quality.</div>
               </div>
@@ -721,6 +737,58 @@
       // 4. Apply the sliding animation
       track.style.transform = `translateX(-${carouselIndexes[trackId] * 100}%)`;
     }
+
+// ── FLOATING AVATAR COMPANION LOGIC ──
+const floatingAvatar = document.getElementById('floating-avatar');
+
+// Start coordinates in the center of the screen
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let avatarX = window.innerWidth / 2;
+let avatarY = window.innerHeight / 2;
+let angle = 0;
+
+// Adjust these variables to tweak the feel of the animation
+const orbitRadius = 60; // Distance of the circle from the mouse pointer
+const orbitSpeed = 0.04; // How fast the avatar runs in circles
+const chaseSpeed = 0.05; // How smoothly it follows (lower = slower chase)
+
+// Track mouse movement and fade the avatar in
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  
+  // Fade in the avatar on the first mouse movement
+  if (floatingAvatar.style.opacity === "0" || floatingAvatar.style.opacity === "") {
+    floatingAvatar.style.opacity = "1";
+  }
+});
+
+// The continuous animation loop
+function animateAvatar() {
+  // 1. Increase the angle to drive the circular motion
+  angle += orbitSpeed;
+
+  // 2. Calculate the target X and Y using sine and cosine for the circle
+  // We subtract 50 (half of the 100px width/height) to center the image precisely
+  const targetX = mouseX + (Math.cos(angle) * orbitRadius) - 50;
+  const targetY = mouseY + (Math.sin(angle) * orbitRadius) - 50;
+
+  // 3. Use Lerp math to smoothly glide the current position toward the target
+  avatarX += (targetX - avatarX) * chaseSpeed;
+  avatarY += (targetY - avatarY) * chaseSpeed;
+
+  // 4. Apply the calculated position to the image
+  floatingAvatar.style.transform = `translate(${avatarX}px, ${avatarY}px)`;
+
+  // Tell the browser to run this again on the next frame
+  requestAnimationFrame(animateAvatar);
+}
+
+// Kick off the loop
+animateAvatar();
+
   </script>
+<img src="images/avatar.png" id="floating-avatar" alt="Floating Avatar">
 </body>
 </html>
