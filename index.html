@@ -37,12 +37,12 @@
       border: 4px solid var(--aurora); 
       overflow: hidden; 
       margin-bottom: 20px; 
-      box-shadow: 0 0 25px rgba(0, 193, 142, 0.4); /* Adds a subtle neon glow to the avatar */
+      box-shadow: 0 0 25px rgba(0, 193, 142, 0.4);
     }
     .anime-avatar {
       width: 100%; 
       height: 100%; 
-      object-fit: cover; /* Ensures the image fills the circle perfectly without stretching */
+      object-fit: cover;
     }
     #welcome-screen h1 { font-size: 3rem; margin-bottom: 10px; color: var(--white); }
     #welcome-screen p { font-size: 1.2rem; color: var(--aurora); margin-bottom: 40px; max-width: 600px; }
@@ -67,7 +67,6 @@
     .tagline { font-size: 0.9rem; color: var(--aurora); text-align: center; margin-bottom: 20px; font-style: italic; }
     .contact-info { width: 100%; font-size: 0.85rem; margin-bottom: 20px; text-align: center; color: rgba(255,255,255,0.7); }
     
-    /* Social Icons */
     .social-links { display: flex !important; flex-direction: row !important; justify-content: center !important; align-items: center !important; gap: 16px !important; margin-bottom: 25px !important; width: 100% !important; }
     .social-links a { display: inline-flex !important; width: 24px !important; height: 24px !important; text-decoration: none !important; transition: transform 0.2s ease !important; }
     .social-links a:hover { transform: scale(1.15) !important; }
@@ -96,12 +95,10 @@
 
     .lesson-title { font-size: 2.5rem; color: var(--midnight); margin-bottom: 30px; border-bottom: 3px solid var(--aurora); display: inline-block; }
     
-    /* ── BLOCKS WITH THIN BORDER ── */
     .block { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid rgba(0, 44, 57, 0.15); }
     .block-title { font-size: 1.5rem; color: var(--arcana); margin-bottom: 10px; }
     .block-instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 10px; }
 
-    /* ── FLIP CARDS (Option A: Scrollable) ── */
     .flip-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .flip-card { background-color: transparent; width: 320px; height: 220px; perspective: 1000px; cursor: pointer; }
     .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: left; transition: transform 0.6s; transform-style: preserve-3d; }
@@ -111,18 +108,13 @@
     .flip-card-front h4 { font-size: 1.2rem; color: var(--aurora); margin-bottom: 5px; }
     .flip-card-front span { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
     .flip-card-back { background: var(--aurora); color: var(--midnight); transform: rotateY(180deg); font-size: 0.95rem; display: flex; align-items: flex-start; overflow-y: auto; max-height: 100%; }
-    .flip-card-back::-webkit-scrollbar { width: 6px; }
-    .flip-card-back::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); border-radius: 10px; }
-    .flip-card-back::-webkit-scrollbar-thumb { background: var(--arcana); border-radius: 10px; }
 
-    /* ── TIMELINE (Fixed Nesting) ── */
     .timeline { border-left: 3px solid var(--aurora); padding-left: 20px; margin-left: 10px; }
     .timeline-item { position: relative; margin-bottom: 25px; }
     .timeline-item::before { content: ''; position: absolute; left: -28.5px; top: 5px; width: 14px; height: 14px; background: var(--white); border: 3px solid var(--arcana); border-radius: 50%; }
     .timeline-year { font-weight: bold; color: var(--aurora); font-size: 0.9rem; }
     .timeline-content { background: var(--mist); padding: 15px; border-radius: 8px; margin-top: 5px; }
 
-    /* ── HYBRID DRAG/TAP & DROP ── */
     .dnd-container { display: flex; flex-direction: column; gap: 25px; width: 100%; }
     .dnd-items { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; }
     .dnd-item { background: var(--midnight); color: var(--white); padding: 10px 15px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: transform 0.2s, background 0.2s; user-select: none; }
@@ -131,36 +123,20 @@
     .drop-zone { flex: 1; max-width: 300px; background: var(--mist); border: 1px dashed rgba(0, 44, 57, 0.3); border-radius: 10px; padding: 15px; min-height: 200px; display: flex; flex-direction: column; gap: 10px; cursor: pointer; transition: background 0.2s; }
     .drop-zone h4 { width: 100%; text-align: center; align-self: center; color: var(--arcana); margin-bottom: 10px; pointer-events: none; }
 
-    /* Accordions, Tabs, Carousel */
     .accordion-item { border: 1px solid rgba(0,44,57,0.1); border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
     .accordion-header { background: var(--mist); padding: 15px; cursor: pointer; font-weight: bold; color: var(--midnight); display: flex; justify-content: space-between; align-items: center; }
     .accordion-header span { color: var(--aurora); font-size: 1.2rem; }
     .accordion-body { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--white); }
     .accordion-item.active .accordion-body { padding: 15px; max-height: 600px; }
-    .tabs-nav { display: flex; gap: 10px; border-bottom: 2px solid var(--mist); margin-bottom: 20px; }
-    .tab-btn { padding: 10px 20px; cursor: pointer; border: none; background: none; font-size: 1rem; font-weight: bold; color: var(--arcana); }
-    .tab-btn.active { border-bottom: 3px solid var(--aurora); color: var(--aurora); }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; animation: fadeIn 0.3s; }
+    
     .carousel { overflow: hidden; position: relative; border-radius: 10px; background: var(--mist); padding: 10px; text-align: center; border: 1px solid rgba(0, 44, 57, 0.15); }
     .carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
     .carousel-slide { min-width: 100%; padding: 0 10px; }
-.carousel-track { display: flex; transition: transform 0.4s ease; align-items: center; }
-    .carousel-slide { min-width: 100%; padding: 0 10px; }
-    /* Caps media height globally to ensure entire blocks remain visible */
-    .carousel-slide img, .tab-content img {
-      max-height: 380px;
-      width: auto;
-      object-fit: contain;
-      margin: 0 auto;
-      display: block;
-    }
-    .carousel-controls { margin-top: 15px; text-align: center; }
+    .carousel-slide img { max-height: 380px; width: auto; object-fit: contain; margin: 0 auto; display: block; }
     .carousel-controls { margin-top: 15px; text-align: center; }
     .carousel-controls button { background: var(--arcana); border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; color: var(--white); font-weight: bold; margin: 0 5px; transition: 0.2s; }
     .carousel-controls button:hover { background: var(--aurora); color: var(--midnight); }
 
-    /* Completion Overlays */
     .completion-area { margin-top: 30px; padding-top: 20px; border-top: 2px dashed #ccc; }
     .completion-msg { display: none; background: rgba(0, 193, 142, 0.15); border-left: 5px solid var(--aurora); padding: 15px; margin-top: 20px; border-radius: 5px; color: var(--arcana); font-weight: bold; }
     .btn-action { background: var(--arcana); color: var(--white); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.2s; }
@@ -168,25 +144,125 @@
     .btn-action:disabled { background: #ccc; color: #666; cursor: not-allowed; }
     .btn-continue { display: none; background: var(--aurora); color: var(--midnight); padding: 12px 24px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-top: 15px; transition: 0.2s; }
 
-/* ── FLOATING AVATAR ── */
-#floating-avatar {
-  position: fixed; /* Keeps it floating relative to the screen */
-  top: 0;
-  left: 0;
-  width: 100px; /* Adjust this to make your avatar bigger or smaller */
-  pointer-events: none; /* CRITICAL: Prevents the image from blocking your mouse clicks */
-  z-index: 9999; /* Ensures it stays above the sidebar and HUD */
-  opacity: 1; /* Keeps it hidden until the user moves their mouse */
-  transition: opacity 0.5s ease; /* Smooth fade-in effect */
-  transform-origin: center center;
-  filter: drop-shadow(0 4px 10px rgba(0, 193, 142, 0.4)); /* Adds a neon glow to match your branding */
-}
+    #floating-avatar { position: fixed; top: 0; left: 0; width: 100px; pointer-events: none; z-index: 9999; opacity: 1; transition: opacity 0.5s ease; transform-origin: center center; filter: drop-shadow(0 4px 10px rgba(0, 193, 142, 0.4)); }
+
+    /* ── SCENARIO SPECIFIC CSS ── */
+    .scenario-container {
+      background: linear-gradient(135deg, var(--midnight) 0%, var(--arcana) 100%);
+      border-radius: 16px;
+      padding: 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .scenario-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 15px;
+    }
+    .scenario-progress { font-weight: 600; color: var(--aurora); letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; }
+    .scenario-title { font-size: 1.8rem; color: var(--white); }
+    .scenario-svg-container {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+    .scenario-svg-container svg { height: 100%; max-width: 100%; fill: var(--white); }
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    @media(min-width: 768px) { .options-grid.cols-2 { grid-template-columns: 1fr 1fr; } }
+    .option-btn {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      padding: 18px 22px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .option-btn:hover:not(:disabled) { background: var(--aurora); color: var(--midnight); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 193, 142, 0.3); }
+    .option-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    
+    .feedback-panel {
+      background: rgba(0, 193, 142, 0.15);
+      border-left: 4px solid var(--aurora);
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 25px;
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .feedback-panel.error { background: rgba(255, 99, 71, 0.15); border-left-color: #ff6347; }
+    .feedback-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+    
+    .architecture-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    .architecture-meta { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
+    @media(min-width: 768px) { .architecture-meta { grid-template-columns: 1fr 1fr; } }
+    .meta-card { background: rgba(0, 44, 57, 0.4); border: 1px solid rgba(0, 193, 142, 0.2); padding: 15px; border-radius: 6px; }
+    .meta-card h5 { color: var(--aurora); margin-bottom: 5px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .infographic-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      margin-top: 35px;
+      background: rgba(255,255,255,0.02);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .flow-node {
+      background: var(--arcana);
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      width: 100%;
+      max-width: 440px;
+      border: 1px solid rgba(0, 193, 142, 0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .flow-arrow { color: var(--aurora); font-size: 1.3rem; font-weight: bold; line-height: 1; }
 
     /* ── MOBILE RESPONSIVE ENGINE ── */
-/* ── MOBILE RESPONSIVE ENGINE ── */
-#close-sidebar-btn { display: none; }    
-@media (max-width: 768px) {
-  	#floating-avatar { display: none !important; } /* Hides the avatar on phones */
+    #close-sidebar-btn { display: none; }    
+    @media (max-width: 768px) {
+      #floating-avatar { display: none !important; }
       #welcome-screen p { font-size: 1rem; padding: 0 10px; }
       main { margin-left: 0; width: 100vw; padding: 100px 20px 40px; }
       #hud { left: 0; padding: 15px 20px; }
@@ -201,27 +277,11 @@
       .drop-zone { max-width: 100%; }
       .timeline { padding-left: 15px; }
       .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
-.dnd-container, .dnd-zones { flex-direction: column; }
-      .timeline { padding-left: 15px; }
-      .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
-      /* Scale down image bounds for fluid readability on mobile views */
-      .carousel-slide img, .tab-content img {
-        max-height: 240px;
-      }
-   #close-sidebar-btn {
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: transparent;
-        color: var(--mist);
-        border: none;
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
+      .carousel-slide img { max-height: 240px; }
+      .scenario-container { padding: 20px; }
+      #close-sidebar-btn { display: block; position: absolute; top: 20px; right: 20px; background: transparent; color: var(--mist); border: none; font-size: 1.8rem; cursor: pointer; transition: color 0.2s; }
       #close-sidebar-btn:hover { color: var(--aurora); }
- }
+    }
   </style>
 </head>
 <body>
@@ -239,7 +299,7 @@
 
   <div id="app-wrapper">
     <aside id="sidebar">
-	<button id="close-sidebar-btn" aria-label="Close Menu">✕</button>
+      <button id="close-sidebar-btn" aria-label="Close Menu">✕</button>
       <img src="images/photo.jpg" alt="Benedict de Jesus" class="profile-img">
       <div class="name">Benedict C. de Jesus</div>
       <div class="tagline">Education Specialist <br> Learning Experience Designer <br> Musician</div>
@@ -267,14 +327,15 @@
         <li><a href="#" class="nav-link active" data-target="lesson1">Lesson 1: Introduction</a></li>
         <li><a href="#" class="nav-link" data-target="lesson2">Lesson 2: Trainings & Skills</a></li>
         <li><a href="#" class="nav-link" data-target="lesson3">Lesson 3: ISD Portfolio</a></li>
-        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: Reflection</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson5">Lesson 4: Scenario</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 5: Reflection</a></li>
       </ul>
     </aside>
 
     <div id="hud">
       <button id="mobile-menu-btn">☰ Menu</button>
       <div class="course-status"><strong>E-Learning Module:</strong> Portfolio Journey</div>
-      <div class="exp-tracker">EXP: <span id="exp-points">0</span> / 28</div>
+      <div class="exp-tracker">EXP: <span id="exp-points">0</span> / 35</div>
     </div>
 
     <main>
@@ -300,11 +361,11 @@
               <span class="timeline-year">2010 - 2014</span>
               <div class="timeline-content"><strong>BSEd – Major in English</strong> <br>Bulacan State University</div>
             </div>
-		<div class="timeline-item">
+            <div class="timeline-item">
               <span class="timeline-year">2004</span>
               <div class="timeline-content"><strong>Secondary</strong> <br>Immaculate Conception School for Boys</div>
             </div>
-		<div class="timeline-item">
+            <div class="timeline-item">
               <span class="timeline-year">2000</span>
               <div class="timeline-content"><strong>Primary</strong> <br>Holy Spirit Academy of Malolos</div>
             </div>
@@ -383,7 +444,7 @@
             <div class="accordion-header">BulSU Paves the Way (2021) <span>+</span></div>
             <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends for Enhancing Instruction</p><p><strong>Role:</strong> Participant</p></div>
           </div>
- 	 <div class="accordion-item" onclick="this.classList.toggle('active')">
+          <div class="accordion-item" onclick="this.classList.toggle('active')">
             <div class="accordion-header">EDUK KAKAIBA: The OBE Way (2021) <span>+</span></div>
             <div class="accordion-body"><p><strong>Topic:</strong> Outcomes-Based Education in Higher Education</p><p><strong>Role:</strong> Participant</p></div>
           </div>
@@ -421,7 +482,7 @@
 
       </section>
 
-<section id="lesson3">
+      <section id="lesson3">
         <h2 class="lesson-title">Lesson 3: My ISD Portfolio</h2>
 
         <div class="block">
@@ -475,12 +536,29 @@
         <div class="completion-area">
           <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
           <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
-          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
+          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson5')">Continue to Lesson 4 ➔</button>
+        </div>
+      </section>
+
+      <section id="lesson5">
+        <h2 class="lesson-title">Lesson 4: Consulting Scenario</h2>
+        <div class="block">
+          <h3 class="block-title">Interactive Challenge: The Case of the Falling Sales</h3>
+          <p class="block-instruction">Step into the role of a Performance Consultant. Real-world instructional design means diagnosing root causes before prescribing training solutions.</p>
+          
+          <div class="scenario-container" id="scenario-app">
+            </div>
+
+        </div>
+        <div class="completion-area">
+          <button class="btn-action" id="btn-complete-5" onclick="completeLesson(5, this)" disabled>Complete Lesson 4</button>
+          <div id="msg-5" class="completion-msg">🎉 Lesson 4 Complete! 7 EXP Awarded.</div>
+          <button id="btn-next-5" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 5 ➔</button>
         </div>
       </section>
 
       <section id="lesson4">
-        <h2 class="lesson-title">Lesson 4: Reflection</h2>
+        <h2 class="lesson-title">Lesson 5: Reflection</h2>
 
         <div class="block" style="text-align: center; padding: 80px 40px; border: 2px solid rgba(0, 193, 142, 0.3);">
           <h3 class="block-title">Course Capstone</h3>
@@ -491,11 +569,11 @@
         </div>
 
        <div class="completion-area" style="text-align: center;">
-          <button class="btn-action" onclick="completeLesson(4, this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
+          <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
           
           <div id="msg-4" class="completion-msg" style="font-size: 1.2rem; text-align: center; margin-top: 30px;">
             <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🏆 Module Mastered!</h3>
-            <p style="color: var(--midnight);">Final 7 EXP Awarded. (Total 28 EXP)</p>
+            <p style="color: var(--midnight);">Final 7 EXP Awarded. (Total 35 EXP)</p>
             
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px dashed rgba(0, 44, 57, 0.3);">
               <p style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px;"><strong>Let's Build Something Great Together:</strong></p>
@@ -524,20 +602,16 @@
   <img src="images/avatar.png" id="floating-avatar" alt="Floating Avatar">
 
   <script>
-    // ── LANDING PAGE LOGIC (With Scroll Reset) ──
+    // ── LANDING PAGE LOGIC ──
     function startCourse() {
       const welcome = document.getElementById('welcome-screen');
       const app = document.getElementById('app-wrapper');
       welcome.style.opacity = '0';
-      
-      // Force the viewport back to the absolute top immediately
       window.scrollTo(0, 0);
       
       setTimeout(() => {
         welcome.style.display = 'none';
         app.style.opacity = '1';
-        
-        // Failsafe: Reinforce top scroll once the main layout displays
         window.scrollTo(0, 0);
       }, 600);
     }
@@ -546,28 +620,25 @@
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.getElementById('sidebar');
     mobileBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-// Close sidebar using the X button
-    document.getElementById('close-sidebar-btn').addEventListener('click', () => {
-      sidebar.classList.remove('open');
-    });
+    document.getElementById('close-sidebar-btn').addEventListener('click', () => sidebar.classList.remove('open'));
+
     // ── NAVIGATION & SMOOTH SCROLL LOGIC ──
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
 
     function goToLesson(targetId) {
-      // Gatekeeper: Intercept navigation if Lesson 2's condition hasn't been satisfied
-      if ((targetId === 'lesson3' || targetId === 'lesson4') && !isLesson2Completed) {
+      if ((targetId === 'lesson3' || targetId === 'lesson4' || targetId === 'lesson5') && !isLesson2Completed) {
         alert("🔒 Lesson Locked! Please successfully complete the Skills Sorting activity in Lesson 2 and click 'Complete Lesson 2' to unlock subsequent project modules.");
         return;
       }
-	navLinks.forEach(link => {
+      navLinks.forEach(link => {
         link.classList.remove('active');
         if(link.getAttribute('data-target') === targetId) link.classList.add('active');
       });
       sections.forEach(s => s.classList.remove('active'));
       document.getElementById(targetId).classList.add('active');
       
-      if(window.innerWidth <= 768) sidebar.classList.remove('open'); // Close mobile menu
+      if(window.innerWidth <= 768) sidebar.classList.remove('open');
 
       setTimeout(() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); }, 50);
     }
@@ -579,61 +650,48 @@
       });
     });
 
-// ── BULLETPROOF GAMIFICATION ENGINE ──
+    // ── BULLETPROOF GAMIFICATION ENGINE ──
     let totalExp = 0;
-    let isLesson2Completed = false; // Tracks if the user has cracked the sorting game
+    let isLesson2Completed = false; 
     const expDisplay = document.getElementById('exp-points');
 
     function completeLesson(lessonNum, btn) {
       totalExp += 7;
-	if (lessonNum === 2) isLesson2Completed = true; // Turn off the sidebar block rule
+      if (lessonNum === 2) isLesson2Completed = true; 
       if (expDisplay) expDisplay.innerText = totalExp;
       
       btn.disabled = true;
-      btn.innerText = (lessonNum === 4) ? "Course Completed ✔" : "Lesson Completed ✔";
+      btn.innerText = (lessonNum === 4 || lessonNum === 5 && btn.innerText === "Finish Course") ? "Course Completed ✔" : "Lesson Completed ✔";
       
-      // Reveal the hidden content block
       const msgElement = document.getElementById(`msg-${lessonNum}`);
-      if (msgElement) {
-        msgElement.style.display = 'block';
-      }
+      if (msgElement) msgElement.style.display = 'block';
       
-      // Reveal the next lesson button if there is one
       let nextBtn = document.getElementById(`btn-next-${lessonNum}`);
-      if (nextBtn) {
-        nextBtn.style.display = 'inline-block';
-      }
+      if (nextBtn) nextBtn.style.display = 'inline-block';
 
-      // Smooth scrolling calculation
       setTimeout(() => {
-        if (lessonNum === 4) {
-          // Drive the window all the way to the absolute bottom of the layout
+        if (lessonNum === 4 || btn.innerText === "Course Completed ✔") {
           window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         } else if (msgElement) {
-          // Center the milestones smoothly
           msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }, 100);
     }
 
-    // FAILSAFE ALIAS: If any button still references completeCourse(), point it directly here
     function completeCourse(btn) {
-      completeLesson(4, btn);
+      completeLesson(4, btn); 
     }
 
-    // ── HYBRID DRAG AND DROP (Desktop Drag + Mobile Tap) ──
+    // ── HYBRID DRAG AND DROP ──
     const draggables = document.querySelectorAll('.dnd-item');
     const dropZones = document.querySelectorAll('.drop-zone');
     let tapSelectedItem = null;
 
     draggables.forEach(item => {
-      // Desktop Drag Events
       item.addEventListener('dragstart', () => item.classList.add('dragging'));
       item.addEventListener('dragend', () => item.classList.remove('dragging'));
-      
-      // Mobile Tap Events
       item.addEventListener('click', (e) => {
-        if (item.getAttribute('draggable') === 'false') return; // Already sorted
+        if (item.getAttribute('draggable') === 'false') return;
         draggables.forEach(d => d.classList.remove('tap-selected'));
         tapSelectedItem = item;
         item.classList.add('tap-selected');
@@ -641,7 +699,6 @@
     });
 
     dropZones.forEach(zone => {
-      // Desktop Drop Events
       zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
       zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
       zone.addEventListener('drop', e => {
@@ -652,8 +709,6 @@
           lockItem(draggedItem, zone);
         } else if(draggedItem) { shakeItem(draggedItem); }
       });
-
-      // Mobile Tap Drop Events
       zone.addEventListener('click', () => {
         if (tapSelectedItem) {
           if (tapSelectedItem.getAttribute('data-type') === zone.getAttribute('data-accept')) {
@@ -673,8 +728,6 @@
       item.setAttribute('draggable', 'false');
       item.classList.remove('tap-selected');
       item.style.cursor = 'default';
-      
-      // Trigger the gatekeeper validation every time an item is locked
       validateLesson2Gate();
     }
 
@@ -683,22 +736,15 @@
       setTimeout(() => item.style.transform = "none", 200);
     }
 
-// ── LESSON 2 GATEKEEPER VALIDATION ──
     function validateLesson2Gate() {
-      // Since your drag-and-drop only allows correct drops, 
-      // we just need to check if all items have been successfully moved out of the starting pool.
       const totalItems = document.querySelectorAll('#lesson2 .dnd-item').length;
       let correctlyPlaced = 0;
-      
       const dropZones = document.querySelectorAll('#lesson2 .drop-zone');
-      dropZones.forEach(zone => {
-        correctlyPlaced += zone.querySelectorAll('.dnd-item').length;
-      });
+      dropZones.forEach(zone => { correctlyPlaced += zone.querySelectorAll('.dnd-item').length; });
 
       const gateWarning = document.getElementById('gate-warning-2');
       const completeBtn = document.getElementById('btn-complete-2');
 
-      // If the number of locked items matches the total items, unlock the gate!
       if (correctlyPlaced === totalItems && totalItems > 0) {
         gateWarning.innerHTML = "🔓 <strong>Criteria Met!</strong> The progression gate is now open.";
         gateWarning.style.color = "#155724";
@@ -708,91 +754,378 @@
       }
     }
 
-    // ── TABS LOGIC ──
-    function switchTab(btn, targetId) {
-      const parent = btn.parentElement.parentElement;
-      parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      parent.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      parent.querySelector('#' + targetId).classList.add('active');
-    }
-
-   // ── UPGRADED CAROUSEL LOGIC (Supports Multiple Carousels) ──
-    const carouselIndexes = {}; // Stores the individual slide index for every carousel
-
+    // ── UPGRADED CAROUSEL LOGIC ──
+    const carouselIndexes = {}; 
     function moveCarousel(dir, trackId) {
-      // 1. If this specific carousel hasn't been moved yet, start it at 0
-      if (carouselIndexes[trackId] === undefined) {
-        carouselIndexes[trackId] = 0;
-      }
-      
+      if (carouselIndexes[trackId] === undefined) carouselIndexes[trackId] = 0;
       const track = document.getElementById(trackId);
-      if (!track) return; // Failsafe in case of a typo
-      
+      if (!track) return;
       const slides = track.children.length;
-      
-      // 2. Update the math for this specific carousel
       carouselIndexes[trackId] += dir;
-      
-      // 3. Looping logic (go to end if clicking previous on first slide)
       if (carouselIndexes[trackId] < 0) carouselIndexes[trackId] = slides - 1;
       if (carouselIndexes[trackId] >= slides) carouselIndexes[trackId] = 0;
-      
-      // 4. Apply the sliding animation
       track.style.transform = `translateX(-${carouselIndexes[trackId] * 100}%)`;
     }
 
-// ── FLOATING AVATAR COMPANION LOGIC ──
-const floatingAvatar = document.getElementById('floating-avatar');
+    // ── TAILORED PERMUTATION SCENARIO ENGINE (10/10 CORE) ──
+    const SVGS = {
+      dashboard: `<svg viewBox="0 0 200 100"><rect x="20" y="20" width="160" height="60" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M30 70 L70 40 L110 55 L160 20" fill="none" stroke="#ff6b6b" stroke-width="3" stroke-linecap="round"/><circle cx="160" cy="20" r="4" fill="#ff6b6b"/><line x1="20" y1="50" x2="180" y2="50" stroke="rgba(255,255,255,0.2)" stroke-dasharray="4"/></svg>`,
+      consultant: `<svg viewBox="0 0 200 100"><circle cx="100" cy="35" r="15" fill="currentColor"/><path d="M70 90 Q100 50 130 90 Z" fill="currentColor"/><rect x="140" y="40" width="30" height="40" rx="2" fill="none" stroke="var(--aurora)" stroke-width="2"/><line x1="145" y1="50" x2="165" y2="50" stroke="var(--aurora)" stroke-width="2"/></svg>`,
+      knowledge: `<svg viewBox="0 0 200 100"><path d="M80 60 Q100 20 120 60 L100 90 Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="100" cy="30" r="8" fill="var(--aurora)"/></svg>`,
+      skill: `<svg viewBox="0 0 200 100"><rect x="70" y="30" width="60" height="40" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="100" cy="50" r="10" fill="var(--aurora)"/><path d="M100 50 L115 65" stroke="var(--aurora)" stroke-width="3" stroke-linecap="round"/></svg>`,
+      motivation: `<svg viewBox="0 0 200 100"><path d="M100 20 L120 80 L80 80 Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="100" cy="50" r="15" fill="none" stroke="var(--aurora)" stroke-width="3"/><path d="M100 35 L100 65 M85 50 L115 50" stroke="var(--aurora)" stroke-width="2"/></svg>`,
+      process: `<svg viewBox="0 0 200 100"><rect x="50" y="40" width="30" height="20" fill="none" stroke="currentColor" stroke-width="2"/><rect x="120" y="40" width="30" height="20" fill="none" stroke="currentColor" stroke-width="2"/><path d="M80 50 L110 50" stroke="var(--aurora)" stroke-width="2" stroke-dasharray="4"/><polygon points="110,45 120,50 110,55" fill="var(--aurora)"/></svg>`,
+      resource: `<svg viewBox="0 0 200 100"><rect x="70" y="20" width="60" height="70" fill="none" stroke="currentColor" stroke-width="2"/><line x1="80" y1="40" x2="120" y2="40" stroke="var(--aurora)" stroke-width="2"/><line x1="80" y1="55" x2="110" y2="55" stroke="var(--aurora)" stroke-width="2"/></svg>`,
+      framework: `<svg viewBox="0 0 200 100"><circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="100" cy="50" r="20" fill="none" stroke="var(--aurora)" stroke-width="2"/><circle cx="150" cy="50" r="20" fill="var(--aurora)"/><line x1="70" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="2"/><line x1="120" y1="50" x2="130" y2="50" stroke="currentColor" stroke-width="2"/></svg>`
+    };
 
-// Start coordinates in the center of the screen
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let avatarX = window.innerWidth / 2;
-let avatarY = window.innerHeight / 2;
-let angle = 0;
+    const gapData = [
+      {
+        id: "knowledge",
+        name: "Knowledge Gap",
+        clue: "You shadow the sellers. You discover they simply do not know the specifications, technical limits, and features of the newly launched e-commerce product line.",
+        svg: SVGS.knowledge,
+        isTraining: true,
+        sol: "Deploy a microlearning product architecture matrix accompanied by rapid retrieval checks.",
+        bloom: "Remember / Understand",
+        objectives: "Identify and distinguish core specifications of the new product line during live interactions.",
+        blocks: "Product Interactive Spec Matrices & Knowledge Checks",
+        feedbacks: {
+          knowledge: "Correct! The qualitative baseline indicates a complete lack of raw structural parameters. Training is highly effective at establishing clear conceptual baselines.",
+          skill: "Incorrect. A skill gap implies behavioral missteps or execution blocks. Here, the sellers have never been given or taught the product facts to begin with.",
+          motivation: "Incorrect. The sellers are eager to perform; they simply lack semantic data about the objects they are tasked with trading.",
+          process: "Incorrect. The environmental framework is fully operational. The bottleneck is cognitive data storage—they don't know what they're selling.",
+          resource: "Incorrect. While documentation assists, a lack of primary baseline familiarity requires structured educational schemas to ensure recall accuracy."
+        }
+      },
+      {
+        id: "skill",
+        name: "Skill Gap",
+        clue: "You observe live client calls. The sellers memorize product features flawlessly, but whenever a customer voices an objection, they freeze, drop their tone, and fail to handle the query.",
+        svg: SVGS.skill,
+        isTraining: true,
+        sol: "Implement highly interactive scenario-based branching modules to safely practice dialogue pacing and objection workflows.",
+        bloom: "Apply / Analyze",
+        objectives: "Deconstruct and execute tactical counter-objections fluently during conversational pushback.",
+        blocks: "Branching Dialogue Trees & Safe Audio Simulations",
+        feedbacks: {
+          knowledge: "Incorrect. Information is not the issue—they have fully memorized the features. The gap lies in execution, behavior, and navigating interpersonal tension.",
+          skill: "Correct! Symmetrical execution failure under stress identifies a skill gap. This requires simulation, continuous feedback loops, and practice.",
+          motivation: "Incorrect. Freezing up under client pressure signals performance anxiety or lack of fluent habit loops, not an intentional refusal to execute.",
+          process: "Incorrect. There is no workflow error present. The communication stream is failing due to behavioral execution blocks during conversational inflection points.",
+          resource: "Incorrect. Giving them more text documents or catalogs won't help them maintain flow and composure during live customer negotiations."
+        }
+      },
+      {
+        id: "motivation",
+        name: "Motivation Gap",
+        clue: "You survey the division. Sellers are highly skilled and know the items perfectly. However, the new compensation structural plan pays 50% less commission for this specific category.",
+        svg: SVGS.motivation,
+        isTraining: false,
+        sol: "Perform systemic adjustments to the financial commission architecture. Training cannot solve structural incentive issues.",
+        bloom: "N/A (Systemic Adjustment Required)",
+        objectives: "Align corporate payout strategy directly with product priority metrics.",
+        blocks: "Compensation Redesign & Leadership Performance Alignment Meetings",
+        feedbacks: {
+          knowledge: "Incorrect. The staff knows the catalog thoroughly. Building informational training modules would insult their intelligence and waste capital.",
+          skill: "Incorrect. They possess the behavioral competencies required to close the sale. They are deliberately opting out due to poor financial utility.",
+          motivation: "Correct! When capability is high but output drops immediately following an adverse adjustment to variables like pay, it is a Motivation/Incentive Gap.",
+          process: "Incorrect. The sales pipelines and transaction systems are functioning properly. The human element has lost its incentive alignment.",
+          resource: "Incorrect. The deployment of additional data sheets will not alter the reality that closing this sale no longer respects the value of their time."
+        }
+      },
+      {
+        id: "process",
+        name: "Process Gap",
+        clue: "You run a technical audittrail. Sellers pitch perfectly, but the updated corporate transaction database crashes 80% of the time whenever they attempt to complete a sale.",
+        svg: SVGS.process,
+        isTraining: false,
+        sol: "Engage the software engineering team to patch database vulnerabilities and restore uptime stability.",
+        bloom: "N/A (Technical Engineering Optimization)",
+        objectives: "Eliminate system-level application downtime to reduce structural friction.",
+        blocks: "Database Infrastructure Overhaul & API Optimization Tickets",
+        feedbacks: {
+          knowledge: "Incorrect. Teaching them how the tool works will not prevent a remote server from throwing critical infrastructure errors.",
+          skill: "Incorrect. No amount of practice or roleplay can force a broken database pipeline to successfully record transactional records.",
+          motivation: "Incorrect. The sellers are actively executing actions until the system forces a stop. The barrier is environmental, not internal.",
+          process: "Correct! This is an environmental Process Gap. The technical tool system disrupts execution. Training here is completely wasted capital.",
+          resource: "Incorrect. The team does not lack tools; the existing core transaction channel is broken and requires an engineering fix."
+        }
+      },
+      {
+        id: "resource",
+        name: "Resource Gap",
+        clue: "You interview team members. They understand closing scripts perfectly, but corporate marketing hasn't provided the digital technical catalogs needed to share with clients.",
+        svg: SVGS.resource,
+        isTraining: false,
+        sol: "Construct and deploy accessible digital collateral repositories and interactive customer-facing spec sheets.",
+        bloom: "N/A (Resource Provisioning / Job Aid)",
+        objectives: "Equip personnel with immediate, self-service information assets at the point of sale.",
+        blocks: "Digital Asset Repository Setup & Job Aid Deployment",
+        feedbacks: {
+          knowledge: "Incorrect. They don't need to commit all these changing technical tables to memory if they simply have a clear document to reference during a call.",
+          skill: "Incorrect. Their behavioral execution is sound. They are simply missing the physical or digital assets needed to finalize transaction validation.",
+          motivation: "Incorrect. The sellers are searching for the information to close deals; they have simply been cut off from the materials.",
+          process: "Incorrect. The internal corporate workflow operates fine. The problem is a lack of materials needed to execute the transaction.",
+          resource: "Correct! This is a classic Resource Gap. The introduction of clear job aids or catalogs completely removes the bottleneck without formal training."
+        }
+      }
+    ];
 
-// Adjust these variables to tweak the feel of the animation
-const orbitRadius = 60; // Distance of the circle from the mouse pointer
-const orbitSpeed = 0.04; // How fast the avatar runs in circles
-const chaseSpeed = 0.05; // How smoothly it follows (lower = slower chase)
+    let currentGap = null;
+    const scenarioApp = document.getElementById('scenario-app');
 
-// Track mouse movement and fade the avatar in
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  
-  // Fade in the avatar on the first mouse movement
-  if (floatingAvatar.style.opacity === "0" || floatingAvatar.style.opacity === "") {
-    floatingAvatar.style.opacity = "1";
-  }
-});
+    function renderScenarioStart() {
+      currentGap = gapData[Math.floor(Math.random() * gapData.length)];
+      scenarioApp.innerHTML = `
+        <div class="glass-panel">
+          <div class="scenario-header">
+            <span class="scenario-progress">Step 1 of 4: The Request</span>
+          </div>
+          <div class="scenario-svg-container">${SVGS.dashboard}</div>
+          <h4 class="scenario-title">The Corporate Order</h4>
+          <p style="margin-top: 10px; font-size: 1.1rem; line-height: 1.6;">An online store notes a sudden <strong>20% drop in revenue conversion</strong>. The Sales Manager immediately demands a mandatory, intensive course on 'Advanced Sales Closing Mastery' for all representatives.</p>
+          <div class="options-grid cols-2" id="step1-buttons">
+            <button class="option-btn" onclick="evaluateStep1('order')">⚠️ Immediately Accept Order & Build Course</button>
+            <button class="option-btn" onclick="evaluateStep1('diagnose')">🔍 Pause & Initiate Performance Diagnosis</button>
+          </div>
+          <div id="scenario-feedback" class="feedback-panel"></div>
+        </div>
+      `;
+    }
 
-// The continuous animation loop
-function animateAvatar() {
-  // 1. Increase the angle to drive the circular motion
-  angle += orbitSpeed;
+    function evaluateStep1(choice) {
+      const feedbackPanel = document.getElementById('scenario-feedback');
+      const btnContainer = document.getElementById('step1-buttons');
+      
+      if (choice === 'order') {
+        feedbackPanel.className = "feedback-panel error";
+        feedbackPanel.style.display = "block";
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">❌ Order-Taker Mindset Warning</div>
+          <p>Accepting training orders immediately without analysis reduces L&D to a cost center. If the drop is caused by broken tech or poor pay, your course will fix nothing, and the business will lose time and capital.</p>
+          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="renderScenarioStart()">🔄 Reconsider Approach</button>
+        `;
+        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
+      } else {
+        feedbackPanel.className = "feedback-panel";
+        feedbackPanel.style.display = "block";
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">✨ Strategic Alignment Selected</div>
+          <p>Excellent decision. You explain to stakeholders that training is only appropriate for capability deficits. You secure permission to run an investigative discovery audit.</p>
+          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderDiscovery()">Proceed to Analysis ➔</button>
+        `;
+        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
+      }
+    }
 
-  // 2. Calculate the target X and Y using sine and cosine for the circle
-  // We subtract 50 (half of the 100px width/height) to center the image precisely
-  const targetX = mouseX + (Math.cos(angle) * orbitRadius) - 50;
-  const targetY = mouseY + (Math.sin(angle) * orbitRadius) - 50;
+    function renderDiscovery() {
+      scenarioApp.innerHTML = `
+        <div class="glass-panel">
+          <div class="scenario-header">
+            <span class="scenario-progress">Step 2 of 4: Performance Diagnostics</span>
+          </div>
+          <div class="scenario-svg-container">${SVGS.consultant}</div>
+          <h4 class="scenario-title">Audit Log Findings</h4>
+          <p style="margin-top: 10px; font-size: 1.1rem;">You run surveys, evaluate work transcripts, and cross-reference behavioral data. Here is the primary trend uncovered:</p>
+          <div style="background: rgba(0,0,0,0.4); padding: 20px; border-left: 4px solid var(--aurora); margin: 20px 0; border-radius: 4px; font-style: italic; font-size: 1.05rem; line-height:1.5;">
+            "${currentGap.clue}"
+          </div>
+          <p style="font-weight:600; margin-bottom:15px;">Based strictly on this diagnostic data, isolate the true organizational gap:</p>
+          <div class="options-grid" id="gap-buttons">
+            ${gapData.map(g => `<button class="option-btn" onclick="evaluateGap('${g.id}', this)">${g.name}</button>`).join('')}
+          </div>
+          <div id="scenario-feedback" class="feedback-panel"></div>
+        </div>
+      `;
+    }
 
-  // 3. Use Lerp math to smoothly glide the current position toward the target
-  avatarX += (targetX - avatarX) * chaseSpeed;
-  avatarY += (targetY - avatarY) * chaseSpeed;
+    function evaluateGap(selectedId, clickedBtn) {
+      const feedbackPanel = document.getElementById('scenario-feedback');
+      const btnContainer = document.getElementById('gap-buttons');
+      
+      // Clear previous active highlights
+      Array.from(btnContainer.children).forEach(btn => {
+        btn.style.background = "";
+        btn.style.color = "";
+      });
 
-  // 4. Apply the calculated position to the image
-  floatingAvatar.style.transform = `translate(${avatarX}px, ${avatarY}px)`;
+      const tailoredExplanation = currentGap.feedbacks[selectedId];
 
-  // Tell the browser to run this again on the next frame
-  requestAnimationFrame(animateAvatar);
-}
+      if (selectedId === currentGap.id) {
+        feedbackPanel.className = "feedback-panel";
+        feedbackPanel.style.display = "block";
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">🎯 Diagnosis Confirmed</div>
+          <p>${tailoredExplanation}</p>
+          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderSolutionPage()">Proceed to Prescription ➔</button>
+        `;
+        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
+        clickedBtn.style.background = "var(--aurora)";
+        clickedBtn.style.color = "var(--midnight)";
+        clickedBtn.disabled = false;
+      } else {
+        feedbackPanel.className = "feedback-panel error";
+        feedbackPanel.style.display = "block";
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">⚠️ Analytical Misalignment</div>
+          <p>${tailoredExplanation}</p>
+          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="resetGapEvaluation()">🔄 Reconsider Evidence & Retry</button>
+        `;
+        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
+        clickedBtn.style.background = "#ff6347";
+        clickedBtn.style.color = "var(--white)";
+        clickedBtn.disabled = false;
+      }
+    }
 
-// Kick off the loop
-animateAvatar();
+    function resetGapEvaluation() {
+      renderDiscovery();
+    }
+
+    function renderSolutionPage() {
+      scenarioApp.innerHTML = `
+        <div class="glass-panel">
+          <div class="scenario-header">
+            <span class="scenario-progress">Step 3 of 4: Solution Architecture</span>
+          </div>
+          <div class="scenario-svg-container">${currentGap.svg}</div>
+          <h4 class="scenario-title">Intervention Selection</h4>
+          <p style="margin-top: 10px; font-size: 1.1rem;">You have isolated the root bottleneck as a <strong>${currentGap.name}</strong>.</p>
+          <p style="margin-top:10px; font-weight:600;">Based on instructional design standards, should a formal training program be designed?</p>
+          <div class="options-grid cols-2" id="solution-buttons">
+            <button class="option-btn" onclick="evaluateSolution(true, this)">Yes, initiate training development</button>
+            <button class="option-btn" onclick="evaluateSolution(false, this)">No, request environmental intervention</button>
+          </div>
+          <div id="scenario-feedback" class="feedback-panel"></div>
+        </div>
+      `;
+    }
+
+    function evaluateSolution(isTrainingChoice, clickedBtn) {
+      const feedbackPanel = document.getElementById('scenario-feedback');
+      const btnContainer = document.getElementById('solution-buttons');
+      Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
+
+      if (isTrainingChoice === currentGap.isTraining) {
+        feedbackPanel.className = "feedback-panel";
+        feedbackPanel.style.display = "block";
+        let detailedSuccessText = currentGap.isTraining ? 
+          "Correct. Because this is a core capabilities block, instructional intervention is the appropriate mechanism to modify behavior." :
+          "Correct. Training cannot rectify system errors, broken software, or misaligned financial compensation frameworks. You save the client thousands in structural waste.";
+        
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">🚀 Proper Alignment Validated</div>
+          <p>${detailedSuccessText}</p>
+          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderFinalFramework()">Generate Diagnostic Architecture ➔</button>
+        `;
+        clickedBtn.style.background = "var(--aurora)";
+        clickedBtn.style.color = "var(--midnight)";
+        clickedBtn.disabled = false;
+      } else {
+        feedbackPanel.className = "feedback-panel error";
+        feedbackPanel.style.display = "block";
+        let detailedErrorText = currentGap.isTraining ?
+          "Incorrect. Capability gaps (lack of product understanding or mastery over live customer handling) require formal educational engineering to correct behavioral pathways." :
+          "Incorrect. Building an instructional system for a non-training issue (bad compensation, crashes, lack of collateral) fails to alter variables and creates organizational frustration.";
+        
+        feedbackPanel.innerHTML = `
+          <div class="feedback-title">❌ Intervention Mismatch</div>
+          <p>${detailedErrorText}</p>
+          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="renderSolutionPage()">🔄 Correct Intervention Path</button>
+        `;
+        clickedBtn.style.background = "#ff6347";
+        clickedBtn.style.color = "var(--white)";
+        clickedBtn.disabled = false;
+      }
+    }
+
+    function renderFinalFramework() {
+      scenarioApp.innerHTML = `
+        <div class="glass-panel" style="text-align: center;">
+          <div class="scenario-header" style="justify-content: center;">
+            <span class="scenario-progress">Step 4 of 4: Strategic Summary Framework</span>
+          </div>
+          <div class="scenario-svg-container">${SVGS.framework}</div>
+          <h4 class="scenario-title" style="color: var(--aurora);">Consulting Blueprint Finalized</h4>
+          <p style="margin-top: 10px;">By evaluating structural operational roadblocks instead of simply accepting training request orders, you engineered a tailored business intervention:</p>
+          
+          <div class="architecture-box">
+            <h4 style="color:var(--white); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">📋 Consultation Recommendations</h4>
+            <div class="architecture-meta">
+              <div class="meta-card">
+                <h5>Target Vector / Gap Class</h5>
+                <p style="font-size:0.95rem; font-weight:600; color:var(--white);">${currentGap.name}</p>
+              </div>
+              <div class="meta-card">
+                <h5>Recommended Intervention</h5>
+                <p style="font-size:0.95rem; font-weight:600; color:var(--white);">${currentGap.sol}</p>
+              </div>
+              <div class="meta-card">
+                <h5>Cognitive Target Layer (Bloom)</h5>
+                <p style="font-size:0.95rem; color:rgba(255,255,255,0.85);">${currentGap.bloom}</p>
+              </div>
+              <div class="meta-card">
+                <h5>Strategic Design Objective</h5>
+                <p style="font-size:0.95rem; color:rgba(255,255,255,0.85);">${currentGap.objectives}</p>
+              </div>
+            </div>
+            <div style="background: rgba(0, 193, 142, 0.08); padding:15px; border-radius:6px; margin-top:15px; font-size:0.95rem;">
+              <strong style="color:var(--aurora);">Core Implementation Blocks:</strong> ${currentGap.blocks}
+            </div>
+          </div>
+          
+          <div class="infographic-flow">
+            <h4 style="margin-bottom: 15px; color: var(--aurora); letter-spacing:1px; text-transform:uppercase; font-size:1rem;">How I Think as an Instructional Designer</h4>
+            <div class="flow-node">1. Performance Drop Identified (20% Revenue Loss)</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">2. Performance Analysis Audit (Shadowing & Data Trailing)</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">3. Precision Gap Identification (${currentGap.name})</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">4. Intervention Calibration (${currentGap.isTraining ? 'Training Track' : 'Non-Training System Fix'})</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node" style="background: var(--aurora); color: var(--midnight); border-color:var(--white); font-weight:800;">5. Measurable Business Performance Optimization Result</div>
+          </div>
+
+          <button class="btn-action" style="margin-top: 35px; width:100%; max-width:300px; font-size:1.1rem; background: var(--aurora); color: var(--midnight);" onclick="document.getElementById('btn-complete-5').disabled = false; document.getElementById('btn-complete-5').click();">Finalize Case File ✔</button>
+        </div>
+      `;
+    }
+
+    // Run Engine Initializer
+    renderScenarioStart();
+
+    // ── FLOATING AVATAR COMPANION LOGIC ──
+    const floatingAvatar = document.getElementById('floating-avatar');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let avatarX = window.innerWidth / 2;
+    let avatarY = window.innerHeight / 2;
+    let angle = 0;
+    const orbitRadius = 60; 
+    const orbitSpeed = 0.04; 
+    const chaseSpeed = 0.05; 
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (floatingAvatar.style.opacity === "0" || floatingAvatar.style.opacity === "") {
+        floatingAvatar.style.opacity = "1";
+      }
+    });
+
+    function animateAvatar() {
+      angle += orbitSpeed;
+      const targetX = mouseX + (Math.cos(angle) * orbitRadius) - 50;
+      const targetY = mouseY + (Math.sin(angle) * orbitRadius) - 50;
+      avatarX += (targetX - avatarX) * chaseSpeed;
+      avatarY += (targetY - avatarY) * chaseSpeed;
+      floatingAvatar.style.transform = `translate(${avatarX}px, ${avatarY}px)`;
+      requestAnimationFrame(animateAvatar);
+    }
+    animateAvatar();
 
   </script>
-
 </body>
 </html>
