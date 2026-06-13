@@ -97,7 +97,7 @@
     
     .block { background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; border: 1px solid rgba(0, 44, 57, 0.15); }
     .block-title { font-size: 1.5rem; color: var(--arcana); margin-bottom: 10px; }
-    .block-instruction { font-size: 0.9rem; color: #666; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 10px; }
+    .block-instruction { font-size: 0.95rem; color: #444; margin-bottom: 20px; font-style: italic; border-left: 3px solid var(--aurora); padding-left: 12px; line-height: 1.6; }
 
     .flip-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .flip-card { background-color: transparent; width: 320px; height: 220px; perspective: 1000px; cursor: pointer; }
@@ -146,118 +146,311 @@
 
     #floating-avatar { position: fixed; top: 0; left: 0; width: 100px; pointer-events: none; z-index: 9999; opacity: 1; transition: opacity 0.5s ease; transform-origin: center center; filter: drop-shadow(0 4px 10px rgba(0, 193, 142, 0.4)); }
 
-    /* ── SCENARIO SPECIFIC CSS ── */
-    .scenario-container {
-      background: linear-gradient(135deg, var(--midnight) 0%, var(--arcana) 100%);
-      border-radius: 16px;
-      padding: 40px;
-      color: var(--white);
+    /* ── WHITEBOARD CLASSROOM SCENARIO GAME ───────────────── */
+    .scenario-game {
       position: relative;
+      background: #FFF7F7;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      min-height: 650px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), inset 0 0 80px rgba(0,44,57,0.03);
+      border: 8px solid #002C39;
+      color: #002C39;
     }
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 30px;
-      margin-bottom: 20px;
-      animation: fadeIn 0.4s ease forwards;
-    }
-    .scenario-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 15px;
-    }
-    .scenario-progress { font-weight: 600; color: var(--aurora); letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem; }
-    .scenario-title { font-size: 1.8rem; color: var(--white); }
-    .scenario-svg-container {
-      width: 100%;
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-    .scenario-svg-container svg { height: 100%; max-width: 100%; fill: var(--white); }
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
-      margin-top: 25px;
-    }
-    @media(min-width: 768px) { .options-grid.cols-2 { grid-template-columns: 1fr 1fr; } }
-    .option-btn {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: var(--white);
-      padding: 18px 22px;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .option-btn:hover:not(:disabled) { background: var(--aurora); color: var(--midnight); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 193, 142, 0.3); }
-    .option-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    
-    .feedback-panel {
-      background: rgba(0, 193, 142, 0.15);
-      border-left: 4px solid var(--aurora);
-      padding: 20px;
-      border-radius: 6px;
-      margin-top: 25px;
-      display: none;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .feedback-panel.error { background: rgba(255, 99, 71, 0.15); border-left-color: #ff6347; }
-    .feedback-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-    
-    .architecture-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px 0;
-      text-align: left;
-    }
-    .architecture-meta { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
-    @media(min-width: 768px) { .architecture-meta { grid-template-columns: 1fr 1fr; } }
-    .meta-card { background: rgba(0, 44, 57, 0.4); border: 1px solid rgba(0, 193, 142, 0.2); padding: 15px; border-radius: 6px; }
-    .meta-card h5 { color: var(--aurora); margin-bottom: 5px; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .infographic-flow {
+    .scenario-game::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 3px solid rgba(0,44,57,0.12);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .chalkboard-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,44,57,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,44,57,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .game-hud {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+    .hud-badge {
+      background: rgba(0, 44, 57, 0.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 193, 142, 0.35);
+      padding: 8px 16px;
+      border-radius: 20px;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      min-width: 80px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .hud-badge .label {
+      color: var(--aurora);
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .classroom-frame {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      align-items: center;
-      margin-top: 35px;
-      background: rgba(255,255,255,0.02);
-      padding: 25px;
+    }
+
+    .character-area {
+      display: flex;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 30px;
+      min-height: 260px;
+    }
+
+    .character-portrait {
+      width: 200px;
+      height: 260px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 4px solid var(--aurora);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      object-fit: cover;
+      object-position: center top;
+      background: var(--midnight);
+      flex-shrink: 0;
+      animation: characterEnter 0.7s cubic-bezier(.4,0,.2,1) forwards;
+      filter: brightness(1.05) contrast(1.05);
+      transition: all 0.3s ease; /* Added transition for smooth image swaps */
     }
-    .flow-node {
-      background: var(--arcana);
-      color: var(--white);
-      padding: 14px 20px;
-      border-radius: 8px;
-      text-align: center;
+
+    .speech-bubble {
+      background: #ffffff;
+      color: var(--midnight);
+      padding: 24px 28px;
+      border-radius: 20px;
+      position: relative;
+      flex: 1;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      animation: bubblePop 0.4s ease-out;
+      max-height: 260px;
+      overflow-y: auto;
+      border: 1px solid rgba(0,44,57,0.08);
+    }
+    .speech-bubble::before {
+      content: '';
+      position: absolute;
+      left: -18px;
+      bottom: 45px;
+      width: 0; height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-right: 22px solid #ffffff;
+    }
+    .speaker-name {
+      font-family: var(--font-head);
+      font-weight: 800;
+      color: var(--aurora);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .dialogue-text {
+      min-height: 50px;
+    }
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s infinite;
+      color: var(--aurora);
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .scenario-visuals {
+      margin-bottom: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .choice-panel {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: auto;
+      position: relative;
+      z-index: 3;
+    }
+    @media(min-width: 768px) {
+      .choice-panel.cols-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .choice-card {
+      background: linear-gradient(135deg, rgba(0,44,57,0.95) 0%, rgba(1,80,97,0.95) 100%);
+      border: 2px solid rgba(0,44,57,0.15);
+      color: white;
+      padding: 22px 26px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-size: 1.05rem;
       font-weight: 600;
-      width: 100%;
-      max-width: 440px;
-      border: 1px solid rgba(0, 193, 142, 0.3);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: left;
+      transition: all 0.25s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
-    .flow-arrow { color: var(--aurora); font-size: 1.3rem; font-weight: bold; line-height: 1; }
+    .choice-card:hover:not(:disabled) {
+      transform: translateY(-4px);
+      border-color: var(--aurora);
+      box-shadow: 0 12px 30px rgba(0, 193, 142, 0.25);
+      background: linear-gradient(135deg, rgba(0,44,57,1) 0%, rgba(1,80,97,1) 100%);
+    }
+    .choice-card .choice-letter {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: var(--aurora);
+      color: var(--midnight);
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0,193,142,0.3);
+    }
+
+    .choice-card.selected-correct {
+      border-color: var(--aurora);
+      background: linear-gradient(135deg, rgba(0,193,142,0.25) 0%, rgba(0,44,57,0.95) 100%);
+      animation: pulseCorrect 0.6s ease;
+      pointer-events: none;
+    }
+    .choice-card.selected-wrong {
+      border-color: #ff6347;
+      background: linear-gradient(135deg, rgba(255,99,71,0.25) 0%, rgba(0,44,57,0.95) 100%);
+      animation: shakeWrong 0.5s ease;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .feedback-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,20,25,0.93);
+      z-index: 30;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 50px;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+    .feedback-overlay.active { display: flex; }
+    .feedback-icon { font-size: 4.5rem; margin-bottom: 20px; }
+    .feedback-title {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .feedback-text {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.15rem;
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .blueprint-stage {
+      background: rgba(0,44,57,0.06);
+      border-radius: 14px;
+      padding: 28px;
+      border: 2px solid var(--aurora);
+      backdrop-filter: blur(6px);
+    }
+    .blueprint-stage .architecture-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media(min-width: 768px) {
+      .blueprint-stage .architecture-meta { grid-template-columns: 1fr 1fr; }
+    }
+    .blueprint-stage .meta-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 44, 57, 0.1);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .blueprint-stage .meta-card h5 {
+      color: var(--arcana);
+      margin-bottom: 6px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .blueprint-stage .meta-card p {
+      color: var(--midnight);
+    }
+
+    @keyframes characterEnter {
+      from { transform: translateX(-60px) scale(0.95); opacity: 0; }
+      to { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    @keyframes bubblePop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulseCorrect {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    @keyframes shakeWrong {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-12px); }
+      75% { transform: translateX(12px); }
+    }
+
+    @media (max-width: 768px) {
+      .scenario-game { min-height: auto; }
+      .character-area { flex-direction: column; align-items: center; min-height: auto; }
+      .character-portrait { width: 140px; height: 180px; }
+      .speech-bubble { max-height: none; }
+      .speech-bubble::before { display: none; }
+      .classroom-frame { padding: 24px; }
+      .feedback-title { font-size: 1.4rem; }
+    }
 
     /* ── MOBILE RESPONSIVE ENGINE ── */
     #close-sidebar-btn { display: none; }    
@@ -278,7 +471,6 @@
       .timeline { padding-left: 15px; }
       .carousel-controls button { padding: 8px 12px; font-size: 0.9rem; }
       .carousel-slide img { max-height: 240px; }
-      .scenario-container { padding: 20px; }
       #close-sidebar-btn { display: block; position: absolute; top: 20px; right: 20px; background: transparent; color: var(--mist); border: none; font-size: 1.8rem; cursor: pointer; transition: color 0.2s; }
       #close-sidebar-btn:hover { color: var(--aurora); }
     }
@@ -327,8 +519,8 @@
         <li><a href="#" class="nav-link active" data-target="lesson1">Lesson 1: Introduction</a></li>
         <li><a href="#" class="nav-link" data-target="lesson2">Lesson 2: Trainings & Skills</a></li>
         <li><a href="#" class="nav-link" data-target="lesson3">Lesson 3: ISD Portfolio</a></li>
-        <li><a href="#" class="nav-link" data-target="lesson5">Lesson 4: Scenario</a></li>
-        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 5: Reflection</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: Scenario</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson5">Lesson 5: Reflection</a></li>
       </ul>
     </aside>
 
@@ -536,28 +728,71 @@
         <div class="completion-area">
           <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
           <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
-          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson5')">Continue to Lesson 4 ➔</button>
-        </div>
-      </section>
-
-      <section id="lesson5">
-        <h2 class="lesson-title">Lesson 4: Consulting Scenario</h2>
-        <div class="block">
-          <h3 class="block-title">Interactive Challenge: The Case of the Falling Sales</h3>
-          <p class="block-instruction">Step into the role of a Performance Consultant. Real-world instructional design means diagnosing root causes before prescribing training solutions.</p>
-          
-          <div class="scenario-container" id="scenario-app">
-            </div>
-
-        </div>
-        <div class="completion-area">
-          <button class="btn-action" id="btn-complete-5" onclick="completeLesson(5, this)" disabled>Complete Lesson 4</button>
-          <div id="msg-5" class="completion-msg">🎉 Lesson 4 Complete! 7 EXP Awarded.</div>
-          <button id="btn-next-5" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 5 ➔</button>
+          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
         </div>
       </section>
 
       <section id="lesson4">
+        <h2 class="lesson-title">Lesson 4: Consulting Scenario</h2>
+
+        <div class="block">
+          <h3 class="block-title">The Classroom Consultation</h3>
+          <p class="block-instruction">
+            <strong>Decision-Based Simulation:</strong> You are seated in my classroom. A client has just walked in with a crisis. Listen, diagnose, and choose the correct consulting path. Your credibility score depends on it. You may explore wrong answers, but you must correct your thinking before advancing.
+          </p>
+
+          <div class="scenario-game" id="scenario-game">
+            <div class="chalkboard-texture"></div>
+
+            <div class="game-hud">
+              <div class="hud-badge">
+                <span class="label">Phase</span>
+                <span id="game-phase">INTRO</span>
+              </div>
+              <div class="hud-badge">
+                <span class="label">Credibility</span>
+                <span id="game-score">100%</span>
+              </div>
+            </div>
+
+            <div class="classroom-frame">
+              <div class="character-area">
+                <img src="images/photo2.jpg" alt="Benedict de Jesus — Consultant" class="character-portrait" id="scenario-character">
+                <div class="speech-bubble" id="speech-bubble">
+                  <span class="speaker-name">Benedict de Jesus — ID Consultant</span>
+                  <div class="dialogue-text" id="dialogue-text">
+                    Welcome. A client has just rushed in demanding a training course for their sales team. But is training really what they need? Let's find out together.
+                  </div>
+                </div>
+              </div>
+
+              <div id="scenario-visuals" class="scenario-visuals"></div>
+
+              <div class="choice-panel" id="choice-panel">
+                <button class="choice-card" data-choice="diagnose" onclick="scenarioGame.makeChoice(0, 'diagnose', this)">
+                  <span class="choice-letter">A</span>
+                  <span class="choice-text">Begin the consultation</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="feedback-overlay" id="feedback-overlay">
+              <div class="feedback-icon" id="feedback-icon">🎯</div>
+              <div class="feedback-title" id="feedback-title">Analysis</div>
+              <div class="feedback-text" id="feedback-text">...</div>
+              <button class="btn-action" id="feedback-btn" onclick="scenarioGame.closeFeedback()">↺ Try Again</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="completion-area">
+          <button class="btn-action" id="btn-complete-4" onclick="completeLesson(4, this)" disabled>Complete Lesson 4</button>
+          <div id="msg-4" class="completion-msg">🎉 Lesson 4 Complete! 7 EXP Awarded.</div>
+          <button id="btn-next-4" class="btn-continue" onclick="goToLesson('lesson5')">Continue to Lesson 5 ➔</button>
+        </div>
+      </section>
+
+      <section id="lesson5">
         <h2 class="lesson-title">Lesson 5: Reflection</h2>
 
         <div class="block" style="text-align: center; padding: 80px 40px; border: 2px solid rgba(0, 193, 142, 0.3);">
@@ -571,7 +806,7 @@
        <div class="completion-area" style="text-align: center;">
           <button class="btn-action" onclick="completeCourse(this)" style="font-size: 1.2rem; padding: 15px 30px;">Finish Course</button>
           
-          <div id="msg-4" class="completion-msg" style="font-size: 1.2rem; text-align: center; margin-top: 30px;">
+          <div id="msg-5" class="completion-msg" style="font-size: 1.2rem; text-align: center; margin-top: 30px;">
             <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🏆 Module Mastered!</h3>
             <p style="color: var(--midnight);">Final 7 EXP Awarded. (Total 35 EXP)</p>
             
@@ -596,6 +831,8 @@
             </div>
           </div>
         </div>
+      </section>
+
     </main>
   </div>
 
@@ -661,7 +898,7 @@
       if (expDisplay) expDisplay.innerText = totalExp;
       
       btn.disabled = true;
-      btn.innerText = (lessonNum === 4 || lessonNum === 5 && btn.innerText === "Finish Course") ? "Course Completed ✔" : "Lesson Completed ✔";
+      btn.innerText = (lessonNum === 5 || btn.innerText === "Finish Course") ? "Course Completed ✔" : "Lesson Completed ✔";
       
       const msgElement = document.getElementById(`msg-${lessonNum}`);
       if (msgElement) msgElement.style.display = 'block';
@@ -670,7 +907,7 @@
       if (nextBtn) nextBtn.style.display = 'inline-block';
 
       setTimeout(() => {
-        if (lessonNum === 4 || btn.innerText === "Course Completed ✔") {
+        if (lessonNum === 5 || btn.innerText === "Course Completed ✔") {
           window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         } else if (msgElement) {
           msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -679,7 +916,7 @@
     }
 
     function completeCourse(btn) {
-      completeLesson(4, btn); 
+      completeLesson(5, btn); 
     }
 
     // ── HYBRID DRAG AND DROP ──
@@ -872,229 +1109,289 @@
       }
     ];
 
-    let currentGap = null;
-    const scenarioApp = document.getElementById('scenario-app');
+    // ── WHITEBOARD DECISION-GAME ENGINE ────────────────────
+    const scenarioGame = {
+      currentStep: 0,
+      currentGap: null,
+      score: 100,
+      triedChoices: new Set(),
 
-    function renderScenarioStart() {
-      currentGap = gapData[Math.floor(Math.random() * gapData.length)];
-      scenarioApp.innerHTML = `
-        <div class="glass-panel">
-          <div class="scenario-header">
-            <span class="scenario-progress">Step 1 of 4: The Request</span>
-          </div>
-          <div class="scenario-svg-container">${SVGS.dashboard}</div>
-          <h4 class="scenario-title">The Corporate Order</h4>
-          <p style="margin-top: 10px; font-size: 1.1rem; line-height: 1.6;">An online store notes a sudden <strong>20% drop in revenue conversion</strong>. The Sales Manager immediately demands a mandatory, intensive course on 'Advanced Sales Closing Mastery' for all representatives.</p>
-          <div class="options-grid cols-2" id="step1-buttons">
-            <button class="option-btn" onclick="evaluateStep1('order')">⚠️ Immediately Accept Order & Build Course</button>
-            <button class="option-btn" onclick="evaluateStep1('diagnose')">🔍 Pause & Initiate Performance Diagnosis</button>
-          </div>
-          <div id="scenario-feedback" class="feedback-panel"></div>
-        </div>
-      `;
-    }
+      init() {
+        this.currentGap = gapData[Math.floor(Math.random() * gapData.length)];
+        this.currentStep = 0;
+        this.score = 100;
+        this.triedChoices = new Set();
+        this.renderStep(0);
+      },
 
-    function evaluateStep1(choice) {
-      const feedbackPanel = document.getElementById('scenario-feedback');
-      const btnContainer = document.getElementById('step1-buttons');
-      
-      if (choice === 'order') {
-        feedbackPanel.className = "feedback-panel error";
-        feedbackPanel.style.display = "block";
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">❌ Order-Taker Mindset Warning</div>
-          <p>Accepting training orders immediately without analysis reduces L&D to a cost center. If the drop is caused by broken tech or poor pay, your course will fix nothing, and the business will lose time and capital.</p>
-          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="renderScenarioStart()">🔄 Reconsider Approach</button>
+      renderStep(step) {
+        const phases = ['INTRO', 'DIAGNOSIS', 'ANALYSIS', 'BLUEPRINT', 'COMPLETE'];
+        document.getElementById('game-phase').textContent = phases[step] || 'COMPLETE';
+        document.getElementById('game-score').textContent = this.score + '%';
+
+        // Swap Avatar base image by step progression
+        const avatarImage = document.getElementById('scenario-character');
+        if (step === 0) {
+          avatarImage.src = 'images/photo2.jpg';
+        } else if (step === 1 || step === 2) {
+          avatarImage.src = 'images/photo3.jpg';
+        } else if (step === 3) {
+          avatarImage.src = 'images/photo4.jpg';
+        }
+
+        const textEl = document.getElementById('dialogue-text');
+        const choicesEl = document.getElementById('choice-panel');
+        const visualsEl = document.getElementById('scenario-visuals');
+
+        textEl.style.opacity = '0';
+        setTimeout(() => {
+          this.typeText(textEl, this.getStepText(step));
+          textEl.style.opacity = '1';
+        }, 200);
+
+        choicesEl.innerHTML = this.getChoicesHTML(step);
+
+        const visualHTML = this.getVisualsHTML(step);
+        if (visualHTML) {
+          visualsEl.innerHTML = visualHTML;
+          visualsEl.style.display = 'block';
+        } else {
+          visualsEl.style.display = 'none';
+        }
+
+        this.triedChoices = new Set();
+      },
+
+      typeText(element, text) {
+        element.textContent = '';
+        let i = 0;
+        element.classList.add('typing-cursor');
+        const timer = setInterval(() => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(timer);
+            element.classList.remove('typing-cursor');
+          }
+        }, 18);
+      },
+
+      getStepText(step) {
+        const texts = [
+          "A corporate client has just entered the classroom. Their online store revenue dropped 20% and the Sales Manager is demanding an intensive 'Advanced Sales Closing' course for all reps. What is your first move?",
+          "You pause and investigate. After shadowing the team, you discover this critical evidence: \"" + this.currentGap.clue + "\" Based strictly on this data, what is the true organizational gap?",
+          "You have isolated the root cause as a " + this.currentGap.name + ". The stakeholder asks: 'Should we proceed with formal training development?' What is your recommendation?",
+          "Excellent work. Here is the strategic consulting blueprint I would present to the client. Review the architecture and finalize the case file."
+        ];
+        return texts[step] || "Case complete. You have successfully navigated the consulting scenario.";
+      },
+
+      getChoicesHTML(step) {
+        if (step === 0) {
+          return `
+            <button class="choice-card" data-choice="order" onclick="scenarioGame.makeChoice(0, 'order', this)">
+              <span class="choice-letter">A</span>
+              <span class="choice-text">Accept the order immediately and start building the course</span>
+            </button>
+            <button class="choice-card" data-choice="diagnose" onclick="scenarioGame.makeChoice(0, 'diagnose', this)">
+              <span class="choice-letter">B</span>
+              <span class="choice-text">Pause and initiate a performance diagnosis first</span>
+            </button>
+          `;
+        }
+        if (step === 1) {
+          return gapData.map((g, idx) => `
+            <button class="choice-card" data-choice="${g.id}" onclick="scenarioGame.makeChoice(1, '${g.id}', this)">
+              <span class="choice-letter">${String.fromCharCode(65 + idx)}</span>
+              <span class="choice-text">${g.name}</span>
+            </button>
+          `).join('');
+        }
+        if (step === 2) {
+          return `
+            <button class="choice-card" data-choice="yes" onclick="scenarioGame.makeChoice(2, true, this)">
+              <span class="choice-letter">A</span>
+              <span class="choice-text">Yes, initiate formal training development</span>
+            </button>
+            <button class="choice-card" data-choice="no" onclick="scenarioGame.makeChoice(2, false, this)">
+              <span class="choice-letter">B</span>
+              <span class="choice-text">No, recommend an environmental/systemic intervention</span>
+            </button>
+          `;
+        }
+        return `
+          <button class="choice-card" onclick="scenarioGame.finishScenario()" style="background:var(--aurora);color:var(--midnight);border-color:var(--aurora);">
+            <span class="choice-letter">✓</span>
+            <span class="choice-text">Finalize Case File & Complete Lesson</span>
+          </button>
         `;
-        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
-      } else {
-        feedbackPanel.className = "feedback-panel";
-        feedbackPanel.style.display = "block";
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">✨ Strategic Alignment Selected</div>
-          <p>Excellent decision. You explain to stakeholders that training is only appropriate for capability deficits. You secure permission to run an investigative discovery audit.</p>
-          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderDiscovery()">Proceed to Analysis ➔</button>
-        `;
-        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
-      }
-    }
+      },
 
-    function renderDiscovery() {
-      scenarioApp.innerHTML = `
-        <div class="glass-panel">
-          <div class="scenario-header">
-            <span class="scenario-progress">Step 2 of 4: Performance Diagnostics</span>
-          </div>
-          <div class="scenario-svg-container">${SVGS.consultant}</div>
-          <h4 class="scenario-title">Audit Log Findings</h4>
-          <p style="margin-top: 10px; font-size: 1.1rem;">You run surveys, evaluate work transcripts, and cross-reference behavioral data. Here is the primary trend uncovered:</p>
-          <div style="background: rgba(0,0,0,0.4); padding: 20px; border-left: 4px solid var(--aurora); margin: 20px 0; border-radius: 4px; font-style: italic; font-size: 1.05rem; line-height:1.5;">
-            "${currentGap.clue}"
-          </div>
-          <p style="font-weight:600; margin-bottom:15px;">Based strictly on this diagnostic data, isolate the true organizational gap:</p>
-          <div class="options-grid" id="gap-buttons">
-            ${gapData.map(g => `<button class="option-btn" onclick="evaluateGap('${g.id}', this)">${g.name}</button>`).join('')}
-          </div>
-          <div id="scenario-feedback" class="feedback-panel"></div>
-        </div>
-      `;
-    }
-
-    function evaluateGap(selectedId, clickedBtn) {
-      const feedbackPanel = document.getElementById('scenario-feedback');
-      const btnContainer = document.getElementById('gap-buttons');
-      
-      // Clear previous active highlights
-      Array.from(btnContainer.children).forEach(btn => {
-        btn.style.background = "";
-        btn.style.color = "";
-      });
-
-      const tailoredExplanation = currentGap.feedbacks[selectedId];
-
-      if (selectedId === currentGap.id) {
-        feedbackPanel.className = "feedback-panel";
-        feedbackPanel.style.display = "block";
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">🎯 Diagnosis Confirmed</div>
-          <p>${tailoredExplanation}</p>
-          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderSolutionPage()">Proceed to Prescription ➔</button>
-        `;
-        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
-        clickedBtn.style.background = "var(--aurora)";
-        clickedBtn.style.color = "var(--midnight)";
-        clickedBtn.disabled = false;
-      } else {
-        feedbackPanel.className = "feedback-panel error";
-        feedbackPanel.style.display = "block";
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">⚠️ Analytical Misalignment</div>
-          <p>${tailoredExplanation}</p>
-          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="resetGapEvaluation()">🔄 Reconsider Evidence & Retry</button>
-        `;
-        Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
-        clickedBtn.style.background = "#ff6347";
-        clickedBtn.style.color = "var(--white)";
-        clickedBtn.disabled = false;
-      }
-    }
-
-    function resetGapEvaluation() {
-      renderDiscovery();
-    }
-
-    function renderSolutionPage() {
-      scenarioApp.innerHTML = `
-        <div class="glass-panel">
-          <div class="scenario-header">
-            <span class="scenario-progress">Step 3 of 4: Solution Architecture</span>
-          </div>
-          <div class="scenario-svg-container">${currentGap.svg}</div>
-          <h4 class="scenario-title">Intervention Selection</h4>
-          <p style="margin-top: 10px; font-size: 1.1rem;">You have isolated the root bottleneck as a <strong>${currentGap.name}</strong>.</p>
-          <p style="margin-top:10px; font-weight:600;">Based on instructional design standards, should a formal training program be designed?</p>
-          <div class="options-grid cols-2" id="solution-buttons">
-            <button class="option-btn" onclick="evaluateSolution(true, this)">Yes, initiate training development</button>
-            <button class="option-btn" onclick="evaluateSolution(false, this)">No, request environmental intervention</button>
-          </div>
-          <div id="scenario-feedback" class="feedback-panel"></div>
-        </div>
-      `;
-    }
-
-    function evaluateSolution(isTrainingChoice, clickedBtn) {
-      const feedbackPanel = document.getElementById('scenario-feedback');
-      const btnContainer = document.getElementById('solution-buttons');
-      Array.from(btnContainer.children).forEach(btn => btn.disabled = true);
-
-      if (isTrainingChoice === currentGap.isTraining) {
-        feedbackPanel.className = "feedback-panel";
-        feedbackPanel.style.display = "block";
-        let detailedSuccessText = currentGap.isTraining ? 
-          "Correct. Because this is a core capabilities block, instructional intervention is the appropriate mechanism to modify behavior." :
-          "Correct. Training cannot rectify system errors, broken software, or misaligned financial compensation frameworks. You save the client thousands in structural waste.";
-        
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">🚀 Proper Alignment Validated</div>
-          <p>${detailedSuccessText}</p>
-          <button class="btn-action" style="margin-top:15px; background: var(--aurora); color: var(--midnight);" onclick="renderFinalFramework()">Generate Diagnostic Architecture ➔</button>
-        `;
-        clickedBtn.style.background = "var(--aurora)";
-        clickedBtn.style.color = "var(--midnight)";
-        clickedBtn.disabled = false;
-      } else {
-        feedbackPanel.className = "feedback-panel error";
-        feedbackPanel.style.display = "block";
-        let detailedErrorText = currentGap.isTraining ?
-          "Incorrect. Capability gaps (lack of product understanding or mastery over live customer handling) require formal educational engineering to correct behavioral pathways." :
-          "Incorrect. Building an instructional system for a non-training issue (bad compensation, crashes, lack of collateral) fails to alter variables and creates organizational frustration.";
-        
-        feedbackPanel.innerHTML = `
-          <div class="feedback-title">❌ Intervention Mismatch</div>
-          <p>${detailedErrorText}</p>
-          <button class="btn-action" style="margin-top:15px; padding: 8px 16px; font-size:0.9rem;" onclick="renderSolutionPage()">🔄 Correct Intervention Path</button>
-        `;
-        clickedBtn.style.background = "#ff6347";
-        clickedBtn.style.color = "var(--white)";
-        clickedBtn.disabled = false;
-      }
-    }
-
-    function renderFinalFramework() {
-      scenarioApp.innerHTML = `
-        <div class="glass-panel" style="text-align: center;">
-          <div class="scenario-header" style="justify-content: center;">
-            <span class="scenario-progress">Step 4 of 4: Strategic Summary Framework</span>
-          </div>
-          <div class="scenario-svg-container">${SVGS.framework}</div>
-          <h4 class="scenario-title" style="color: var(--aurora);">Consulting Blueprint Finalized</h4>
-          <p style="margin-top: 10px;">By evaluating structural operational roadblocks instead of simply accepting training request orders, you engineered a tailored business intervention:</p>
-          
-          <div class="architecture-box">
-            <h4 style="color:var(--white); border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:8px;">📋 Consultation Recommendations</h4>
-            <div class="architecture-meta">
-              <div class="meta-card">
-                <h5>Target Vector / Gap Class</h5>
-                <p style="font-size:0.95rem; font-weight:600; color:var(--white);">${currentGap.name}</p>
-              </div>
-              <div class="meta-card">
-                <h5>Recommended Intervention</h5>
-                <p style="font-size:0.95rem; font-weight:600; color:var(--white);">${currentGap.sol}</p>
-              </div>
-              <div class="meta-card">
-                <h5>Cognitive Target Layer (Bloom)</h5>
-                <p style="font-size:0.95rem; color:rgba(255,255,255,0.85);">${currentGap.bloom}</p>
-              </div>
-              <div class="meta-card">
-                <h5>Strategic Design Objective</h5>
-                <p style="font-size:0.95rem; color:rgba(255,255,255,0.85);">${currentGap.objectives}</p>
+      getVisualsHTML(step) {
+        if (step === 1) {
+          return `
+            <div style="background:rgba(255,255,255,0.95);border:1px solid rgba(0,44,57,0.1);border-radius:14px;padding:22px;margin-bottom:20px;box-shadow:0 4px 16px rgba(0,0,0,0.06);animation:fadeIn 0.6s ease;">
+              <div style="display:flex;align-items:center;gap:18px;">
+                <div style="font-size:2.5rem;">🔍</div>
+                <div>
+                  <div style="font-weight:800;color:var(--aurora);font-size:0.9rem;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">Discovery Audit</div>
+                  <div style="color:var(--midnight);font-size:1.05rem;line-height:1.5;">${this.currentGap.clue}</div>
+                </div>
               </div>
             </div>
-            <div style="background: rgba(0, 193, 142, 0.08); padding:15px; border-radius:6px; margin-top:15px; font-size:0.95rem;">
-              <strong style="color:var(--aurora);">Core Implementation Blocks:</strong> ${currentGap.blocks}
+          `;
+        }
+        if (step === 3) {
+          return `
+            <div class="blueprint-stage" style="animation:fadeIn 0.6s ease;">
+              <div class="architecture-meta">
+                <div class="meta-card">
+                  <h5>Gap Identified</h5>
+                  <p style="font-weight:700;font-size:1.05rem;">${this.currentGap.name}</p>
+                </div>
+                <div class="meta-card">
+                  <h5>Recommended Intervention</h5>
+                  <p style="font-weight:700;font-size:1.05rem;">${this.currentGap.sol}</p>
+                </div>
+                <div class="meta-card">
+                  <h5>Cognitive Target (Bloom)</h5>
+                  <p style="color:rgba(0,44,57,0.75);">${this.currentGap.bloom}</p>
+                </div>
+                <div class="meta-card">
+                  <h5>Strategic Objective</h5>
+                  <p style="color:rgba(0,44,57,0.75);">${this.currentGap.objectives}</p>
+                </div>
+              </div>
+              <div style="background:rgba(0,193,142,0.1);padding:16px;border-radius:8px;margin-top:18px;font-size:1rem;color:var(--midnight);border-left:4px solid var(--aurora);text-align:left;">
+                <strong style="color:var(--aurora);">Core Implementation Blocks:</strong> ${this.currentGap.blocks}
+              </div>
             </div>
-          </div>
-          
-          <div class="infographic-flow">
-            <h4 style="margin-bottom: 15px; color: var(--aurora); letter-spacing:1px; text-transform:uppercase; font-size:1rem;">How I Think as an Instructional Designer</h4>
-            <div class="flow-node">1. Performance Drop Identified (20% Revenue Loss)</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-node">2. Performance Analysis Audit (Shadowing & Data Trailing)</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-node">3. Precision Gap Identification (${currentGap.name})</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-node">4. Intervention Calibration (${currentGap.isTraining ? 'Training Track' : 'Non-Training System Fix'})</div>
-            <div class="flow-arrow">↓</div>
-            <div class="flow-node" style="background: var(--aurora); color: var(--midnight); border-color:var(--white); font-weight:800;">5. Measurable Business Performance Optimization Result</div>
-          </div>
+          `;
+        }
+        return '';
+      },
 
-          <button class="btn-action" style="margin-top: 35px; width:100%; max-width:300px; font-size:1.1rem; background: var(--aurora); color: var(--midnight);" onclick="document.getElementById('btn-complete-5').disabled = false; document.getElementById('btn-complete-5').click();">Finalize Case File ✔</button>
-        </div>
-      `;
-    }
+      makeChoice(step, choice, btnElement) {
+        const choiceKey = String(choice);
+        if (this.triedChoices.has(choiceKey)) return;
 
-    // Run Engine Initializer
-    renderScenarioStart();
+        let isCorrect = true;
+        let feedbackIcon = '';
+        let feedbackTitle = '';
+        let feedbackText = '';
+
+        if (step === 0) {
+          if (choice === 'order') {
+            isCorrect = false;
+            this.score = Math.max(0, this.score - 25);
+            feedbackIcon = '❌';
+            feedbackTitle = 'Order-Taker Mindset';
+            feedbackText = "Accepting training orders without root-cause analysis reduces L&D to a cost center. If the drop is caused by broken tech or poor incentives, your course will fix nothing and the business will lose time and capital. Think again—what should a consultant do first?";
+          } else {
+            feedbackIcon = '✨';
+            feedbackTitle = 'Strategic Alignment';
+            feedbackText = "Excellent decision. You explain to stakeholders that training is only appropriate for capability deficits. You secure permission to run an investigative discovery audit before committing resources.";
+          }
+        }
+        else if (step === 1) {
+          if (choice === this.currentGap.id) {
+            feedbackIcon = '🎯';
+            feedbackTitle = 'Diagnosis Confirmed';
+            feedbackText = this.currentGap.feedbacks[choice];
+          } else {
+            isCorrect = false;
+            this.score = Math.max(0, this.score - 20);
+            feedbackIcon = '⚠️';
+            feedbackTitle = 'Analytical Misalignment';
+            feedbackText = this.currentGap.feedbacks[choice] + " Re-examine the evidence and try again.";
+          }
+        }
+        else if (step === 2) {
+          const choseTraining = choice;
+          if (choseTraining === this.currentGap.isTraining) {
+            feedbackIcon = '🚀';
+            feedbackTitle = 'Proper Alignment Validated';
+            feedbackText = choseTraining
+              ? "Correct. Because this is a core capabilities block, instructional intervention is the appropriate mechanism to modify behavior."
+              : "Correct. Training cannot rectify system errors, broken software, or misaligned financial compensation frameworks. You save the client thousands in structural waste.";
+          } else {
+            isCorrect = false;
+            this.score = Math.max(0, this.score - 20);
+            feedbackIcon = '❌';
+            feedbackTitle = 'Intervention Mismatch';
+            feedbackText = (choseTraining
+              ? "Incorrect. A capability gap requires formal educational engineering to correct behavioral pathways. This situation does not call for training."
+              : "Incorrect. Building an instructional system for a non-training issue fails to alter variables and creates organizational frustration. Training IS needed here.") + " Reconsider your choice.";
+          }
+        }
+
+        const avatarImage = document.getElementById('scenario-character');
+
+        if (isCorrect) {
+          avatarImage.src = 'images/photo4.jpg'; // Correct choice image update
+          btnElement.classList.add('selected-correct');
+          document.querySelectorAll('.choice-card').forEach(c => c.disabled = true);
+          this.showFeedback(feedbackIcon, feedbackTitle, feedbackText, true, true);
+        } else {
+          avatarImage.src = 'images/photo5.jpg'; // Wrong choice error state update
+          btnElement.classList.add('selected-wrong');
+          btnElement.disabled = true;
+          this.triedChoices.add(choiceKey);
+          this.showFeedback(feedbackIcon, feedbackTitle, feedbackText, false, false);
+        }
+
+        document.getElementById('game-score').textContent = this.score + '%';
+      },
+
+      showFeedback(icon, title, text, isCorrect, canProceed) {
+        document.getElementById('feedback-icon').textContent = icon;
+        const titleEl = document.getElementById('feedback-title');
+        titleEl.textContent = title;
+        titleEl.style.color = isCorrect ? 'var(--aurora)' : '#ff6347';
+        document.getElementById('feedback-text').textContent = text;
+
+        const btn = document.getElementById('feedback-btn');
+        if (canProceed) {
+          btn.textContent = 'Continue ➔';
+          btn.onclick = () => this.nextStep();
+        } else {
+          btn.textContent = '↺ Try Again';
+          btn.onclick = () => this.closeFeedback();
+        }
+
+        document.getElementById('feedback-overlay').classList.add('active');
+      },
+
+      closeFeedback() {
+        document.getElementById('feedback-overlay').classList.remove('active');
+        // Revert the avatar back to the default step image if they closed an error message
+        const avatarImage = document.getElementById('scenario-character');
+        if (this.currentStep === 0) {
+          avatarImage.src = 'images/photo2.jpg';
+        } else if (this.currentStep === 1 || this.currentStep === 2) {
+          avatarImage.src = 'images/photo3.jpg';
+        }
+      },
+
+      nextStep() {
+        document.getElementById('feedback-overlay').classList.remove('active');
+        this.currentStep++;
+        if (this.currentStep >= 3) {
+          this.renderStep(3);
+          document.getElementById('btn-complete-4').disabled = false;
+        } else {
+          this.renderStep(this.currentStep);
+        }
+      },
+
+      finishScenario() {
+        document.getElementById('btn-complete-4').click();
+      }
+    };
+
+    // Initialize the new engine
+    scenarioGame.init();
 
     // ── FLOATING AVATAR COMPANION LOGIC ──
     const floatingAvatar = document.getElementById('floating-avatar');
