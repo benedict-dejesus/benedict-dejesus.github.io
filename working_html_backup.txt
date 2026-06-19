@@ -362,7 +362,7 @@
     .feedback-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,20,25,0.93);
+      background: rgba(0,20,25,0.8);
       z-index: 30;
       display: none;
       flex-direction: column;
@@ -474,6 +474,36 @@
       #close-sidebar-btn { display: block; position: absolute; top: 20px; right: 20px; background: transparent; color: var(--mist); border: none; font-size: 1.8rem; cursor: pointer; transition: color 0.2s; }
       #close-sidebar-btn:hover { color: var(--aurora); }
     }
+
+/* ── LESSON 1: IMAGE-BASED WORK EXPERIENCE FLIP CARDS ── */
+    .img-flip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .img-flip-card { background-color: transparent; width: 100%; height: 350px; perspective: 1000px; cursor: pointer; }
+    .img-flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border-radius: 12px; }
+    .img-flip-card.flipped .img-flip-card-inner, .img-flip-card:hover .img-flip-card-inner { transform: rotateY(180deg); }
+    .img-flip-card-front, .img-flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 12px; overflow: hidden; }
+    .img-flip-card-front { background-color: var(--white); color: var(--midnight); display: flex; flex-direction: column; }
+    .img-flip-card-front img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--aurora); }
+    .img-flip-front-text { padding: 1rem; display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
+    .img-flip-front-text h3 { font-size: 1.25rem; margin-bottom: 0.25rem; color: var(--arcana); }
+    .img-flip-front-text p.company { font-weight: 600; margin-bottom: 0.25rem; font-size: 1rem; }
+    .img-flip-front-text p.dates { font-size: 0.9rem; color: #666; }
+    .img-flip-card-back { background-color: var(--midnight); color: var(--mist); transform: rotateY(180deg); padding: 1.5rem; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; }
+    .img-flip-card-back h4 { color: var(--aurora); margin-bottom: 10px; font-size: 1.1rem; }
+    .img-flip-card-back ul { padding-left: 20px; font-size: 0.95rem; }
+    .img-flip-card-back li { margin-bottom: 8px; }
+
+    /* ── LESSON 2: PROFESSIONAL TRAININGS SCROLL GALLERY ── */
+    .gallery-carousel-wrapper { margin-top: 1.5rem; width: 100%; }
+    .gallery-carousel-track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; scrollbar-color: var(--aurora) var(--mist); }
+    .gallery-carousel-track::-webkit-scrollbar { height: 8px; }
+    .gallery-carousel-track::-webkit-scrollbar-track { background: var(--mist); border-radius: 4px; }
+    .gallery-carousel-track::-webkit-scrollbar-thumb { background-color: var(--aurora); border-radius: 4px; }
+    .gallery-carousel-slide { flex: 0 0 85%; max-width: 500px; scroll-snap-align: center; position: relative; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(0, 44, 57, 0.15); }
+    .gallery-carousel-slide img { width: 100%; height: 300px; object-fit: cover; display: block; transition: transform 0.3s ease; }
+    .gallery-carousel-slide:hover img { transform: scale(1.03); }
+    .gallery-carousel-caption { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(to top, rgba(0, 44, 57, 0.95), rgba(0, 44, 57, 0)); color: var(--white); padding: 2rem 1.5rem 1.5rem 1.5rem; text-align: left; pointer-events: none; }
+    .gallery-carousel-caption h3 { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; margin: 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+
   </style>
 </head>
 <body>
@@ -519,7 +549,7 @@
         <li><a href="#" class="nav-link active" data-target="lesson1">Lesson 1: Introduction</a></li>
         <li><a href="#" class="nav-link" data-target="lesson2">Lesson 2: Trainings & Skills</a></li>
         <li><a href="#" class="nav-link" data-target="lesson3">Lesson 3: ISD Portfolio</a></li>
-        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: Scenario</a></li>
+        <li><a href="#" class="nav-link" data-target="lesson4">Lesson 4: My ISD Mindset</a></li>
         <li><a href="#" class="nav-link" data-target="lesson5">Lesson 5: Reflection</a></li>
       </ul>
     </aside>
@@ -538,7 +568,7 @@
         <div class="block">
           <h3 class="block-title">Hi! I'm Benedict, but most people know me as Sir Kito.</h3>
           <p class="block-instruction">Read through my professional background to learn more about my journey.</p>
-          <p>"I am an Instructional Designer committed to the intersection of humanities and educational technology. Leveraging my dual expertise in ESL/EFL instruction and AI-powered learning tools, I transform complex concepts into engaging, accessible, and high-impact digital experiences. From facilitating classroom instruction to leading corporate curriculum development at ALPS, I apply a blend of analytical research, visual communication, instructional strategy, as well as a backwards design mindset to build learning environments that adapt to the future of work."</p>
+          <p>"I am a Licensed Professional Teacher and a Professional Instructional Designer committed to the intersection of humanities and educational technology. Leveraging my dual expertise in ESL/EFL instruction and AI-powered learning tools, I transform complex concepts into engaging, accessible, and high-impact digital experiences. From facilitating classroom instruction to leading corporate curriculum development at ALPS, I apply a blend of analytical research, visual communication, instructional strategy, as well as a backwards design mindset to build learning environments that adapt to the future of work."</p>
         </div>
 
         <div class="block">
@@ -566,46 +596,132 @@
 
         <div class="block">
           <h3 class="block-title">Work Experience</h3>
-          <p class="block-instruction">Click on each card to flip it and reveal my specific job descriptions and responsibilities.</p>
-          <div class="flip-grid">
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h4>Marketing & Finance Manager</h4><span>Arcana Learning & Process Solutions</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2026 - 2026) ⤻</p>
+          <p class="block-instruction">Hover over or tap the cards below to see my key responsibilities in each role.</p>
+          
+          <div class="img-flip-grid">
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo18.jpg" alt="Work Experience 1">
+                  <div class="img-flip-front-text">
+                    <h3>Part-time Instructor</h3>
+                    <p class="company">Bulacan State University</p>
+                    <p class="dates">2018 - Present</p>
+                  </div>
                 </div>
-                <div class="flip-card-back">Managed operational and marketing strategies for ALPS, a tech-enabled L&D organization, to drive business growth and client satisfaction. Conducted rigorous market and needs analyses to architect and align custom course solutions with specific client business objectives and performance requirements.</div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Designed outcomes-based learning paths.</li>
+                    <li>Developed curriculum blueprints.</li>
+                    <li>Collaborated in QA initiatives.</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h4>Part-time Instructor</h4><span>Bulacan State University (Main)</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2018 - Present) ⤻</p>
+
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo19.jpg" alt="Work Experience 2">
+                  <div class="img-flip-front-text">
+                    <h3>Research Consultant</h3>
+                    <p class="company">Freelance</p>
+                    <p class="dates">2010 - Present</p>
+                  </div>
                 </div>
-                <div class="flip-card-back">Architected outcomes-based learning paths and curriculum blueprints for multidisciplinary programs, including communication, visual literacy, and the humanities. Collaborated in quality assurance (QA) initiatives for institutional accreditation and conducted educational research to drive continuous program improvement.</div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Provided independent research and thesis consultation.</li>
+                    <li>Ensuring academic rigor and methodology.</li>
+                    <li>Grammar, Data Collection and Processing assistance, Plagiarism and AI scans.</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h4>Senior High School Teacher</h4><span>La Consolacion University Philippines</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2015 - 2018) ⤻</p>
+
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo20.jpg" alt="Work Experience 3">
+                  <div class="img-flip-front-text">
+                    <h3>Marketing and Finance Manager</h3>
+                    <p class="company">Arcana Learning and Process Solutions</p>
+                    <p class="dates">2026 - 2026</p>
+                  </div>
                 </div>
-                <div class="flip-card-back">Spearheaded the departmental standardization of research and capstone curricula by developing scalable learning plans, performance assessments, and instructional materials. Authored comprehensive facilitator guides adopted by all teaching staff to ensure consistent delivery of learning objectives.</div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Served as educational theory QA for modules.</li>
+                    <li>Collaborated with the design and development of full and micro courses.</li>
+                    <li>Conducted rigorous market and needs analyses and managed marketing strategies.</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h4>EFL Teacher / Students' Coordinator</h4><span>JABEZ International Educational Center Inc.</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2014 - 2015) ⤻</p>
+
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo21.jpg" alt="Work Experience 4">
+                  <div class="img-flip-front-text">
+                    <h3>Senior High School Teacher</h3>
+                    <p class="company">La Consolacion University Philippines</p>
+                    <p class="dates">2015 - 2018</p>
+                  </div>
                 </div>
-                <div class="flip-card-back">Analyzed and localized proprietary curriculum to engineer customized learning paths for a cross-cultural global demographic. Directed administrative workflows and evaluated learner feedback to continuously improve instructional quality.</div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Spearheaded the departmental standardization of research and capstone curricula.</li>
+                    <li>Developed scalable learning plans, performance assessments, and instructional materials. </li>
+                    <li>Authored comprehensive facilitator guides adopted by all teaching staff.</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('flipped')">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <h4>Research & Thesis Consultant</h4><span>Self-Employed</span><p style="margin-top:auto; font-size: 0.8rem; text-align:right;">(2010 - Present) ⤻</p>
+
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo22.jpg" alt="Work Experience 4">
+                  <div class="img-flip-front-text">
+                    <h3>EFL Teacher & Students' Coordinator</h3>
+                    <p class="company">JABEZ International Educational Center Inc.</p>
+                    <p class="dates">2014 - 2015</p>
+                  </div>
                 </div>
-                <div class="flip-card-back">Provided independent research and thesis consultation for undergrad and graduate students, ensuring academic rigor and methodology.</div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Analyzed and localized proprietary curriculum to engineer customized learning paths.</li>
+                    <li>Directed administrative workflows and evaluated learner feedback.</li>
+                    <li>Provided coaching and mentoring for clients.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="img-flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="img-flip-card-inner">
+                <div class="img-flip-card-front">
+                  <img src="images/photo23.jpg" alt="Work Experience 5">
+                  <div class="img-flip-front-text">
+                    <h3>Lead Vocalist and Guitarist</h3>
+                    <p class="company">The Return of Morlak (in 3D)</p>
+                    <p class="dates">2010 - 2014</p>
+                  </div>
+                </div>
+                <div class="img-flip-card-back">
+                  <h4>Key Responsibilities</h4>
+                  <ul>
+                    <li>Managed and organized gig schedules for the band.</li>
+                    <li>Served as the financial manager of the band.</li>
+                    <li>Performed as the lead vocalist and guitarist.</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -619,28 +735,47 @@
       </section>
 
       <section id="lesson2">
-        <h2 class="lesson-title">Lesson 2: Trainings and Skills</h2>
-
+        <h2 class="lesson-title">Lesson 2: Trainings & Skills</h2>
+        
         <div class="block">
           <h3 class="block-title">Professional Trainings</h3>
-          <p class="block-instruction">Click on each row to expand and view my roles in these specialized training programs.</p>
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
-            <div class="accordion-header">In-House LEPT Review (2026) <span>+</span></div>
-            <div class="accordion-body"><p><strong>Institution:</strong> Bulacan State University - Hagonoy Campus</p><p><strong>Role:</strong> Guest Lecturer & Facilitator</p></div>
-          </div>
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
-            <div class="accordion-header">Microsoft Office Proficiency Workshop (2024) <span>+</span></div>
-            <div class="accordion-body"><p><strong>Institution:</strong> City Government of Malolos</p><p><strong>Role:</strong> Keynote Speaker & Facilitator</p></div>
-          </div>
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
-            <div class="accordion-header">BulSU Paves the Way (2021) <span>+</span></div>
-            <div class="accordion-body"><p><strong>Topic:</strong> Relevant Trends for Enhancing Instruction</p><p><strong>Role:</strong> Participant</p></div>
-          </div>
-          <div class="accordion-item" onclick="this.classList.toggle('active')">
-            <div class="accordion-header">EDUK KAKAIBA: The OBE Way (2021) <span>+</span></div>
-            <div class="accordion-body"><p><strong>Topic:</strong> Outcomes-Based Education in Higher Education</p><p><strong>Role:</strong> Participant</p></div>
+          <p class="block-instruction">Scroll horizontally to view my professional training certifications and workshops.</p>
+          
+          <div class="gallery-carousel-wrapper">
+            <div class="gallery-carousel-track">
+              
+              <div class="gallery-carousel-slide">
+                <img src="images/photo24.jpg" alt="Professional Training 1">
+                <div class="gallery-carousel-caption">
+                  <h3>In-House LEPT Review (Training Facilitator)</h3>
+                </div>
+              </div>
+
+              <div class="gallery-carousel-slide">
+                <img src="images/photo25.jpg" alt="Professional Training 2">
+                <div class="gallery-carousel-caption">
+                  <h3>Microsoft Office Proficiency Workshop (Workshop Facilitator)</h3>
+                </div>
+              </div>
+
+              <div class="gallery-carousel-slide">
+                <img src="images/photo26.jpg" alt="Professional Training 3">
+                <div class="gallery-carousel-caption">
+                  <h3>Research Colloquium in English Language and Literature (Research Presenter)</h3>
+                </div>
+              </div>
+
+              <div class="gallery-carousel-slide">
+                <img src="images/photo27.jpg" alt="Professional Training 4">
+                <div class="gallery-carousel-caption">
+                  <h3>Bulacan State University Language Center: Intensive Grammar Training (Completer)</h3>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
+   
 
         <div class="block">
           <h3 class="block-title">Knowledge Check: Skills Sorting</h3>
@@ -674,71 +809,119 @@
 
       </section>
 
-      <section id="lesson3">
-        <h2 class="lesson-title">Lesson 3: My ISD Portfolio</h2>
+<section id="lesson3">
+  <h2 class="lesson-title">Lesson 3: My ISD Portfolio</h2>
 
-        <div class="block">
-          <h3 class="block-title">Project: Autorise</h3>
-          <p class="block-instruction">Navigate through the carousel to view artifacts from my AI-Powered Learning Designer project.</p>
-          <div class="carousel">
-            <div class="carousel-track" id="track-autorise">
-              <div class="carousel-slide"><img src="images/autorise-1.png" alt="Autorise 1"></div>
-              <div class="carousel-slide"><img src="images/autorise-2.png" alt="Autorise 2"></div>
-              <div class="carousel-slide"><img src="images/autorise-3.png" alt="Autorise 3"></div>
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button onclick="moveCarousel(-1, 'track-autorise')">⟵ Previous</button>
-            <button onclick="moveCarousel(1, 'track-autorise')">Next ⟶</button>
-          </div>
-        </div>
+  <div class="block">
+    <h3 class="block-title">Project Name: DRRM</h3>
+    <p class="block-instruction">DRRM is inspired by Nintendo, Game Freak, and Creatures Inc.'s Pokemon, one of the first video games I played. This version uses an assimilation the game as a UI to teach Disaster Readiness to children of the City of Malolos, preparing kids for disasters and emergency situations. No copyright infringement intended.</p>
+    
+    <div class="carousel">
+      <div class="carousel-track" id="track-aap2026">
+        <div class="carousel-slide"><img src="images/photo6.jpg" alt="AAP2026 Photo 1"></div>
+        <div class="carousel-slide"><img src="images/photo7.jpg" alt="AAP2026 Photo 2"></div>
+        <div class="carousel-slide"><img src="images/photo8.jpg" alt="AAP2026 Photo 3"></div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button onclick="moveCarousel(-1, 'track-aap2026')">⟵ Previous</button>
+      <button onclick="moveCarousel(1, 'track-aap2026')">Next ⟶</button>
+    </div>
 
-        <div class="block">
-          <h3 class="block-title">Project: Art Appreciation (Mod 1)</h3>
-          <p class="block-instruction">Navigate through the carousel to review different development phases.</p>
-          <div class="carousel">
-            <div class="carousel-track" id="track-mod1">
-              <div class="carousel-slide"><img src="images/mod1-1.png" alt="Mod 1 Image 1"></div>
-              <div class="carousel-slide"><img src="images/mod1-2.png" alt="Mod 1 Image 2"></div>
-              <div class="carousel-slide"><img src="images/mod1-3.png" alt="Mod 1 Image 3"></div>
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button onclick="moveCarousel(-1, 'track-mod1')">⟵ Previous</button>
-            <button onclick="moveCarousel(1, 'track-mod1')">Next ⟶</button>
-          </div>
-        </div>
+    <div style="text-align: center; margin-top: 25px;">
+      <a href="https://benedict-dejesus.github.io/DRRM/" target="_blank" rel="noopener noreferrer">
+        <button class="btn-action" style="padding: 15px 30px; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,193,142,0.3);">Experience First-Hand 🚀</button>
+      </a>
+    </div>
+  </div>
 
-        <div class="block">
-          <h3 class="block-title">Project: Art Appreciation (Mod 2)</h3>
-          <p class="block-instruction">Navigate through the carousel to view artifacts from my advanced module.</p>
-          <div class="carousel">
-            <div class="carousel-track" id="track-mod2">
-              <div class="carousel-slide"><img src="images/mod2-1.png" alt="Mod 2 Image 1"></div>
-              <div class="carousel-slide"><img src="images/mod2-2.png" alt="Mod 2 Image 2"></div>
-              <div class="carousel-slide"><img src="images/mod2-3.png" alt="Mod2 Image 3"></div>
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button onclick="moveCarousel(-1, 'track-mod2')">⟵ Previous</button>
-            <button onclick="moveCarousel(1, 'track-mod2')">Next ⟶</button>
-          </div>
-        </div>
+  <div class="block">
+    <h3 class="block-title">Project Name: Instructional Design Compass (IDC)</h3>
+    <p class="block-instruction">Instructional Design Compass (IDC) is envisioned to be the first step to effective instructional design processes. IDC uses Socratic method to probe deeper into the problem or situation and utilizes Bloom's Taxonomy and Adult Learning Theory to output a robust guide for the lessons.</p>
+    
+    <div class="carousel">
+      <div class="carousel-track" id="track-idc">
+        <div class="carousel-slide"><img src="images/photo9.jpg" alt="IDC Photo 1"></div>
+        <div class="carousel-slide"><img src="images/photo10.jpg" alt="IDC Photo 2"></div>
+        <div class="carousel-slide"><img src="images/photo11.jpg" alt="IDC Photo 3"></div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button onclick="moveCarousel(-1, 'track-idc')">⟵ Previous</button>
+      <button onclick="moveCarousel(1, 'track-idc')">Next ⟶</button>
+    </div>
 
-        <div class="completion-area">
-          <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
-          <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
-          <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
-        </div>
-      </section>
+    <div style="text-align: center; margin-top: 25px;">
+      <a href="https://benedict-dejesus.github.io/IDC/" target="_blank" rel="noopener noreferrer">
+        <button class="btn-action" style="padding: 15px 30px; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,193,142,0.3);">Experience First-Hand 🚀</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 class="block-title">Project Name: Titan Simulator (Titan-Sim)</h3>
+    <p class="block-instruction">Titan Simulator is a gamified simulation built to give basic training for beginner crane operators. This mini game is easily integratable to an e-learning module. WARNING: Titan Simulator is a desktop-only app.</p>
+    
+    <div class="carousel">
+      <div class="carousel-track" id="track-titan">
+        <div class="carousel-slide"><img src="images/photo12.jpg" alt="Titan-Sim Photo 1"></div>
+        <div class="carousel-slide"><img src="images/photo13.jpg" alt="Titan-Sim Photo 2"></div>
+        <div class="carousel-slide"><img src="images/photo14.jpg" alt="Titan-Sim Photo 3"></div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button onclick="moveCarousel(-1, 'track-titan')">⟵ Previous</button>
+      <button onclick="moveCarousel(1, 'track-titan')">Next ⟶</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+      <a href="https://benedict-dejesus.github.io/Titan-Sim/" target="_blank" rel="noopener noreferrer">
+        <button class="btn-action" style="padding: 15px 30px; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,193,142,0.3);">Experience First-Hand 🚀</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3 class="block-title">Project Name: Cooking Papa</h3>
+    <p class="block-instruction">Cooking papa is a non-AI-powered, dynamic culinary mastery module. At present, it only features common recipes, but the branching tech, functions, logic, and gamification elements are the key products.</p>
+    
+    <div class="carousel">
+      <div class="carousel-track" id="track-cookingpapa">
+        <div class="carousel-slide"><img src="images/photo15.jpg" alt="IDC Photo 1"></div>
+        <div class="carousel-slide"><img src="images/photo16.jpg" alt="IDC Photo 2"></div>
+        <div class="carousel-slide"><img src="images/photo17.jpg" alt="IDC Photo 3"></div>
+      </div>
+    </div>
+    
+    <div class="carousel-controls">
+      <button onclick="moveCarousel(-1, 'track-cookingpapa')">⟵ Previous</button>
+      <button onclick="moveCarousel(1, 'track-cookingpapa')">Next ⟶</button>
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+      <a href="https://benedict-dejesus.github.io/cookingpapa/" target="_blank" rel="noopener noreferrer">
+        <button class="btn-action" style="padding: 15px 30px; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,193,142,0.3);">Experience First-Hand 🚀</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="completion-area">
+    <button class="btn-action" onclick="completeLesson(3, this)">Complete Lesson 3</button>
+    <div id="msg-3" class="completion-msg">🎉 Lesson 3 Complete! 7 EXP Awarded.</div>
+    <button id="btn-next-3" class="btn-continue" onclick="goToLesson('lesson4')">Continue to Lesson 4 ➔</button>
+  </div>
+</section>
 
       <section id="lesson4">
-        <h2 class="lesson-title">Lesson 4: Consulting Scenario</h2>
+        <h2 class="lesson-title">Lesson 4: How I Think as an ID Professional</h2>
 
         <div class="block">
-          <h3 class="block-title">The Classroom Consultation</h3>
+          <h3 class="block-title">Benedict as a Learning Consultant</h3>
           <p class="block-instruction">
-            <strong>Decision-Based Simulation:</strong> You are seated in my classroom. A client has just walked in with a crisis. Listen, diagnose, and choose the correct consulting path. Your credibility score depends on it. You may explore wrong answers, but you must correct your thinking before advancing.
+            <strong>Decision-Based Simulation:</strong> A client has just walked in with a crisis. Listen, diagnose, and choose the correct consulting path. Your credibility score depends on it. You may explore wrong answers, but you must correct your thinking before advancing. Don't worry, I will guide you every step of the way.
           </p>
 
           <div class="scenario-game" id="scenario-game">
@@ -811,7 +994,7 @@
             <p style="color: var(--midnight);">Final 7 EXP Awarded. (Total 35 EXP)</p>
             
             <div style="margin-top: 25px; padding-top: 25px; border-top: 1px dashed rgba(0, 44, 57, 0.3);">
-              <p style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px;"><strong>Let's Build Something Great Together:</strong></p>
+              <p style="font-size: 1.1rem; color: var(--midnight); margin-bottom: 15px;"><strong>LET'S BUILD SOMETHING GREAT TOGETHER:</strong></p>
               <p style="font-size: 0.95rem; margin-bottom: 5px;">📍 Malolos, Bulacan, PH | 📞 +63 927 383 7473</p>
               <p style="font-size: 0.95rem; margin-bottom: 25px;">✉️ benedictdejesuslpt@gmail.com</p>
               
